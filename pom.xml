@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2016 Google Inc. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+--><project xmlns:pom="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <groupId>com.lacv.mercando</groupId>
+    <artifactId>mercando-root</artifactId>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
+        <spring.security.version>4.2.3.RELEASE</spring.security.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <sitemesh.version>3.0.1</sitemesh.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lacv</groupId>
+            <artifactId>jmagrexs</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.servlet.jsp.jstl</artifactId>
+            <version>1.2.5-b03</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sitemesh</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>${sitemesh.version}</version>
+        </dependency>
+        
+    </dependencies>
+      
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <property>
+                    <name>!env</name>
+                </property>
+            </activation>
+            <properties>
+                <domain.url>http://localhost:8084</domain.url>
+                <static.domain.url>http://localhost:8084/</static.domain.url>
+                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>dot54321</jdbc.password>
+                <mail.host>smtp.gmail.com</mail.host>
+                <mail.port>587</mail.port>
+                <mail.username>enviocorreodot1@gmail.com</mail.username>
+                <mail.userlabel>Habitares</mail.userlabel>
+                <mail.password>dot12345</mail.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>test</value>
+                </property>
+            </activation>
+            <properties>
+                <domain.url>http://186.83.137.240:8084</domain.url>
+                <static.domain.url>http://186.83.137.240:8084/</static.domain.url>
+                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>calsatrilievlo</jdbc.password>
+                <mail.host>smtp.gmail.com</mail.host>
+                <mail.port>587</mail.port>
+                <mail.username>enviocorreodot1@gmail.com</mail.username>
+                <mail.userlabel>Habitares</mail.userlabel>
+                <mail.password>dot12345</mail.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <domain.url>http://www.mercando.tk</domain.url>
+                <static.domain.url>http://www.mercando.tk/</static.domain.url>
+                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+                <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>calsatrilievlo</jdbc.password>
+                <mail.host>smtp.gmail.com</mail.host>
+                <mail.port>587</mail.port>
+                <mail.username>enviocorreodot1@gmail.com</mail.username>
+                <mail.userlabel>Habitares</mail.userlabel>
+                <mail.password>dot12345</mail.password>
+            </properties>
+        </profile>
+        
+    </profiles>
+    <modules>
+        <module>mercando-model</module>
+        <module>mercando-daos</module>
+        <module>mercando-services</module>
+        <module>mercando-portal</module>
+        <module>mercando-administration</module>
+        <module>mercando-rest</module>
+  </modules>
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="MarketPlatformPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.lacv.mercando.model.entities.Category</class>
+    <class>com.lacv.mercando.model.entities.Commerce</class>
+    <class>com.lacv.mercando.model.entities.InventoryOrder</class>
+    <class>com.lacv.mercando.model.entities.InventoryorderDetail</class>
+    <class>com.lacv.mercando.model.entities.LogProcess</class>
+    <class>com.lacv.mercando.model.entities.Mail</class>
+    <class>com.lacv.mercando.model.entities.MailTemplate</class>
+    <class>com.lacv.mercando.model.entities.MainLocation</class>
+    <class>com.lacv.mercando.model.entities.Payment</class>
+    <class>com.lacv.mercando.model.entities.Product</class>
+    <class>com.lacv.mercando.model.entities.Property</class>
+    <class>com.lacv.mercando.model.entities.PurchaseOrder</class>
+    <class>com.lacv.mercando.model.entities.PurchaseorderDetail</class>
+    <class>com.lacv.mercando.model.entities.Role</class>
+    <class>com.lacv.mercando.model.entities.Supplier</class>
+    <class>com.lacv.mercando.model.entities.User</class>
+    <class>com.lacv.mercando.model.entities.UserRole</class>
+    <class>com.lacv.mercando.model.entities.WebFile</class>
+    <class>com.lacv.mercando.model.entities.ProductImage</class>
+    <class>com.lacv.mercando.model.entities.SubCategory</class>
+    <class>com.lacv.mercando.model.entities.RoleAuthorization</class>
+    <class>com.lacv.mercando.model.entities.Authorization</class>
+    <class>com.lacv.mercando.model.entities.WebresourceAuthorization</class>
+    <class>com.lacv.mercando.model.entities.WebResource</class>
+    <class>com.lacv.mercando.model.entities.WebresourceRole</class>
+    <class>com.lacv.mercando.model.entities.LeadTable</class>
+    <class>com.lacv.mercando.model.entities.Column</class>
+    <class>com.lacv.mercando.model.entities.TableColumn</class>
+    <class>com.lacv.mercando.model.entities.JsonObject</class>
+    <properties>
+      <property name="eclipselink.cache.shared.default" value="false"/>
+      <property name="wildfly.jpa.default-unit" value="true"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="e1"/>
+    </properties>
+  </persistence-unit>
+</persistence>
