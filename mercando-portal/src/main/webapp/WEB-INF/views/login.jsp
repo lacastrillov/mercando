@@ -38,7 +38,7 @@
                                 <input placeholder="* * * * * *" id="j_password" type="password" class="validate" name="j_password" value="" maxlength="50" minlength="3" />
                             </div>
                         </div>
-                        <button type="button" onclick="userAuthentication.mainAuthenticate('formLogin')" class="btn-ingreso">Ingresar</button>
+                        <button type="button" onclick="userAuthentication.authenticate('formLogin')" class="btn-ingreso">Ingresar</button>
                         <a class="link-pass" onclick="userAuthentication.changeForm('changePasswordDiv')" href="javascript:void(0);">&iquest;Olvidaste tu clave?</a>
                     </form>
                 </div>

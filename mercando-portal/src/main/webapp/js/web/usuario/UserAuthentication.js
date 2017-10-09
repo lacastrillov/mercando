@@ -8,6 +8,8 @@
 function UserAuthentication() {
 
     var Instance = this;
+    
+    var MODULES= ["/rest", "/vista"];
 
     Instance.init = function () {
         $(document).ready(function () {
@@ -25,51 +27,75 @@ function UserAuthentication() {
         });
     };
     
-    Instance.mainAuthenticate= function(idForm){
-        $.ajax({
-            url: "/rest/account/ajax/authenticate",
-            timeout: 20000,
-            type: "POST",
-            data: $("#"+idForm).serialize(),
-            cache: false,
-            dataType: "json",
-            success: function (data, status) {
-                $.ajax({
-                    url: "/vista/account/ajax/authenticate",
-                    timeout: 20000,
-                    type: "POST",
-                    data: $("#"+idForm).serialize(),
-                    cache: false,
-                    dataType: "json",
-                    success: function (data, status) {
-                        $("#"+idForm).submit();
-                    },
-                    error: function (xhr, status) {
-                        console.log(xhr.status);
-                    }
-                });
-            },
-            error: function (xhr, status) {
-                console.log(xhr.status);
-            }
+    Instance.authenticate= function(idForm){
+        Instance.preAuthenticate(0, idForm, function(){
+            $("#"+idForm).submit();
         });
     };
     
-    Instance.authenticate = function (callback) {
-        $.ajax({
-            url: $("#ajaxFormLogin").attr("action"),
-            timeout: 20000,
-            type: "POST",
-            data: $("#ajaxFormLogin").serialize(),
-            cache: false,
-            dataType: "json",
-            success: function (data, status) {
-                callback(data);
-            },
-            error: function (xhr, status) {
-                console.log(xhr.status);
-            }
+    Instance.ajaxAuthenticate = function (idForm, callback) {
+        Instance.preAuthenticate(0, idForm, function(){
+            $.ajax({
+                url: $("#"+idForm).attr("action"),
+                timeout: 20000,
+                type: "POST",
+                data: $("#"+idForm).serialize(),
+                cache: false,
+                dataType: "json",
+                success: function (data, status) {
+                    callback(data);
+                },
+                error: function (xhr, status) {
+                    console.log(xhr.status);
+                }
+            });
         });
+    };
+    
+    Instance.preAuthenticate= function(index, idForm, callback){
+        if(index<MODULES.length){
+            $.ajax({
+                url: MODULES[index]+"/account/ajax/authenticate",
+                timeout: 20000,
+                type: "POST",
+                data: $("#"+idForm).serialize(),
+                cache: false,
+                dataType: "json",
+                success: function (data, status) {
+                    Instance.preAuthenticate(index+1, idForm, callback);
+                },
+                error: function (xhr, status) {
+                    console.log(xhr.status);
+                }
+            });
+        }else{
+            callback();
+        }
+    };
+    
+    Instance.logout= function(){
+        Instance.preLogout(0, function(){
+            location.href="/security_logout";
+        });
+    };
+    
+    Instance.preLogout= function(index, callback){
+        if(index<MODULES.length){
+            $.ajax({
+                url: MODULES[index]+"/security_logout",
+                timeout: 5000,
+                type: "GET",
+                cache: false,
+                success: function (data, status) {
+                    Instance.preLogout(index+1, callback);
+                },
+                error: function (xhr, status) {
+                    console.log(xhr.status);
+                }
+            });
+        }else{
+            callback();
+        }
     };
 
     Instance.changePassword = function () {

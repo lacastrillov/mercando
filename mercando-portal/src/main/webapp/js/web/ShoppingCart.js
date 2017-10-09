@@ -250,7 +250,7 @@ function ShoppingCart() {
     };
     
     Instance.login= function(){
-        userAuthentication.authenticate(function(data){
+        userAuthentication.ajaxAuthenticate("ajaxFormLogin", function(data){
             if(data.success){
                 $("#idUserInSession").val(data.user.id);
                 $("#userNameData").html(data.user.username+" - "+data.user.firstName+" "+data.user.lastName);

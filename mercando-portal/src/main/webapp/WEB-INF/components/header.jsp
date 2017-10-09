@@ -46,7 +46,7 @@
                                     <li><a href="/account/home">Entrar a mi cuenta</a></li>
                                     <li><a href="/vista/myAccount/entity.htm">Mis datos</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/security_logout">Cerrar sesi&oacute;n</a></li>
+                                    <li><a onclick="userAuthentication.logout()" href="javascript:void(0);">Cerrar sesi&oacute;n</a></li>
                                 </ul>
                             </li>
                         </sec:authorize>
@@ -80,7 +80,7 @@
                                     <input placeholder="* * * * * *" id="j_password" type="password" class="validate" name="j_password" value="" maxlength="50" minlength="3" />
                                 </div>
                             </div>
-                            <button type="button" onclick="userAuthentication.mainAuthenticate('formLogin')" class="btn-ingreso">Ingresar</button>
+                            <button type="button" onclick="userAuthentication.authenticate('formLogin')" class="btn-ingreso">Ingresar</button>
                             <a class="link-pass" onclick="userAuthentication.changeForm('changePasswordDiv')" href="javascript:void(0);">&iquest;Olvidaste tu clave?</a>
                         </form>
                         </c:if>
