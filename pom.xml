@@ -149,8 +149,8 @@
         <module>mercando-model</module>
         <module>mercando-daos</module>
         <module>mercando-services</module>
-        <module>mercando-portal</module>
-        <module>mercando-administration</module>
         <module>mercando-rest</module>
+        <module>mercando-administration</module>
+        <module>mercando-portal</module>
   </modules>
 </project>
