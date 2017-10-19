@@ -8,6 +8,7 @@ package com.lacv.mercando.model.dtos;
 import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.HideField;
 import com.dot.gcpbasedot.annotation.ImageResize;
+import com.dot.gcpbasedot.annotation.LabelField;
 import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.ReadOnly;
@@ -23,6 +24,7 @@ import java.util.Date;
  *
  * @author grupot
  */
+@LabelField("firstName")
 public class UserDto implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
