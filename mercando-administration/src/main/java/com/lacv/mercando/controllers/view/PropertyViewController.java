@@ -43,7 +43,7 @@ public class PropertyViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("property", "key", propertyService, PropertyDto.class);
+        EntityConfig view= new EntityConfig("property", propertyService, PropertyDto.class);
         view.setSingularEntityTitle("Propiedad");
         view.setPluralEntityTitle("Propiedades");
         view.setMultipartFormData(true);

@@ -4,11 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.InventoryOrderDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.InventoryorderDetailDto;
-import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.model.entities.InventoryorderDetail;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("inventoryorderDetailMapper")
-public class InventoryorderDetailMapper implements BasicEntityMapper {
+public class InventoryorderDetailMapper extends EntityMapperImpl<InventoryorderDetail, InventoryorderDetailDto> implements EntityMapper<InventoryorderDetail, InventoryorderDetailDto> {
     
     @Autowired
     InventoryOrderMapper inventoryOrderMapper;
@@ -30,13 +28,12 @@ public class InventoryorderDetailMapper implements BasicEntityMapper {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        InventoryorderDetail entity= (InventoryorderDetail) baseEntity;
+    public InventoryorderDetailDto entityToDto(InventoryorderDetail entity) {
         InventoryorderDetailDto dto= new InventoryorderDetailDto();
         if(entity!=null){
             dto.setId(entity.getId());
-            dto.setInventoryOrder((InventoryOrderDto) inventoryOrderMapper.entityToDto(entity.getInventoryOrder()));
-            dto.setProduct((ProductDto) productMapper.entityToDto(entity.getProduct()));
+            dto.setInventoryOrder(inventoryOrderMapper.entityToDto(entity.getInventoryOrder()));
+            dto.setProduct(productMapper.entityToDto(entity.getProduct()));
             dto.setQuantity(entity.getQuantity());
             dto.setUnitPrice(entity.getUnitPrice());
         }
@@ -49,11 +46,11 @@ public class InventoryorderDetailMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<InventoryorderDetailDto> dtos= new ArrayList<>();
+    public List<InventoryorderDetailDto> listEntitiesToListDtos(List<InventoryorderDetail> entities){
+        List<InventoryorderDetailDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((InventoryorderDetailDto) entityToDto(entity));
+            for(InventoryorderDetail entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

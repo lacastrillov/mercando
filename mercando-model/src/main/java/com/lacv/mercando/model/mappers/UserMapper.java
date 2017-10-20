@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.User;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("userMapper")
-public class UserMapper implements BasicEntityMapper {
+public class UserMapper extends EntityMapperImpl<User, UserDto> implements EntityMapper<User, UserDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        User entity= (User) baseEntity;
+    public UserDto entityToDto(User entity) {
         UserDto dto= new UserDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -58,11 +57,11 @@ public class UserMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<UserDto> dtos= new ArrayList<>();
+    public List<UserDto> listEntitiesToListDtos(List<User> entities){
+        List<UserDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((UserDto) entityToDto(entity));
+            for(User entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

@@ -45,7 +45,7 @@ public class MyShoppingViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("purchaseOrder", "number", purchaseOrderService, PurchaseOrderDto.class);
+        EntityConfig view= new EntityConfig("purchaseOrder", purchaseOrderService, PurchaseOrderDto.class);
         view.setPathRef("myShopping");
         view.setSingularEntityTitle("Mi Compra");
         view.setPluralEntityTitle("Mis Compras");

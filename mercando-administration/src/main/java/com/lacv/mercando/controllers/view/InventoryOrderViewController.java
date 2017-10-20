@@ -44,7 +44,7 @@ public class InventoryOrderViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("inventoryOrder", "number", inventoryOrderService, InventoryOrderDto.class);
+        EntityConfig view= new EntityConfig("inventoryOrder", inventoryOrderService, InventoryOrderDto.class);
         view.setSingularEntityTitle("Orden de Inventario");
         view.setPluralEntityTitle("Ordenes de Inventario");
         view.addChildExtView("inventoryorderDetail", InventoryorderDetail.class, EntityConfig.TCV_STANDARD);

@@ -37,7 +37,7 @@ public class SubCategoryViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("subCategory", "name", subCategoryService, SubCategoryDto.class);
+        EntityConfig view= new EntityConfig("subCategory", subCategoryService, SubCategoryDto.class);
         view.setSingularEntityTitle("Sub Categoria");
         view.setPluralEntityTitle("Sub Categorias");
         view.setMultipartFormData(true);

@@ -4,10 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.RoleDto;
-import com.lacv.mercando.model.dtos.WebResourceDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.WebresourceRoleDto;
 import com.lacv.mercando.model.entities.WebresourceRole;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("webresourceRoleMapper")
-public class WebresourceRoleMapper implements BasicEntityMapper {
+public class WebresourceRoleMapper extends EntityMapperImpl<WebresourceRole, WebresourceRoleDto> implements EntityMapper<WebresourceRole, WebresourceRoleDto> {
     
     @Autowired
     RoleMapper roleMapper;
@@ -30,13 +28,12 @@ public class WebresourceRoleMapper implements BasicEntityMapper {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        WebresourceRole entity= (WebresourceRole) baseEntity;
+    public WebresourceRoleDto entityToDto(WebresourceRole entity) {
         WebresourceRoleDto dto= new WebresourceRoleDto();
         if(entity!=null){
             dto.setId(entity.getId());
-            dto.setRole((RoleDto) roleMapper.entityToDto(entity.getRole()));
-            dto.setWebResource((WebResourceDto) webResourceMapper.entityToDto(entity.getWebResource()));
+            dto.setRole(roleMapper.entityToDto(entity.getRole()));
+            dto.setWebResource(webResourceMapper.entityToDto(entity.getWebResource()));
         }
         return dto;
     }
@@ -47,11 +44,11 @@ public class WebresourceRoleMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<WebresourceRoleDto> dtos= new ArrayList<>();
+    public List<WebresourceRoleDto> listEntitiesToListDtos(List<WebresourceRole> entities){
+        List<WebresourceRoleDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((WebresourceRoleDto) entityToDto(entity));
+            for(WebresourceRole entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

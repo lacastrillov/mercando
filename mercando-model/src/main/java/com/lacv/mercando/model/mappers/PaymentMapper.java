@@ -4,12 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.InventoryOrderDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.PaymentDto;
-import com.lacv.mercando.model.dtos.PurchaseOrderDto;
-import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.Payment;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("paymentMapper")
-public class PaymentMapper implements BasicEntityMapper {
+public class PaymentMapper extends EntityMapperImpl<Payment, PaymentDto> implements EntityMapper<Payment, PaymentDto> {
     
     @Autowired
     InventoryOrderMapper inventoryOrderMapper;
@@ -34,19 +31,18 @@ public class PaymentMapper implements BasicEntityMapper {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Payment entity= (Payment) baseEntity;
+    public PaymentDto entityToDto(Payment entity) {
         PaymentDto dto= new PaymentDto();
         if(entity!=null){
             dto.setId(entity.getId());
             dto.setAmount(entity.getAmount());
-            dto.setInventoryOrder((InventoryOrderDto) inventoryOrderMapper.entityToDto(entity.getInventoryOrder()));
+            dto.setInventoryOrder(inventoryOrderMapper.entityToDto(entity.getInventoryOrder()));
             dto.setPaymentDate(entity.getPaymentDate());
             dto.setPaymentMethod(entity.getPaymentMethod());
             dto.setPaymentResult(entity.getPaymentResult());
-            dto.setPurchaseOrder((PurchaseOrderDto) purchaseOrderMapper.entityToDto(entity.getPurchaseOrder()));
+            dto.setPurchaseOrder(purchaseOrderMapper.entityToDto(entity.getPurchaseOrder()));
             dto.setReferenceNumber(entity.getReferenceNumber());
-            dto.setUser((UserDto) userMapper.entityToDto(entity.getUser()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }
@@ -57,11 +53,11 @@ public class PaymentMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<PaymentDto> dtos= new ArrayList<>();
+    public List<PaymentDto> listEntitiesToListDtos(List<Payment> entities){
+        List<PaymentDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((PaymentDto) entityToDto(entity));
+            for(Payment entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

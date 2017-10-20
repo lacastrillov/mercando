@@ -4,11 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.AuthorizationDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.RoleAuthorizationDto;
-import com.lacv.mercando.model.dtos.RoleDto;
 import com.lacv.mercando.model.entities.RoleAuthorization;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("roleAuthorizationMapper")
-public class RoleAuthorizationMapper implements BasicEntityMapper {
+public class RoleAuthorizationMapper extends EntityMapperImpl<RoleAuthorization, RoleAuthorizationDto> implements EntityMapper<RoleAuthorization, RoleAuthorizationDto> {
 
     @Autowired
     AuthorizationMapper authorizationMapper;
@@ -30,13 +28,12 @@ public class RoleAuthorizationMapper implements BasicEntityMapper {
     
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        RoleAuthorization entity= (RoleAuthorization) baseEntity;
+    public RoleAuthorizationDto entityToDto(RoleAuthorization entity) {
         RoleAuthorizationDto dto= new RoleAuthorizationDto();
         if(entity!=null){
             dto.setId(entity.getId());
-            dto.setAuthorization((AuthorizationDto) authorizationMapper.entityToDto(entity.getAuthorization()));
-            dto.setRole((RoleDto) roleMapper.entityToDto(entity.getRole()));
+            dto.setAuthorization(authorizationMapper.entityToDto(entity.getAuthorization()));
+            dto.setRole(roleMapper.entityToDto(entity.getRole()));
         }
         return dto;
     }
@@ -47,11 +44,11 @@ public class RoleAuthorizationMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<RoleAuthorizationDto> dtos= new ArrayList<>();
+    public List<RoleAuthorizationDto> listEntitiesToListDtos(List<RoleAuthorization> entities){
+        List<RoleAuthorizationDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((RoleAuthorizationDto) entityToDto(entity));
+            for(RoleAuthorization entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

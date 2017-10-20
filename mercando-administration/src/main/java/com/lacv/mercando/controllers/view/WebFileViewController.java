@@ -45,7 +45,7 @@ public class WebFileViewController extends ExtFileExplorerController {
     
     @PostConstruct
     public void init(){
-        FileExplorerConfig view= new FileExplorerConfig("webFile", "name", webFileService, WebFileDto.class);
+        FileExplorerConfig view= new FileExplorerConfig("webFile", webFileService, WebFileDto.class);
         view.setSingularEntityTitle("Archivo Web");
         view.setPluralEntityTitle("Archivos Web");
         view.setMultipartFormData(true);

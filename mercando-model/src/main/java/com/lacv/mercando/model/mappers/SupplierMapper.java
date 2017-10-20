@@ -4,10 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.SupplierDto;
-import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.Supplier;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,14 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("supplierMapper")
-public class SupplierMapper implements BasicEntityMapper {
+public class SupplierMapper extends EntityMapperImpl<Supplier, SupplierDto> implements EntityMapper<Supplier, SupplierDto> {
     
     @Autowired
     UserMapper userMapper;
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Supplier entity= (Supplier) baseEntity;
+    public SupplierDto entityToDto(Supplier entity) {
         SupplierDto dto= new SupplierDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -41,7 +39,7 @@ public class SupplierMapper implements BasicEntityMapper {
             dto.setPhoneMobile(entity.getPhoneMobile());
             dto.setPhoneOffice(entity.getPhoneOffice());
             dto.setRegion(entity.getRegion());
-            dto.setUser((UserDto) userMapper.entityToDto(entity.getUser()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }
@@ -52,11 +50,11 @@ public class SupplierMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<SupplierDto> dtos= new ArrayList<>();
+    public List<SupplierDto> listEntitiesToListDtos(List<Supplier> entities){
+        List<SupplierDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((SupplierDto) entityToDto(entity));
+            for(Supplier entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

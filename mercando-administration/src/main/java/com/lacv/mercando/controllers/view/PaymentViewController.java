@@ -43,7 +43,7 @@ public class PaymentViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("payment", "referenceNumber", paymentService, PaymentDto.class);
+        EntityConfig view= new EntityConfig("payment", paymentService, PaymentDto.class);
         view.setSingularEntityTitle("Pago");
         view.setPluralEntityTitle("Pagos");
         super.addControlMapping(view);

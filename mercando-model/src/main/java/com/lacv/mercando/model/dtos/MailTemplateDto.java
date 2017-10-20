@@ -7,6 +7,7 @@ package com.lacv.mercando.model.dtos;
 
 import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.HideField;
+import com.dot.gcpbasedot.annotation.LabelField;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.ReadOnly;
 import com.dot.gcpbasedot.annotation.TextField;
@@ -20,6 +21,7 @@ import java.util.List;
  *
  * @author lacastrillov
  */
+@LabelField("name")
 public class MailTemplateDto implements BaseEntity {
 
     private static final long serialVersionUID = 1L;

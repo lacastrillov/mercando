@@ -43,7 +43,7 @@ public class AuthorizationViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("authorization", "name", authorizationService, AuthorizationDto.class);
+        EntityConfig view= new EntityConfig("authorization", authorizationService, AuthorizationDto.class);
         view.setSingularEntityTitle("Autorizaci&oacute;n");
         view.setPluralEntityTitle("Autorizaciones");
         super.addControlMapping(view);

@@ -11,7 +11,6 @@ import com.lacv.mercando.model.mappers.WebresourceAuthorizationMapper;
 import com.lacv.mercando.services.WebresourceAuthorizationService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
 import com.dot.gcpbasedot.components.MenuComponent;
-import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class WebresourceAuthorizationViewController extends ExtEntityController 
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("webresourceAuthorization", "id", webresourceAuthorizationService, WebresourceAuthorizationDto.class);
+        EntityConfig view= new EntityConfig("webresourceAuthorization", webresourceAuthorizationService, WebresourceAuthorizationDto.class);
         view.setSingularEntityTitle("Autorizaci&oacute;n");
         view.setPluralEntityTitle("Autorizaciones");
         view.activateNNMulticheckChild("authorization");

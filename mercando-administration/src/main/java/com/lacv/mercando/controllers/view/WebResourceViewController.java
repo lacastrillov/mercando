@@ -45,7 +45,7 @@ public class WebResourceViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("webResource", "name", webResourceService, WebResourceDto.class);
+        EntityConfig view= new EntityConfig("webResource", webResourceService, WebResourceDto.class);
         view.setSingularEntityTitle("Recurso Web");
         view.setPluralEntityTitle("Recursos Web");
         view.addChildExtView("webresourceRole", WebresourceRole.class, EntityConfig.TCV_N_N_MULTICHECK);

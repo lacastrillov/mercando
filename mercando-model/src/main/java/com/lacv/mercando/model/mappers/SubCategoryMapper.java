@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.CategoryDto;
 import com.lacv.mercando.model.dtos.SubCategoryDto;
 import com.lacv.mercando.model.entities.SubCategory;
@@ -19,21 +19,20 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("subCategoryMapper")
-public class SubCategoryMapper implements BasicEntityMapper {
+public class SubCategoryMapper extends EntityMapperImpl<SubCategory, SubCategoryDto> implements EntityMapper<SubCategory, SubCategoryDto> {
 
     @Autowired
     CategoryMapper categoryMapper;
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        SubCategory entity= (SubCategory) baseEntity;
+    public SubCategoryDto entityToDto(SubCategory entity) {
         SubCategoryDto dto= new SubCategoryDto();
         if(entity!=null){
             dto.setId(entity.getId());
             dto.setDescription(entity.getDescription());
             dto.setImage(entity.getImage());
             dto.setName(entity.getName());
-            dto.setCategory((CategoryDto) categoryMapper.entityToDto(entity.getCategory()));
+            dto.setCategory(categoryMapper.entityToDto(entity.getCategory()));
         }
         return dto;
     }
@@ -44,11 +43,11 @@ public class SubCategoryMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<SubCategoryDto> dtos= new ArrayList<>();
+    public List<SubCategoryDto> listEntitiesToListDtos(List <SubCategory> entities){
+        List<SubCategoryDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((SubCategoryDto) entityToDto(entity));
+            for(SubCategory entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

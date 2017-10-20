@@ -4,10 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.PurchaseOrderDto;
-import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.PurchaseOrder;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +18,14 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("purchaseOrderMapper")
-public class PurchaseOrderMapper implements BasicEntityMapper {
+public class PurchaseOrderMapper extends EntityMapperImpl<PurchaseOrder, PurchaseOrderDto> implements EntityMapper<PurchaseOrder, PurchaseOrderDto> {
     
     @Autowired
     UserMapper userMapper;
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        PurchaseOrder entity= (PurchaseOrder) baseEntity;
+    public PurchaseOrderDto entityToDto(PurchaseOrder entity) {
         PurchaseOrderDto dto= new PurchaseOrderDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -40,7 +38,7 @@ public class PurchaseOrderMapper implements BasicEntityMapper {
             dto.setDiscount(entity.getDiscount());
             dto.setIva(entity.getIva());
             dto.setTotal(entity.getTotal());
-            dto.setUser((UserDto) userMapper.entityToDto(entity.getUser()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }
@@ -51,11 +49,11 @@ public class PurchaseOrderMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<PurchaseOrderDto> dtos= new ArrayList<>();
+    public List<PurchaseOrderDto> listEntitiesToListDtos(List<PurchaseOrder> entities){
+        List<PurchaseOrderDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((PurchaseOrderDto) entityToDto(entity));
+            for(PurchaseOrder entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

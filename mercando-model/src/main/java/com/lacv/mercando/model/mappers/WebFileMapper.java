@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.WebFileDto;
 import com.lacv.mercando.model.entities.WebFile;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("webFileMapper")
-public class WebFileMapper implements BasicEntityMapper {
+public class WebFileMapper extends EntityMapperImpl<WebFile, WebFileDto> implements EntityMapper<WebFile, WebFileDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        WebFile entity= (WebFile) baseEntity;
+    public WebFileDto entityToDto(WebFile entity) {
         WebFileDto dto= new WebFileDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -47,11 +46,11 @@ public class WebFileMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<WebFileDto> dtos= new ArrayList<>();
+    public List<WebFileDto> listEntitiesToListDtos(List<WebFile> entities){
+        List<WebFileDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((WebFileDto) entityToDto(entity));
+            for(WebFile entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

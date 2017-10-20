@@ -43,7 +43,7 @@ public class MainLocationViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("mainLocation", "mlName", mainLocationService, MainLocationDto.class);
+        EntityConfig view= new EntityConfig("mainLocation", mainLocationService, MainLocationDto.class);
         view.setSingularEntityTitle("Ubicaci&oacute;n Principal");
         view.setPluralEntityTitle("Ubicaciones Principales");
         super.addControlMapping(view);

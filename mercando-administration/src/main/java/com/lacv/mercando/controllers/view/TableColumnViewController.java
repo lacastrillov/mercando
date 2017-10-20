@@ -43,7 +43,7 @@ public class TableColumnViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("tableColumn", "name", tableColumnService, TableColumnDto.class);
+        EntityConfig view= new EntityConfig("tableColumn", tableColumnService, TableColumnDto.class);
         view.setSingularEntityTitle("Columna de la tabla");
         view.setPluralEntityTitle("Columnas de la tabla");
         view.setDefaultOrder("columnOrder", "ASC");

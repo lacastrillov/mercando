@@ -4,9 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.LeadTableDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.TableColumnDto;
 import com.lacv.mercando.model.entities.TableColumn;
 import java.util.ArrayList;
@@ -19,14 +18,13 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("tableColumnMapper")
-public class TableColumnMapper implements BasicEntityMapper {
+public class TableColumnMapper extends EntityMapperImpl<TableColumn, TableColumnDto> implements EntityMapper<TableColumn, TableColumnDto> {
 
     @Autowired
     LeadTableMapper leadTableMapper;
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        TableColumn entity= (TableColumn) baseEntity;
+    public TableColumnDto entityToDto(TableColumn entity) {
         TableColumnDto dto= new TableColumnDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -40,7 +38,7 @@ public class TableColumnMapper implements BasicEntityMapper {
             dto.setName(entity.getName());
             dto.setOptions(entity.getOptions());
             dto.setWidth(entity.getWidth());
-            dto.setLeadTable((LeadTableDto) leadTableMapper.entityToDto(entity.getLeadTable()));
+            dto.setLeadTable(leadTableMapper.entityToDto(entity.getLeadTable()));
         }
         return dto;
     }
@@ -51,11 +49,11 @@ public class TableColumnMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<TableColumnDto> dtos= new ArrayList<>();
+    public List<TableColumnDto> listEntitiesToListDtos(List<TableColumn> entities){
+        List<TableColumnDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((TableColumnDto) entityToDto(entity));
+            for(TableColumn entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

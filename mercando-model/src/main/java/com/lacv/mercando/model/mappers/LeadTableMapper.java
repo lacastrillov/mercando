@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.LeadTableDto;
 import com.lacv.mercando.model.entities.LeadTable;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("leadTableMapper")
-public class LeadTableMapper implements BasicEntityMapper {
+public class LeadTableMapper extends EntityMapperImpl<LeadTable, LeadTableDto> implements EntityMapper<LeadTable, LeadTableDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        LeadTable entity= (LeadTable) baseEntity;
+    public LeadTableDto entityToDto(LeadTable entity) {
         LeadTableDto dto= new LeadTableDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -42,11 +41,11 @@ public class LeadTableMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<LeadTableDto> dtos= new ArrayList<>();
+    public List<LeadTableDto> listEntitiesToListDtos(List <LeadTable> entities){
+        List<LeadTableDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((LeadTableDto) entityToDto(entity));
+            for(LeadTable entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

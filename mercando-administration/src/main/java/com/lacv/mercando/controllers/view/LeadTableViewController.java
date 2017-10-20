@@ -44,7 +44,7 @@ public class LeadTableViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("leadTable", "name", leadTableService, LeadTableDto.class);
+        EntityConfig view= new EntityConfig("leadTable", leadTableService, LeadTableDto.class);
         view.setSingularEntityTitle("Tabla Lead");
         view.setPluralEntityTitle("Tablas Lead");
         view.addChildExtView("tableColumn", TableColumn.class, EntityConfig.TCV_STANDARD);

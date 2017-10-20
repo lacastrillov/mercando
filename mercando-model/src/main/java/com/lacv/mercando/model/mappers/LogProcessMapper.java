@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.LogProcessDto;
 import com.lacv.mercando.model.entities.LogProcess;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("logProcessMapper")
-public class LogProcessMapper implements BasicEntityMapper {
+public class LogProcessMapper extends EntityMapperImpl<LogProcess, LogProcessDto> implements EntityMapper<LogProcess, LogProcessDto> {
     
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        LogProcess entity= (LogProcess) baseEntity;
+    public LogProcessDto entityToDto(LogProcess entity) {
         LogProcessDto dto= new LogProcessDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -47,11 +46,11 @@ public class LogProcessMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<LogProcessDto> dtos= new ArrayList<>();
+    public List<LogProcessDto> listEntitiesToListDtos(List<LogProcess> entities){
+        List<LogProcessDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((LogProcessDto) entityToDto(entity));
+            for(LogProcess entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

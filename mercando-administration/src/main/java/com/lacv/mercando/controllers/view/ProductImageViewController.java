@@ -39,7 +39,7 @@ public class ProductImageViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("productImage", "id", productImageService, ProductImageDto.class);
+        EntityConfig view= new EntityConfig("productImage", productImageService, ProductImageDto.class);
         view.setSingularEntityTitle("Imagen");
         view.setPluralEntityTitle("Imagenes");
         view.setMultipartFormData(true);

@@ -6,6 +6,7 @@
 package com.lacv.mercando.model.dtos;
 
 import com.dot.gcpbasedot.annotation.ColumnWidth;
+import com.dot.gcpbasedot.annotation.LabelField;
 import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.Size;
@@ -19,6 +20,7 @@ import java.util.Date;
  *
  * @author grupot
  */
+@LabelField("commerceName")
 public class CommerceDto implements BaseEntity {
 
     private static final long serialVersionUID = 1L;

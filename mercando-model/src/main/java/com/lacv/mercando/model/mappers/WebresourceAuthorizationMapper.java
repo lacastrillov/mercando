@@ -4,10 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.AuthorizationDto;
-import com.lacv.mercando.model.dtos.WebResourceDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.WebresourceAuthorizationDto;
 import com.lacv.mercando.model.entities.WebresourceAuthorization;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("webresourceAuthorizationMapper")
-public class WebresourceAuthorizationMapper implements BasicEntityMapper {
+public class WebresourceAuthorizationMapper extends EntityMapperImpl<WebresourceAuthorization, WebresourceAuthorizationDto> implements EntityMapper<WebresourceAuthorization, WebresourceAuthorizationDto> {
 
     @Autowired
     AuthorizationMapper authorizationMapper;
@@ -30,13 +28,12 @@ public class WebresourceAuthorizationMapper implements BasicEntityMapper {
     
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        WebresourceAuthorization entity= (WebresourceAuthorization) baseEntity;
+    public WebresourceAuthorizationDto entityToDto(WebresourceAuthorization entity) {
         WebresourceAuthorizationDto dto= new WebresourceAuthorizationDto();
         if(entity!=null){
             dto.setId(entity.getId());
-            dto.setAuthorization((AuthorizationDto) authorizationMapper.entityToDto(entity.getAuthorization()));
-            dto.setWebResource((WebResourceDto) webResourceMapper.entityToDto(entity.getWebResource()));
+            dto.setAuthorization(authorizationMapper.entityToDto(entity.getAuthorization()));
+            dto.setWebResource(webResourceMapper.entityToDto(entity.getWebResource()));
         }
         return dto;
     }
@@ -47,11 +44,11 @@ public class WebresourceAuthorizationMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<WebresourceAuthorizationDto> dtos= new ArrayList<>();
+    public List<WebresourceAuthorizationDto> listEntitiesToListDtos(List<WebresourceAuthorization> entities){
+        List<WebresourceAuthorizationDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((WebresourceAuthorizationDto) entityToDto(entity));
+            for(WebresourceAuthorization entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

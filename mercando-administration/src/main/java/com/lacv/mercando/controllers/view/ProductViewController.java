@@ -44,7 +44,7 @@ public class ProductViewController extends ExtEntityController {
     
     @PostConstruct
     public void init() {
-        EntityConfig view = new EntityConfig("product", "name", productService, ProductDto.class);
+        EntityConfig view = new EntityConfig("product", productService, ProductDto.class);
         view.setSingularEntityTitle("Producto");
         view.setPluralEntityTitle("Productos");
         view.addChildExtView("productImage", ProductImage.class, EntityConfig.TCV_STANDARD);

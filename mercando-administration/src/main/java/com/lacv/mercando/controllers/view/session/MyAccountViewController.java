@@ -45,7 +45,7 @@ public class MyAccountViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("user", "name", userService, UserDto.class);
+        EntityConfig view= new EntityConfig("user", userService, UserDto.class);
         view.setPathRef("myAccount");
         view.setSingularEntityTitle("Mis datos");
         view.setPluralEntityTitle("Mis datos");

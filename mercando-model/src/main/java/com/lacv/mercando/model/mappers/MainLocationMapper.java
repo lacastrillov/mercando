@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.MainLocationDto;
 import com.lacv.mercando.model.entities.MainLocation;
 import java.util.ArrayList;
@@ -17,11 +17,10 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("mainLocationMapper")
-public class MainLocationMapper implements BasicEntityMapper {
+public class MainLocationMapper extends EntityMapperImpl<MainLocation, MainLocationDto> implements EntityMapper<MainLocation, MainLocationDto> {
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        MainLocation entity= (MainLocation) baseEntity;
+    public MainLocationDto entityToDto(MainLocation entity) {
         MainLocationDto dto= new MainLocationDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -38,11 +37,11 @@ public class MainLocationMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<MainLocationDto> dtos= new ArrayList<>();
+    public List<MainLocationDto> listEntitiesToListDtos(List <MainLocation> entities){
+        List<MainLocationDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((MainLocationDto) entityToDto(entity));
+            for(MainLocation entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

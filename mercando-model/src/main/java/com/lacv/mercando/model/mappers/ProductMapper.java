@@ -4,13 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.CategoryDto;
-import com.lacv.mercando.model.dtos.CommerceDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.ProductDto;
-import com.lacv.mercando.model.dtos.SubCategoryDto;
-import com.lacv.mercando.model.dtos.SupplierDto;
 import com.lacv.mercando.model.entities.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("productMapper")
-public class ProductMapper implements BasicEntityMapper {
+public class ProductMapper extends EntityMapperImpl<Product, ProductDto> implements EntityMapper<Product, ProductDto> {
     
     @Autowired
     CategoryMapper categoryMapper;
@@ -38,15 +34,14 @@ public class ProductMapper implements BasicEntityMapper {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Product entity= (Product) baseEntity;
+    public ProductDto entityToDto(Product entity) {
         ProductDto dto= new ProductDto();
         if(entity!=null){
             dto.setId(entity.getId());
             dto.setBrand(entity.getBrand());
             dto.setBuyUnitPrice(entity.getBuyUnitPrice());
-            dto.setCategory((CategoryDto) categoryMapper.entityToDto(entity.getCategory()));
-            dto.setSubCategory((SubCategoryDto) subCategoryMapper.entityToDto(entity.getSubCategory()));
+            dto.setCategory(categoryMapper.entityToDto(entity.getCategory()));
+            dto.setSubCategory(subCategoryMapper.entityToDto(entity.getSubCategory()));
             dto.setCode(entity.getCode());
             dto.setDescription(entity.getDescription());
             dto.setDiscount(entity.getDiscount());
@@ -58,10 +53,10 @@ public class ProductMapper implements BasicEntityMapper {
             dto.setRegisterDate(entity.getRegisterDate());
             dto.setSeggestedUnitPrice(entity.getSeggestedUnitPrice());
             dto.setStatus(entity.getStatus());
-            dto.setSupplier((SupplierDto) supplierMapper.entityToDto(entity.getSupplier()));
+            dto.setSupplier(supplierMapper.entityToDto(entity.getSupplier()));
             dto.setUnitsInOrder(entity.getUnitsInOrder());
             dto.setUnitsInStock(entity.getUnitsInStock());
-            dto.setCommerce((CommerceDto) commerceMapper.entityToDto(entity.getCommerce()));
+            dto.setCommerce(commerceMapper.entityToDto(entity.getCommerce()));
         }
         return dto;
     }
@@ -72,11 +67,11 @@ public class ProductMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<ProductDto> dtos= new ArrayList<>();
+    public List<ProductDto> listEntitiesToListDtos(List<Product> entities){
+        List<ProductDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((ProductDto) entityToDto(entity));
+            for(Product entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

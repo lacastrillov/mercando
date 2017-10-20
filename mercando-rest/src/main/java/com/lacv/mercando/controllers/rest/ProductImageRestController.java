@@ -46,7 +46,6 @@ public class ProductImageRestController extends RestEntityController {
     @PostConstruct
     public void init(){
         super.addControlMapping("productImage", productImageService, productImageMapper);
-        super.setDtoClass(ProductImageDto.class);
     }
     
     private WebFile getParentWebFile(Object idContainer){

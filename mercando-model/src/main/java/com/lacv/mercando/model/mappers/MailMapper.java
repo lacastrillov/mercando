@@ -4,10 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.MailDto;
-import com.lacv.mercando.model.dtos.MailTemplateDto;
 import com.lacv.mercando.model.entities.Mail;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,20 +18,19 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("mailMapper")
-public class MailMapper implements BasicEntityMapper {
+public class MailMapper extends EntityMapperImpl<Mail, MailDto> implements EntityMapper<Mail, MailDto> {
     
     @Autowired
     MailTemplateMapper mailTemplateMapper;
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Mail entity= (Mail) baseEntity;
+    public MailDto entityToDto(Mail entity) {
         MailDto dto= new MailDto();
         if(entity!=null){
             dto.setId(entity.getId());
             dto.setMailFrom(entity.getMailFrom());
-            dto.setMailTemplate((MailTemplateDto) mailTemplateMapper.entityToDto(entity.getMailTemplate()));
+            dto.setMailTemplate(mailTemplateMapper.entityToDto(entity.getMailTemplate()));
             dto.setMailTo(entity.getMailTo());
             dto.setMessage(entity.getMessage());
             dto.setResult(entity.getResult());
@@ -48,11 +46,11 @@ public class MailMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<MailDto> dtos= new ArrayList<>();
+    public List<MailDto> listEntitiesToListDtos(List <Mail> entities){
+        List<MailDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((MailDto) entityToDto(entity));
+            for(Mail entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

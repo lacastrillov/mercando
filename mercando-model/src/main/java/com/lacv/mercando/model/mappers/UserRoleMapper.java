@@ -4,10 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
-import com.lacv.mercando.model.dtos.RoleDto;
-import com.lacv.mercando.model.dtos.UserDto;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.UserRoleDto;
 import com.lacv.mercando.model.entities.UserRole;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("userRoleMapper")
-public class UserRoleMapper implements BasicEntityMapper {
+public class UserRoleMapper extends EntityMapperImpl<UserRole, UserRoleDto> implements EntityMapper<UserRole, UserRoleDto> {
 
     @Autowired
     UserMapper userMapper;
@@ -29,13 +27,12 @@ public class UserRoleMapper implements BasicEntityMapper {
     RoleMapper roleMapper;
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        UserRole entity= (UserRole) baseEntity;
+    public UserRoleDto entityToDto(UserRole entity) {
         UserRoleDto dto= new UserRoleDto();
         if(entity!=null){
             dto.setId(entity.getId());
-            dto.setRole((RoleDto) roleMapper.entityToDto(entity.getRole()));
-            dto.setUser((UserDto) userMapper.entityToDto(entity.getUser()));
+            dto.setRole(roleMapper.entityToDto(entity.getRole()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }
@@ -46,11 +43,11 @@ public class UserRoleMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<UserRoleDto> dtos= new ArrayList<>();
+    public List<UserRoleDto> listEntitiesToListDtos(List<UserRole> entities){
+        List<UserRoleDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((UserRoleDto) entityToDto(entity));
+            for(UserRole entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

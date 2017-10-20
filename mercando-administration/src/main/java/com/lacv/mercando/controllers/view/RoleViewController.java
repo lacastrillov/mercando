@@ -44,7 +44,7 @@ public class RoleViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("role", "name", roleService, RoleDto.class);
+        EntityConfig view= new EntityConfig("role", roleService, RoleDto.class);
         view.setSingularEntityTitle("Rol");
         view.setPluralEntityTitle("Roles");
         view.addInternalViewButton("userRole", "Ver Usuarios");

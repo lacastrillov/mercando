@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.CategoryDto;
 import com.lacv.mercando.model.entities.Category;
 import java.util.ArrayList;
@@ -17,12 +17,10 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("categoryMapper")
-public class CategoryMapper implements BasicEntityMapper {
+public class CategoryMapper extends EntityMapperImpl<Category, CategoryDto> implements EntityMapper<Category, CategoryDto> {
 
-    
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Category entity= (Category) baseEntity;
+    public CategoryDto entityToDto(Category entity) {
         CategoryDto dto= new CategoryDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -32,18 +30,13 @@ public class CategoryMapper implements BasicEntityMapper {
         }
         return dto;
     }
-    
-    /**
-     *
-     * @param entities
-     * @return
-     */
+
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<CategoryDto> dtos= new ArrayList<>();
+    public List<CategoryDto> listEntitiesToListDtos(List<Category> entities) {
+        List<CategoryDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((CategoryDto) entityToDto(entity));
+            for(Category entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

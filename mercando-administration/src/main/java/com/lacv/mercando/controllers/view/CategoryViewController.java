@@ -53,7 +53,7 @@ public class CategoryViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("category", "name", categoryService, CategoryDto.class);
+        EntityConfig view= new EntityConfig("category", categoryService, CategoryDto.class);
         view.setSingularEntityTitle("Categoria");
         view.setPluralEntityTitle("Categorias");
         view.setMultipartFormData(true);

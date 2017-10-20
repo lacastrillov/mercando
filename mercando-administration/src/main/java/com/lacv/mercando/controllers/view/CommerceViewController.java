@@ -43,7 +43,7 @@ public class CommerceViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("commerce", "commerceName", commerceService, CommerceDto.class);
+        EntityConfig view= new EntityConfig("commerce", commerceService, CommerceDto.class);
         view.setSingularEntityTitle("Comercio");
         view.setPluralEntityTitle("Comercios");
         view.setMultipartFormData(true);

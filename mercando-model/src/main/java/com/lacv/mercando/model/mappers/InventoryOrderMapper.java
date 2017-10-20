@@ -4,11 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.InventoryOrderDto;
-import com.lacv.mercando.model.dtos.SupplierDto;
-import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.InventoryOrder;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("inventoryOrderMapper")
-public class InventoryOrderMapper implements BasicEntityMapper {
+public class InventoryOrderMapper extends EntityMapperImpl<InventoryOrder, InventoryOrderDto> implements EntityMapper<InventoryOrder, InventoryOrderDto> {
     
     @Autowired
     SupplierMapper supplierMapper;
@@ -30,8 +28,7 @@ public class InventoryOrderMapper implements BasicEntityMapper {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        InventoryOrder entity= (InventoryOrder) baseEntity;
+    public InventoryOrderDto entityToDto(InventoryOrder entity) {
         InventoryOrderDto dto= new InventoryOrderDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -39,9 +36,9 @@ public class InventoryOrderMapper implements BasicEntityMapper {
             dto.setRecordTime(entity.getRecordTime());
             dto.setRegistrationDate(entity.getRegistrationDate());
             dto.setStatus(entity.getStatus());
-            dto.setSupplier((SupplierDto) supplierMapper.entityToDto(entity.getSupplier()));
+            dto.setSupplier(supplierMapper.entityToDto(entity.getSupplier()));
             dto.setTotal(entity.getTotal());
-            dto.setUser((UserDto) userMapper.entityToDto(entity.getUser()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }
@@ -52,11 +49,11 @@ public class InventoryOrderMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<InventoryOrderDto> dtos= new ArrayList<>();
+    public List<InventoryOrderDto> listEntitiesToListDtos(List<InventoryOrder> entities){
+        List<InventoryOrderDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((InventoryOrderDto) entityToDto(entity));
+            for(InventoryOrder entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

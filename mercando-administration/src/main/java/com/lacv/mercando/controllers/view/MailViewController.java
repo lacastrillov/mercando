@@ -43,7 +43,7 @@ public class MailViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("mail", "id", mailService, MailDto.class);
+        EntityConfig view= new EntityConfig("mail", mailService, MailDto.class);
         view.setSingularEntityTitle("Correo");
         view.setPluralEntityTitle("Correos");
         view.setEditableForm(false);

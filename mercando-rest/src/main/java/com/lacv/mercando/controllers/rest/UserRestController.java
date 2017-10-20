@@ -13,7 +13,6 @@ import com.lacv.mercando.model.entities.User;
 import com.lacv.mercando.model.mappers.UserMapper;
 import com.lacv.mercando.services.UserService;
 import com.lacv.mercando.model.constants.WebConstants;
-import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import com.lacv.mercando.services.security.SecurityService;
@@ -51,7 +50,6 @@ public class UserRestController extends RestSessionController {
     @PostConstruct
     public void init(){
         super.addControlMapping("user", userService, userMapper);
-        super.setDtoClass(UserDto.class);
     }
     
     @Override

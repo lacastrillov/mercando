@@ -43,7 +43,7 @@ public class UserRoleViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("userRole", "id", userRoleService, UserRoleDto.class);
+        EntityConfig view= new EntityConfig("userRole", userRoleService, UserRoleDto.class);
         view.setPluralEntityTitle("Roles de Usuario");
         view.setSingularEntityTitle("Roles de Usuario");
         view.activateNNMulticheckChild("role");

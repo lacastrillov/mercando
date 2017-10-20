@@ -37,7 +37,7 @@ public class PurchaseorderDetailViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("purchaseorderDetail", "purchaseorderDetailName", purchaseorderDetailService, PurchaseorderDetailDto.class);
+        EntityConfig view= new EntityConfig("purchaseorderDetail", purchaseorderDetailService, PurchaseorderDetailDto.class);
         view.setSingularEntityTitle("Detalle Orden Compra");
         view.setPluralEntityTitle("Detalle Orden Compra");
         super.addControlMapping(view);

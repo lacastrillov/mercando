@@ -37,7 +37,7 @@ public class InventoryorderDetailViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("inventoryorderDetail", "id", inventoryorderDetailService, InventoryorderDetailDto.class);
+        EntityConfig view= new EntityConfig("inventoryorderDetail", inventoryorderDetailService, InventoryorderDetailDto.class);
         view.setSingularEntityTitle("Detalle Orden de Inventario");
         view.setPluralEntityTitle("Detalle Orden de Inventario");
         super.addControlMapping(view);

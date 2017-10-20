@@ -43,7 +43,7 @@ public class SupplierViewController extends ExtEntityController {
     
     @PostConstruct
     public void init(){
-        EntityConfig view= new EntityConfig("supplier", "companyName", supplierService, SupplierDto.class);
+        EntityConfig view= new EntityConfig("supplier", supplierService, SupplierDto.class);
         view.setSingularEntityTitle("Proveedor");
         view.setPluralEntityTitle("Proveedores");
         super.addControlMapping(view);

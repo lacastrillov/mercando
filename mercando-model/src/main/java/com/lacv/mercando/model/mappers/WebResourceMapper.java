@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.WebResourceDto;
 import com.lacv.mercando.model.entities.WebResource;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("webResourceMapper")
-public class WebResourceMapper implements BasicEntityMapper {
+public class WebResourceMapper extends EntityMapperImpl<WebResource, WebResourceDto> implements EntityMapper<WebResource, WebResourceDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        WebResource entity= (WebResource) baseEntity;
+    public WebResourceDto entityToDto(WebResource entity) {
         WebResourceDto dto= new WebResourceDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -41,11 +40,11 @@ public class WebResourceMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<WebResourceDto> dtos= new ArrayList<>();
+    public List<WebResourceDto> listEntitiesToListDtos(List<WebResource> entities){
+        List<WebResourceDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((WebResourceDto) entityToDto(entity));
+            for(WebResource entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

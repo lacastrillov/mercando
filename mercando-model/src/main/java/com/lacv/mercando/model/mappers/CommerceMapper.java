@@ -4,10 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.CommerceDto;
-import com.lacv.mercando.model.dtos.MainLocationDto;
 import com.lacv.mercando.model.entities.Commerce;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +18,14 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("commerceMapper")
-public class CommerceMapper implements BasicEntityMapper {
+public class CommerceMapper extends EntityMapperImpl<Commerce, CommerceDto> implements EntityMapper<Commerce, CommerceDto> {
     
     @Autowired
     MainLocationMapper mainLocationMapper;
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
+    public CommerceDto entityToDto(Commerce baseEntity) {
         Commerce entity= (Commerce) baseEntity;
         CommerceDto dto= new CommerceDto();
         if(entity!=null){
@@ -36,7 +35,7 @@ public class CommerceMapper implements BasicEntityMapper {
             dto.setCommerceName(entity.getCommerceName());
             dto.setCommerceTag(entity.getCommerceTag());
             dto.setCreationDate(entity.getCreationDate());
-            dto.setMainLocation((MainLocationDto) mainLocationMapper.entityToDto(entity.getMainLocation()));
+            dto.setMainLocation(mainLocationMapper.entityToDto(entity.getMainLocation()));
         }
         return dto;
     }
@@ -47,10 +46,10 @@ public class CommerceMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<CommerceDto> dtos= new ArrayList<>();
+    public List<CommerceDto> listEntitiesToListDtos(List<Commerce> entities){
+        List<CommerceDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
+            for(Commerce entity: entities){
                 dtos.add((CommerceDto) entityToDto(entity));
             }
         }

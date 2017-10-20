@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.MailTemplateDto;
 import com.lacv.mercando.model.entities.MailTemplate;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("mailTemplateMapper")
-public class MailTemplateMapper implements BasicEntityMapper {
+public class MailTemplateMapper extends EntityMapperImpl<MailTemplate, MailTemplateDto> implements EntityMapper<MailTemplate, MailTemplateDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        MailTemplate entity= (MailTemplate) baseEntity;
+    public MailTemplateDto entityToDto(MailTemplate entity) {
         MailTemplateDto dto= new MailTemplateDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -41,11 +40,11 @@ public class MailTemplateMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<MailTemplateDto> dtos= new ArrayList<>();
+    public List<MailTemplateDto> listEntitiesToListDtos(List <MailTemplate> entities){
+        List<MailTemplateDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((MailTemplateDto) entityToDto(entity));
+            for(MailTemplate entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;

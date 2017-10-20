@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.mapper.BasicEntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapper;
+import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.AuthorizationDto;
 import com.lacv.mercando.model.entities.Authorization;
 import java.util.ArrayList;
@@ -17,12 +17,11 @@ import org.springframework.stereotype.Component;
  * @author nalvarez
  */
 @Component("authorizationMapper")
-public class AuthorizationMapper implements BasicEntityMapper {
+public class AuthorizationMapper extends EntityMapperImpl<Authorization, AuthorizationDto> implements EntityMapper<Authorization, AuthorizationDto> {
 
     
     @Override
-    public BaseEntity entityToDto(BaseEntity baseEntity) {
-        Authorization entity= (Authorization) baseEntity;
+    public AuthorizationDto entityToDto(Authorization entity) {
         AuthorizationDto dto= new AuthorizationDto();
         if(entity!=null){
             dto.setId(entity.getId());
@@ -38,11 +37,11 @@ public class AuthorizationMapper implements BasicEntityMapper {
      * @return
      */
     @Override
-    public List<? extends BaseEntity> listEntitiesToListDtos(List <? extends BaseEntity> entities){
-        ArrayList<AuthorizationDto> dtos= new ArrayList<>();
+    public List<AuthorizationDto> listEntitiesToListDtos(List<Authorization> entities){
+        List<AuthorizationDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(BaseEntity entity: entities){
-                dtos.add((AuthorizationDto) entityToDto(entity));
+            for(Authorization entity: entities){
+                dtos.add(entityToDto(entity));
             }
         }
         return dtos;
