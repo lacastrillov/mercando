@@ -47,7 +47,7 @@ public class ProductDto implements BaseEntity {
     private String quantityPerUnit;
     
     @Order(7)
-    @TextField("Precio Segerido")
+    @TextField("Precio Sugerido")
     private Integer seggestedUnitPrice;
     
     @Order(8)
