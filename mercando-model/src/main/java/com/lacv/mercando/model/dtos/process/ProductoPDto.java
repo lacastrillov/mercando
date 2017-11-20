@@ -5,11 +5,9 @@
  */
 package com.lacv.mercando.model.dtos.process;
 
-import com.dot.gcpbasedot.annotation.HideField;
 import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.TextField;
-import com.dot.gcpbasedot.enums.HideView;
 import java.util.List;
 
 /**
@@ -23,7 +21,6 @@ public class ProductoPDto {
     private String nombre;
     
     @Order(2)
-    @HideField(HideView.LOG)
     @NotNull
     private Integer precio;
     

@@ -44,6 +44,7 @@ public class MainLocationViewProcessController extends ExtProcessController {
         process.setMainProcessTitle("Gestionar Proceso Main Location");
         process.addControlProcessView("crearMainLocation", "Crear Main Location", MainLocationPDto.class, ResultadoPDto.class);
         process.addControlProcessView("activarUsuario", "Activar Usuario", UsuarioPDto.class, ProductoPDto.class);
+        process.addMultipartFormProcess("crearMainLocation");
         
         super.addControlMapping(process);
         

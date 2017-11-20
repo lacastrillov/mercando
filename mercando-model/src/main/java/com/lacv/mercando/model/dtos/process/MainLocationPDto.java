@@ -42,9 +42,14 @@ public class MainLocationPDto {
     private String mlLocation;
     
     @Order(5)
-    private UsuarioPDto usuario;
+    @TextField("Ml Imagen")
+    @TypeFormField(FieldType.IMAGE_FILE_UPLOAD)
+    private String mlImage;
     
     @Order(6)
+    private UsuarioPDto usuario;
+    
+    @Order(7)
     private ProductoPDto producto;
     
 
@@ -93,6 +98,14 @@ public class MainLocationPDto {
 
     public void setMlName(String mlName) {
         this.mlName = mlName;
+    }
+
+    public String getMlImage() {
+        return mlImage;
+    }
+
+    public void setMlImage(String mlImage) {
+        this.mlImage = mlImage;
     }
 
     public UsuarioPDto getUsuario() {

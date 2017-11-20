@@ -15,8 +15,13 @@ import com.lacv.mercando.model.entities.LogProcess;
 import com.lacv.mercando.services.LogProcessService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
+import com.lacv.mercando.model.constants.WebConstants;
+import com.lacv.mercando.model.entities.WebFile;
+import com.lacv.mercando.services.WebFileService;
+import java.io.InputStream;
 import java.util.Date;
 import javax.annotation.PostConstruct;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +36,12 @@ public class MainLocationProcessController extends RestProcessController {
     
     @Autowired
     LogProcessService logProcessService;
+    
+    @Autowired
+    WebFileService webFileService;
+    
+    @Autowired
+    WebConstants webConstants;
     
     @PostConstruct
     public void init(){
@@ -56,6 +67,25 @@ public class MainLocationProcessController extends RestProcessController {
         result.setSuccess(true);
         
         return result;
+    }
+    
+    public String crearMainLocationFiles(MainLocationPDto mainLocation, String fieldName, String fileName, String fileType, int fileSize, InputStream is){
+        String path= "imagenes/ubicacionesPrincipales/";
+        WebFile parentWebFile= webFileService.findByPath(path);
+        
+        try {
+            String imageName="";
+            String imageUrl="";
+            if(fieldName.equals("mlImage")){
+                imageName= mainLocation.getMlName().replaceAll(" ", "_") + "_image."+FilenameUtils.getExtension(fileName);
+                imageUrl= webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName;
+            }
+            webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
+            
+            return imageUrl;
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
     }
     
     @DoProcess
