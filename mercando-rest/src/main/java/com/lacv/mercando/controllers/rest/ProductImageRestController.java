@@ -11,7 +11,6 @@ import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
 import com.dot.gcpbasedot.controller.RestEntityController;
 import com.lacv.mercando.model.constants.WebConstants;
-import com.lacv.mercando.model.dtos.ProductImageDto;
 import com.lacv.mercando.model.entities.ProductImage;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;

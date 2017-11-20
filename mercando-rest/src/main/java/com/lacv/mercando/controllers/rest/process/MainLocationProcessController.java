@@ -15,7 +15,6 @@ import com.lacv.mercando.model.entities.LogProcess;
 import com.lacv.mercando.services.LogProcessService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import java.io.InputStream;
@@ -39,9 +38,6 @@ public class MainLocationProcessController extends RestProcessController {
     
     @Autowired
     WebFileService webFileService;
-    
-    @Autowired
-    WebConstants webConstants;
     
     @PostConstruct
     public void init(){
@@ -74,15 +70,13 @@ public class MainLocationProcessController extends RestProcessController {
         WebFile parentWebFile= webFileService.findByPath(path);
         
         try {
-            String imageName="";
-            String imageUrl="";
+            String imageName=fileName;
             if(fieldName.equals("mlImage")){
                 imageName= mainLocation.getMlName().replaceAll(" ", "_") + "_image."+FilenameUtils.getExtension(fileName);
-                imageUrl= webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName;
             }
-            webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
             
-            return imageUrl;
+            return webFile.getLocation();
         } catch (Exception ex) {
             return ex.getMessage();
         }
