@@ -55,7 +55,7 @@ public class ProductImageRestController extends RestEntityController {
     }
     
     @Override
-    public String saveFilePart(int slice, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
+    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
         try {
             ProductImage productImage = productImageService.loadById(idEntity);
             WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());
@@ -73,7 +73,7 @@ public class ProductImageRestController extends RestEntityController {
     }
     
     @Override
-    public String saveResizedImage(String fileName, String fileType, int width, int height, int fileSize, InputStream is, Object idEntity){
+    public String saveResizedImage(String fieldName, String fileName, String fileType, int width, int height, int fileSize, InputStream is, Object idEntity){
         try {
             ProductImage productImage = productImageService.loadById(idEntity);
             WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());

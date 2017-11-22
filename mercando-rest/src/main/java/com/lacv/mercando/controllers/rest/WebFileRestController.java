@@ -150,7 +150,7 @@ public class WebFileRestController extends RestEntityController {
     }
 
     @Override
-    public String saveFilePart(int slice, String fileName, String fileType, int fileSize, InputStream filePart, Object idParent) {
+    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream filePart, Object idParent) {
         try {
             WebFile parentWebFile = null;
             if (!idParent.toString().equals("undefined")) {

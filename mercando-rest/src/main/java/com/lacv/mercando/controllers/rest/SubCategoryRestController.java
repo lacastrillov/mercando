@@ -43,7 +43,7 @@ public class SubCategoryRestController extends RestEntityController {
     }
     
     @Override
-    public String saveFilePart(int slice, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
+    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
         String path= "imagenes/subcategoria/";
         WebFile parentWebFile= webFileService.findByPath(path);
         
