@@ -10,7 +10,6 @@ package com.lacv.mercando.controllers.rest;
 import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
 import com.dot.gcpbasedot.controller.RestEntityController;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.ProductImage;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
@@ -38,9 +37,6 @@ public class ProductImageRestController extends RestEntityController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     @PostConstruct
     public void init(){
@@ -61,14 +57,14 @@ public class ProductImageRestController extends RestEntityController {
     @Override
     public String saveFilePart(int slice, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
         try {
-            String imageName= idEntity + "_" +"product-image."+FilenameUtils.getExtension(fileName);
             ProductImage productImage = productImageService.loadById(idEntity);
             WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());
             
-            productImage.setImage(webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + parentWebFile.getPath() + parentWebFile.getName() + "/" + imageName);
-            productImageService.update(productImage);
+            String imageName= idEntity + "_" +"product-image."+FilenameUtils.getExtension(fileName);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
             
-            webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            productImage.setImage(webFile.getLocation());
+            productImageService.update(productImage);
             
             return "Archivo " + imageName + " almacenado correctamente";
         } catch (Exception ex) {
@@ -79,9 +75,10 @@ public class ProductImageRestController extends RestEntityController {
     @Override
     public String saveResizedImage(String fileName, String fileType, int width, int height, int fileSize, InputStream is, Object idEntity){
         try {
-            String imageName= idEntity + "_" + width + "x" + height + "_" +"product-image."+FilenameUtils.getExtension(fileName);
             ProductImage productImage = productImageService.loadById(idEntity);
             WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());
+            
+            String imageName= idEntity + "_" + width + "x" + height + "_" +"product-image."+FilenameUtils.getExtension(fileName);
             webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
             
             return "Archivo " + imageName + " almacenado correctamente";

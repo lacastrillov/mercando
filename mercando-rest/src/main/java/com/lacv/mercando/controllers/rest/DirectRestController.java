@@ -9,7 +9,6 @@ package com.lacv.mercando.controllers.rest;
 
 import com.dot.gcpbasedot.controller.RestDirectController;
 import com.dot.gcpbasedot.service.JdbcDirectService;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import java.io.InputStream;
@@ -33,9 +32,6 @@ public class DirectRestController extends RestDirectController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     private WebFile getParentWebFile(String tableName){
         String folder= tableName.replaceFirst("lt_", "");
@@ -52,14 +48,13 @@ public class DirectRestController extends RestDirectController {
     @Override
     public String saveFilePart(String tableName, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Integer idEntity) {
         try {
-            String newFileName= idEntity + "_" +fieldName+"."+FilenameUtils.getExtension(fileName);
-            Map<String,Object> entity = jdbcDirectService.loadByParameter(tableName, "id", idEntity);
             WebFile parentWebFile= getParentWebFile(tableName);
+            String newFileName= idEntity + "_" +fieldName+"."+FilenameUtils.getExtension(fileName);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, newFileName, fileType, fileSize, is);
             
-            entity.put(fieldName, webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + parentWebFile.getPath() + parentWebFile.getName() + "/" + newFileName);
+            Map<String,Object> entity = jdbcDirectService.loadByParameter(tableName, "id", idEntity);
+            entity.put(fieldName, webFile.getLocation());
             jdbcDirectService.updateByParameter(tableName, entity, "id", idEntity);
-            
-            webFileService.createByFileData(parentWebFile, 0, newFileName, fileType, fileSize, is);
             
             return "Archivo " + newFileName + " almacenado correctamente";
         } catch (Exception ex) {

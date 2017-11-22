@@ -12,7 +12,6 @@ import com.dot.gcpbasedot.domain.BaseEntity;
 import com.lacv.mercando.model.entities.User;
 import com.lacv.mercando.model.mappers.UserMapper;
 import com.lacv.mercando.services.UserService;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import com.lacv.mercando.services.security.SecurityService;
@@ -43,9 +42,6 @@ public class UserRestController extends RestSessionController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     @PostConstruct
     public void init(){
@@ -59,11 +55,11 @@ public class UserRestController extends RestSessionController {
         
         try {
             String imageName= idParent + "_" +fileName.replaceAll(" ", "_");
-            User user = userService.loadById(idParent);
-            user.setUrlPhoto(webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName);
-            userService.update(user);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
             
-            webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            User user = userService.loadById(idParent);
+            user.setUrlPhoto(webFile.getLocation());
+            userService.update(user);
             
             return "Archivo " + imageName + " almacenado correctamente";
         } catch (Exception ex) {
@@ -78,7 +74,6 @@ public class UserRestController extends RestSessionController {
         
         try {
             String imageName= idParent + "_" + width + "x" + height + "_" +fileName.replaceAll(" ", "_");
-            
             webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
             
             return "Archivo " + imageName + " almacenado correctamente";

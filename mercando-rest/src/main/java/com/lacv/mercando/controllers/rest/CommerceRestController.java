@@ -11,7 +11,6 @@ import com.dot.gcpbasedot.controller.RestEntityController;
 import com.lacv.mercando.model.entities.Commerce;
 import com.lacv.mercando.model.mappers.CommerceMapper;
 import com.lacv.mercando.services.CommerceService;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import java.io.InputStream;
@@ -37,9 +36,6 @@ public class CommerceRestController extends RestEntityController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     @PostConstruct
     public void init(){
@@ -53,11 +49,11 @@ public class CommerceRestController extends RestEntityController {
         
         try {
             String imageName= idEntity + "_" +fileName.replaceAll(" ", "_");
-            Commerce commerce = commerceService.loadById(idEntity);
-            commerce.setCommerceImage(webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName);
-            commerceService.update(commerce);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
             
-            webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            Commerce commerce = commerceService.loadById(idEntity);
+            commerce.setCommerceImage(webFile.getLocation());
+            commerceService.update(commerce);
             
             return "Archivo " + fileName + " almacenado correctamente con ID " + idEntity;
         } catch (Exception ex) {

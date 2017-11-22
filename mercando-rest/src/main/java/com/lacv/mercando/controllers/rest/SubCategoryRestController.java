@@ -11,7 +11,6 @@ import com.dot.gcpbasedot.controller.RestEntityController;
 import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;
 import com.lacv.mercando.services.SubCategoryService;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
 import java.io.InputStream;
@@ -37,9 +36,6 @@ public class SubCategoryRestController extends RestEntityController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     @PostConstruct
     public void init(){
@@ -53,11 +49,11 @@ public class SubCategoryRestController extends RestEntityController {
         
         try {
             String imageName= idEntity + "_" +fileName.replaceAll(" ", "_");
-            SubCategory subCategory = subCategoryService.loadById(idEntity);
-            subCategory.setImage(webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName);
-            subCategoryService.update(subCategory);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
             
-            webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            SubCategory subCategory = subCategoryService.loadById(idEntity);
+            subCategory.setImage(webFile.getLocation());
+            subCategoryService.update(subCategory);
             
             return "Archivo " + fileName + " almacenado correctamente con ID " + idEntity;
         } catch (Exception ex) {

@@ -10,7 +10,6 @@ package com.lacv.mercando.controllers.rest;
 import com.lacv.mercando.model.mappers.CategoryMapper;
 import com.lacv.mercando.services.CategoryService;
 import com.dot.gcpbasedot.controller.RestEntityController;
-import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.Category;
 import com.lacv.mercando.model.entities.WebFile;
 import com.lacv.mercando.services.WebFileService;
@@ -37,9 +36,6 @@ public class CategoryRestController extends RestEntityController {
     @Autowired
     WebFileService webFileService;
     
-    @Autowired
-    WebConstants webConstants;
-    
     
     @PostConstruct
     public void init(){
@@ -53,11 +49,11 @@ public class CategoryRestController extends RestEntityController {
         
         try {
             String imageName= idParent + "_" +fileName.replaceAll(" ", "_");
-            Category category = categoryService.loadById(idParent);
-            category.setImage(webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + path + imageName);
-            categoryService.update(category);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
             
-            webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            Category category = categoryService.loadById(idParent);
+            category.setImage(webFile.getLocation());
+            categoryService.update(category);
             
             return "Archivo " + fileName + " almacenado correctamente con ID " + idParent;
         } catch (Exception ex) {
