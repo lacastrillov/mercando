@@ -16,10 +16,17 @@ import com.lacv.mercando.services.security.SecurityService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
+import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
+import com.lacv.mercando.model.entities.Product;
+import com.lacv.mercando.model.entities.WebFile;
+import com.lacv.mercando.services.ProductService;
+import com.lacv.mercando.services.WebFileService;
 import com.lacv.mercando.services.mail.MailingService;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +40,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductProcessController extends RestProcessController {
     
     @Autowired
+    ProductService productService;
+    
+    @Autowired
     UserService userService;
     
     @Autowired
@@ -43,6 +53,9 @@ public class ProductProcessController extends RestProcessController {
     
     @Autowired
     MailingService mailingService;
+    
+    @Autowired
+    WebFileService webFileService;
     
     
     @PostConstruct
@@ -82,6 +95,43 @@ public class ProductProcessController extends RestProcessController {
         }
         
         return result;
+    }
+    
+    @DoProcess
+    public BasicResultDto adicionarFotos(ProductBasicDataPDto productBasicDataPDto){
+        BasicResultDto result= new BasicResultDto();
+        
+        Product product= productService.loadById(productBasicDataPDto.getProductId());
+        if(productBasicDataPDto.getPhotos()!=null && product!=null){
+            result.setMessage("Se han adicionado "+productBasicDataPDto.getPhotos().size()+" fotos al producto "+product.getName());
+            result.setSuccess(true);
+        }else{
+            result.setMessage("No se han adicionado fotos");
+            result.setSuccess(false);
+        }
+        result.setUsername(getClientId());
+                
+        return result;
+    }
+    
+    public String adicionarFotosFiles(ProductBasicDataPDto productBasicDataPDto, String fieldName, String fileName, String fileType, int fileSize, InputStream is){
+        String path= "imagenes/fotosProducto/";
+        WebFile parentWebFile= webFileService.findByPath(path);
+        
+        try {
+            Product product= productService.loadById(productBasicDataPDto.getProductId());
+            if(product!=null){
+                String imageName=fileName;
+                imageName= product.getName().replaceAll(" ", "_") + "_"+fieldName+"."+FilenameUtils.getExtension(fileName);
+                WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
+
+                return webFile.getLocation();
+            }else{
+                return "";
+            }
+        } catch (Exception ex) {
+            return ex.getMessage();
+        }
     }
     
 }
