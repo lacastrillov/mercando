@@ -41,6 +41,7 @@ public class GeneralViewConfigController extends ExtConfigurationObjectControlle
         viewConfig.setMainConfigurationTitle("Gestionar Configuraci&oacute;n General");
         viewConfig.addControlConfigurationObjectView("portalConfig", "Configuraci&oacute;n del Portal", PortalConfigDto.class);
         viewConfig.addControlConfigurationObjectView("contactConfig", "Configuraci&oacute;n de Contacto", ContactConfigDto.class);
+        viewConfig.addMultipartFormConfig("portalConfig");
         
         super.addControlMapping(viewConfig);
         
