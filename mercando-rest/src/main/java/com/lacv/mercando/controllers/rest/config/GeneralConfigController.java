@@ -15,7 +15,6 @@ import com.lacv.mercando.services.config.ContactConfigService;
 import com.lacv.mercando.services.config.PortalConfigService;
 import java.io.InputStream;
 import javax.annotation.PostConstruct;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +50,7 @@ public class GeneralConfigController extends RestConfigurationController {
         try {
             String imageName=fileName;
             if(fieldName.equals("banner")){
-                imageName= fileName.replaceAll(" ", "_") + "_banner." + FilenameUtils.getExtension(fileName);
+                imageName= "banner_" +fileName.replaceAll(" ", "_");
             }
             WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
             
