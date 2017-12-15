@@ -1,0 +1,23 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservice.services.training.expert.backbase.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:createPlayer>
+         <player>
+            <id>%%id%%</id>
+            <uid>%%uid%%</uid>
+            <username>%%username%%</username>
+            <fullname>%%fullname%%</fullname>
+            <password>%%password%%</password>
+            <emailAddress>%%emailAddress%%</emailAddress>
+            <profileUrl>%%profileUrl%%</profileUrl>
+            <photoUrl>%%photoUrl%%</photoUrl>
+            <thumbnalUrl>%%thumbnalUrl%%</thumbnalUrl>
+            <gender>%%gender%%</gender>
+            <firstName>%%firstName%%</firstName>
+            <lastName>%%lastName%%</lastName>
+            <middleName>%%middleName%%</middleName>
+            <highScore>%%highScore%%</highScore>
+         </player>
+      </web:createPlayer>
+   </soapenv:Body>
+</soapenv:Envelope>
