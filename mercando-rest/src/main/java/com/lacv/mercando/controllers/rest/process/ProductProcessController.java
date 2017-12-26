@@ -121,8 +121,7 @@ public class ProductProcessController extends RestProcessController {
         try {
             Product product= productService.loadById(productBasicDataPDto.getProductId());
             if(product!=null){
-                String imageName=fileName;
-                imageName= product.getName().replaceAll(" ", "_") + "_"+fieldName+"."+FilenameUtils.getExtension(fileName);
+                String imageName= product.getName().replaceAll(" ", "_") + "_"+fieldName+"."+FilenameUtils.getExtension(fileName);
                 WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
 
                 return webFile.getLocation();
