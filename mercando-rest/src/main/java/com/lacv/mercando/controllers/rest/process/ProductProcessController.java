@@ -15,15 +15,21 @@ import com.lacv.mercando.services.UserService;
 import com.lacv.mercando.services.security.SecurityService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
+import com.dot.gcpbasedot.dao.Parameters;
+import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
+import com.lacv.mercando.model.dtos.process.ProductsListResultDto;
+import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
 import com.lacv.mercando.model.entities.Product;
 import com.lacv.mercando.model.entities.WebFile;
+import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
 import com.lacv.mercando.services.WebFileService;
 import com.lacv.mercando.services.mail.MailingService;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import org.apache.commons.io.FilenameUtils;
@@ -56,6 +62,9 @@ public class ProductProcessController extends RestProcessController {
     
     @Autowired
     WebFileService webFileService;
+    
+    @Autowired
+    ProductMapper productMapper;
     
     
     @PostConstruct
@@ -111,6 +120,21 @@ public class ProductProcessController extends RestProcessController {
         }
         result.setUsername(getClientId());
                 
+        return result;
+    }
+    
+    @DoProcess
+    public ProductsListResultDto listarProductosJoin(BasicPDto basic){
+        ProductsListResultDto result= new ProductsListResultDto();
+        
+        Parameters p= new Parameters();
+        List<Product> products= productService.findByParametersJPQL("listaProductosJoin", p);
+        List<ProductDto> productsDto= productMapper.listEntitiesToListDtos(products);
+        
+        result.setProducts(productsDto);
+        result.setSuccess(true);
+        result.setMessage("Producto Activado Correctamente");
+
         return result;
     }
     

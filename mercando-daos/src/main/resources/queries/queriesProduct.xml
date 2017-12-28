@@ -21,6 +21,12 @@
                         left join supplier su on p.supplier_id=su.id
                     </value>
                 </entry>
+                <entry key="listaProductosJoin">
+                    <value>
+                        SELECT object(o) FROM Product as o
+                        where o.id not in (SELECT pd.product.id FROM PurchaseorderDetail as pd)
+                    </value>
+                </entry>
             </map>
         </constructor-arg>
     </bean>

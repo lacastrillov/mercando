@@ -14,6 +14,8 @@ import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ProcessConfig;
 import com.dot.gcpbasedot.enums.PageType;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
+import com.lacv.mercando.model.dtos.process.BasicPDto;
+import com.lacv.mercando.model.dtos.process.ProductsListResultDto;
 import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
 import com.lacv.mercando.services.security.SecurityService;
 import java.util.List;
@@ -43,6 +45,7 @@ public class ProductViewProcessController extends ExtProcessController {
         process.setMainProcessTitle("Gestionar Procesos de Producto");
         process.addControlProcessView("activarProducto", "Activar Producto", ActivationProductPDto.class, BasicResultDto.class);
         process.addControlProcessView("adicionarFotos", "Adicionar Fotos", ProductBasicDataPDto.class, BasicResultDto.class);
+        process.addControlProcessView("listarProductosJoin", "Listar Productos Join", BasicPDto.class, ProductsListResultDto.class);
         process.addMultipartFormProcess("adicionarFotos");
         
         super.addControlMapping(process);
