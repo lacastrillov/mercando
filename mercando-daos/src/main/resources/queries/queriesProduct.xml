@@ -22,9 +22,14 @@
                     </value>
                 </entry>
                 <entry key="listaProductosJoin">
+                    <!--<value>
+                        SELECT object(o) FROM Product as o
+                        where o.id not in (SELECT distinct(pd.product.id) FROM PurchaseorderDetail as pd)
+                    </value>-->
                     <value>
                         SELECT object(o) FROM Product as o
-                        where o.id not in (SELECT pd.product.id FROM PurchaseorderDetail as pd)
+                        LEFT JOIN PurchaseorderDetail as pd ON o=pd.product
+                        WHERE pd.product IS NULL
                     </value>
                 </entry>
             </map>

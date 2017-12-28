@@ -15,10 +15,9 @@ import com.lacv.mercando.services.UserService;
 import com.lacv.mercando.services.security.SecurityService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
-import com.dot.gcpbasedot.dao.Parameters;
 import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
-import com.lacv.mercando.model.dtos.process.ProductsListResultDto;
+import com.lacv.mercando.model.dtos.process.ProductListResultDto;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
 import com.lacv.mercando.model.entities.Product;
@@ -124,11 +123,11 @@ public class ProductProcessController extends RestProcessController {
     }
     
     @DoProcess
-    public ProductsListResultDto listarProductosJoin(BasicPDto basic){
-        ProductsListResultDto result= new ProductsListResultDto();
+    public ProductListResultDto listarProductosJoin(BasicPDto basic){
+        ProductListResultDto result= new ProductListResultDto();
         
-        Parameters p= new Parameters();
-        List<Product> products= productService.findByParametersJPQL("listaProductosJoin", p);
+        Map<String, Object> mapParameters= new HashMap<>();
+        List<Product> products= productService.findByNameQueryJPQL("listaProductosJoin", mapParameters, 11, null);
         List<ProductDto> productsDto= productMapper.listEntitiesToListDtos(products);
         
         result.setProducts(productsDto);

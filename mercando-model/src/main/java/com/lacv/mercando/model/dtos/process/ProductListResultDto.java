@@ -7,13 +7,12 @@ package com.lacv.mercando.model.dtos.process;
 
 import com.lacv.mercando.model.dtos.ProductDto;
 import java.util.List;
-import org.json.JSONArray;
 
 /**
  *
  * @author grupot
  */
-public class ProductsListResultDto {
+public class ProductListResultDto {
     
     private boolean success;
     
