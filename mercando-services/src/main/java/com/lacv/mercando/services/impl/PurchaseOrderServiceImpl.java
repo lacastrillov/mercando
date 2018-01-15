@@ -73,7 +73,7 @@ public class PurchaseOrderServiceImpl extends EntityServiceImpl1<PurchaseOrder> 
         purchaseOrder.setUser(buyerUser);
         purchaseOrder.setNumber(number);
         purchaseOrder.setRegistrationDate(new Date());
-        purchaseOrder.setRecordTime(Util.getCurrentTime());
+        purchaseOrder.setRecordTime(Util.getCurrentTime(0));
         purchaseOrder.setStatus("Pendiente");
         purchaseOrder.setSubTotal(0);
         purchaseOrder.setDiscount(0);
