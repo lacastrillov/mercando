@@ -47,13 +47,13 @@ public class CategoryController {
         }
         
         Map<Integer, Long> countProductsByCategories= new HashMap<>();
-        List<Map<String, Object>> listCountProductsByCategories= categoryService.findByNameQuery("countProductsByCategories", new String[]{}, new Object[]{});
+        List<Map<String, Object>> listCountProductsByCategories= categoryService.findByNameQuery("countProductsByCategories", new HashMap<>());
         for(Map<String, Object> item: listCountProductsByCategories){
             countProductsByCategories.put((Integer)item.get("category_id"), (Long)item.get("count"));
         }
         
         Map<Integer, Long> countProductsBySubcategories= new HashMap<>();
-        List<Map<String, Object>> listCountProductsBySubcategories= categoryService.findByNameQuery("countProductsBySubcategories", new String[]{}, new Object[]{});
+        List<Map<String, Object>> listCountProductsBySubcategories= categoryService.findByNameQuery("countProductsBySubcategories", new HashMap<>());
         for(Map<String, Object> item: listCountProductsBySubcategories){
             countProductsBySubcategories.put((Integer)item.get("subcategory_id"), (Long)item.get("count"));
         }
