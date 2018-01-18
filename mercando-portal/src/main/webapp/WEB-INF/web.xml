@@ -33,6 +33,9 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    <session-config>
+        <session-timeout>1440</session-timeout>
+    </session-config>
     <!--Sitemesh-->
     <filter>
         <filter-name>sitemesh</filter-name>

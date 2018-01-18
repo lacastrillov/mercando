@@ -44,6 +44,7 @@ public class CustomSecurityFilter extends GenericFilterBean {
         "/rest/webResource/create.htm",
         "/rest/webResource/update.htm",
         "/rest/webResource/delete.htm",
+        "/rest/webResource/delete/byfilter.htm",
         "/rest/webresourceRole/create.htm",
         "/rest/webresourceRole/update.htm",
         "/rest/webresourceRole/delete.htm",
