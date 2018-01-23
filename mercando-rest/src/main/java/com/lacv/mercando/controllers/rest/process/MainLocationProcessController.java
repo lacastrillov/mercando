@@ -15,7 +15,11 @@ import com.lacv.mercando.model.entities.LogProcess;
 import com.lacv.mercando.services.LogProcessService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
+import com.lacv.mercando.model.dtos.PropertyDto;
+import com.lacv.mercando.model.dtos.process.BasicResultDto;
+import com.lacv.mercando.model.entities.Property;
 import com.lacv.mercando.model.entities.WebFile;
+import com.lacv.mercando.services.PropertyService;
 import com.lacv.mercando.services.WebFileService;
 import java.io.InputStream;
 import java.util.Date;
@@ -38,6 +42,10 @@ public class MainLocationProcessController extends RestProcessController {
     
     @Autowired
     WebFileService webFileService;
+    
+    @Autowired
+    PropertyService propertyService;
+    
     
     @PostConstruct
     public void init(){
@@ -91,6 +99,25 @@ public class MainLocationProcessController extends RestProcessController {
         result.setCantidad(22);
         result.setPrecio(55000);
         result.setCodigoDeBarra(usuario.getTelefono());
+        
+        return result;
+    }
+    
+    @DoProcess
+    public BasicResultDto insertarPropiedad(PropertyDto propertyDto){
+        BasicResultDto result= new BasicResultDto();
+        Property property= new Property();
+        property.setId(propertyDto.getId());
+        property.setKey(propertyDto.getKey());
+        property.setStatus(propertyDto.getStatus());
+        property.setType(propertyDto.getType());
+        property.setValue(propertyDto.getValue());
+        
+        propertyService.insert(property);
+        
+        result.setUsername(getClientId());
+        result.setMessage("Propiedad Insertada");
+        result.setSuccess(true);
         
         return result;
     }

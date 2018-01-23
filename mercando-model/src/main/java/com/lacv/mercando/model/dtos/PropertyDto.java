@@ -9,7 +9,6 @@ import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.LabelField;
 import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
-import com.dot.gcpbasedot.annotation.ReadOnly;
 import com.dot.gcpbasedot.annotation.TextField;
 import com.dot.gcpbasedot.annotation.TypeFormField;
 import com.dot.gcpbasedot.domain.BaseEntity;
@@ -26,7 +25,6 @@ public class PropertyDto implements BaseEntity {
     
     @Order(1)
     @ColumnWidth(100)
-    @ReadOnly
     private Integer id;
     
     @Order(2)

@@ -46,7 +46,6 @@ public class PropertyViewController extends ExtEntityController {
         EntityConfig view= new EntityConfig("property", propertyService, PropertyDto.class);
         view.setSingularEntityTitle("Propiedad");
         view.setPluralEntityTitle("Propiedades");
-        view.setMultipartFormData(true);
         super.addControlMapping(view);
         
         MenuItem menuItem= new MenuItem("Configuraci&oacute;n", "property", "Gestionar Propiedades");

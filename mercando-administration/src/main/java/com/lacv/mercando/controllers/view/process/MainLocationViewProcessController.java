@@ -16,6 +16,8 @@ import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ProcessConfig;
 import com.dot.gcpbasedot.enums.PageType;
+import com.lacv.mercando.model.dtos.PropertyDto;
+import com.lacv.mercando.model.dtos.process.BasicResultDto;
 import com.lacv.mercando.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -44,6 +46,7 @@ public class MainLocationViewProcessController extends ExtProcessController {
         process.setMainProcessTitle("Gestionar Proceso Main Location");
         process.addControlProcessView("crearMainLocation", "Crear Main Location", MainLocationPDto.class, ResultadoPDto.class);
         process.addControlProcessView("activarUsuario", "Activar Usuario", UsuarioPDto.class, ProductoPDto.class);
+        process.addControlProcessView("insertarPropiedad", "Insertar Propiedad", PropertyDto.class, BasicResultDto.class);
         process.addMultipartFormProcess("crearMainLocation");
         
         super.addControlMapping(process);
