@@ -47,7 +47,7 @@ public class ProductViewController extends ExtEntityController {
         EntityConfig view = new EntityConfig("product", productService, ProductDto.class);
         view.setSingularEntityTitle("Producto");
         view.setPluralEntityTitle("Productos");
-        view.addChildExtView("productImage", ProductImage.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("productImage", ProductImage.class, EntityConfig.TCV_1_TO_1);
         view.addComboboxChildDependent("category", "subCategory");
         super.addControlMapping(view);
 
