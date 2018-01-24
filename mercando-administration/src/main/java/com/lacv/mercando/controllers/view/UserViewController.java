@@ -66,9 +66,11 @@ public class UserViewController extends ExtEntityController {
         mainLocationButton.setMainProcessRef("processMainLocation");
         mainLocationButton.setProcessName("crearMainLocation");
         mainLocationButton.setProcessTitle("Crear Main Location");
+        mainLocationButton.addSourceByDestinationField("firstName", "usuario.nombre");
         mainLocationButton.addSourceByDestinationField("email", "usuario.correo");
-        mainLocationButton.addSourceByDestinationField("name", "usuario.nombre");
+        mainLocationButton.addSourceByDestinationField("cell", "usuario.telefono");
         mainLocationButton.addSourceByDestinationField("status", "usuario.estado");
+        mainLocationButton.addSourceByDestinationField("registrationDate", "usuario.fechaRegistro");
         mainLocationButton.setDtoClass(MainLocationPDto.class);
         mainLocationButton.setIconUrl("/img/process_icons/ml-process.png");
         view.addProcessButton(mainLocationButton);
