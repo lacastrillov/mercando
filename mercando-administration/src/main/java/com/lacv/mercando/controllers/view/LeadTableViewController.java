@@ -47,7 +47,7 @@ public class LeadTableViewController extends ExtEntityController {
         EntityConfig view= new EntityConfig("leadTable", leadTableService, LeadTableDto.class);
         view.setSingularEntityTitle("Tabla Lead");
         view.setPluralEntityTitle("Tablas Lead");
-        view.addChildExtView("tableColumn", TableColumn.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("tableColumn", TableColumn.class, EntityConfig.TCV_1_TO_N);
         super.addControlMapping(view);
         
         MenuItem menuItem= new MenuItem("Tablas Lead", "leadTable", "Gestionar Tablas Lead");

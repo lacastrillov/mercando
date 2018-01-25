@@ -50,7 +50,7 @@ public class UserViewController extends ExtEntityController {
         EntityConfig view= new EntityConfig("user", userService, UserDto.class);
         view.setSingularEntityTitle("Usuario");
         view.setPluralEntityTitle("Usuarios");
-        view.addChildExtView("userRole", UserRole.class, EntityConfig.TCV_N_N_MULTICHECK);
+        view.addChildExtView("userRole", UserRole.class, EntityConfig.TCV_N_TO_N);
         view.setMultipartFormData(true);
         
         ProcessButton setPasswordButton= new ProcessButton();

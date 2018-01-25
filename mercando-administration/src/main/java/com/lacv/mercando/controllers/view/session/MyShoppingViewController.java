@@ -49,8 +49,8 @@ public class MyShoppingViewController extends ExtEntityController {
         view.setPathRef("myShopping");
         view.setSingularEntityTitle("Mi Compra");
         view.setPluralEntityTitle("Mis Compras");
-        view.addChildExtView("purchaseorderDetail", PurchaseorderDetail.class, EntityConfig.TCV_STANDARD);
-        view.addChildExtView("payment", Payment.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("purchaseorderDetail", PurchaseorderDetail.class, EntityConfig.TCV_1_TO_N);
+        view.addChildExtView("payment", Payment.class, EntityConfig.TCV_1_TO_N);
         view.setEditableForm(false);
         view.setEditableGrid(false);
         view.setRestSession(true);

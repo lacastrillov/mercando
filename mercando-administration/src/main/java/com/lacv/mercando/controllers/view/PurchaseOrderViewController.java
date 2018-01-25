@@ -48,8 +48,8 @@ public class PurchaseOrderViewController extends ExtEntityController {
         EntityConfig view= new EntityConfig("purchaseOrder", purchaseOrderService, PurchaseOrderDto.class);
         view.setSingularEntityTitle("Orden de Compra");
         view.setPluralEntityTitle("Ordenes de Compra");
-        view.addChildExtView("purchaseorderDetail", PurchaseorderDetail.class, EntityConfig.TCV_STANDARD);
-        view.addChildExtView("payment", Payment.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("purchaseorderDetail", PurchaseorderDetail.class, EntityConfig.TCV_1_TO_N);
+        view.addChildExtView("payment", Payment.class, EntityConfig.TCV_1_TO_N);
         super.addControlMapping(view);
         
         MenuItem menuItem= new MenuItem("Ordenes de Compra", "purchaseOrder", "Gestionar Ordenes de Compra");

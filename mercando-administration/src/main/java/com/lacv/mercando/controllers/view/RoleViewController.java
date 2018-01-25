@@ -48,7 +48,7 @@ public class RoleViewController extends ExtEntityController {
         view.setSingularEntityTitle("Rol");
         view.setPluralEntityTitle("Roles");
         view.addInternalViewButton("userRole", "Ver Usuarios");
-        view.addChildExtView("roleAuthorization", RoleAuthorization.class, EntityConfig.TCV_N_N_MULTICHECK);
+        view.addChildExtView("roleAuthorization", RoleAuthorization.class, EntityConfig.TCV_N_TO_N);
         super.addControlMapping(view);
         
         MenuItem menuItem= new MenuItem("Seguridad", "role", "Gestionar Roles");

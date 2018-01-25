@@ -52,7 +52,7 @@ public class CategoryViewController extends ExtEntityController {
         view.setSingularEntityTitle("Categoria");
         view.setPluralEntityTitle("Categorias");
         view.setMultipartFormData(true);
-        view.addChildExtView("subCategory", SubCategory.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("subCategory", SubCategory.class, EntityConfig.TCV_1_TO_N);
         view.addInternalViewButton("product", "Ver productos");
         super.addControlMapping(view);
         

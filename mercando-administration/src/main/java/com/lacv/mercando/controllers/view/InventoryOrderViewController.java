@@ -47,7 +47,7 @@ public class InventoryOrderViewController extends ExtEntityController {
         EntityConfig view= new EntityConfig("inventoryOrder", inventoryOrderService, InventoryOrderDto.class);
         view.setSingularEntityTitle("Orden de Inventario");
         view.setPluralEntityTitle("Ordenes de Inventario");
-        view.addChildExtView("inventoryorderDetail", InventoryorderDetail.class, EntityConfig.TCV_STANDARD);
+        view.addChildExtView("inventoryorderDetail", InventoryorderDetail.class, EntityConfig.TCV_1_TO_N);
         super.addControlMapping(view);
         
         MenuItem menuItem= new MenuItem("Pedidos", "inventoryOrder", "Gestionar Ordenes de Inventario");
