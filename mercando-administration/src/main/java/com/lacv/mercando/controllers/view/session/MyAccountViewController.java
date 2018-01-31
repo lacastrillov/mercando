@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.UserDto;
 import com.lacv.mercando.model.mappers.UserMapper;
 import com.lacv.mercando.services.UserService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.ProcessButton;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
@@ -32,9 +31,6 @@ public class MyAccountViewController extends ExtEntityController {
     
     @Autowired
     UserService userService;
-    
-    @Autowired
-    MenuComponent menuComponent;
     
     @Autowired
     UserMapper userMapper;
@@ -64,10 +60,12 @@ public class MyAccountViewController extends ExtEntityController {
         
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Configuraci&oacute;n", "myAccount", "Mis datos");
-        menuComponent.addItemMenu(menuItem);
-        
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Configuraci&oacute;n");
+        MenuItem menuItem= new MenuItem("myAccount", "Mis datos");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

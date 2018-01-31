@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.PaymentDto;
 import com.lacv.mercando.model.mappers.PaymentMapper;
 import com.lacv.mercando.services.PaymentService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class PaymentViewController extends ExtEntityController {
     PaymentService paymentService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     PaymentMapper paymentMapper;
     
     @Autowired
@@ -48,10 +44,10 @@ public class PaymentViewController extends ExtEntityController {
         view.setPluralEntityTitle("Pagos");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Pagos", "payment", "Gestionar Pagos");
-        menuItem.setParentPosition(10);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Pagos", 10);
+        MenuItem menuItem= new MenuItem("payment", "Gestionar Pagos");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

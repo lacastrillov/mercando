@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.MailTemplateDto;
 import com.lacv.mercando.model.mappers.MailTemplateMapper;
 import com.lacv.mercando.services.MailTemplateService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class MailTemplateViewController extends ExtEntityController {
     MailTemplateService mailTemplateService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     MailTemplateMapper mailTemplateMapper;
     
     @Autowired
@@ -48,10 +44,12 @@ public class MailTemplateViewController extends ExtEntityController {
         view.setPluralEntityTitle("Plantillas de Correo");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Correos", "mailTemplate", "Gestionar Plantillas de Correo");
-        menuItem.setParentPosition(5);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Correos", 5);
+        MenuItem menuItem= new MenuItem("mailTemplate", "Gestionar Plantillas de Correo");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

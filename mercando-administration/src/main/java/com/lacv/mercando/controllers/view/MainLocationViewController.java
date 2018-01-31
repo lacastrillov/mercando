@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.MainLocationDto;
 import com.lacv.mercando.model.mappers.MainLocationMapper;
 import com.lacv.mercando.services.MainLocationService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class MainLocationViewController extends ExtEntityController {
     MainLocationService mainLocationService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     MainLocationMapper mainLocationMapper;
     
     @Autowired
@@ -48,10 +44,10 @@ public class MainLocationViewController extends ExtEntityController {
         view.setPluralEntityTitle("Ubicaciones Principales");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Comercios", "mainLocation", "Gestionar Ubicaciones Principales");
-        menuItem.setParentPosition(6);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Comercios", 6);
+        MenuItem menuItem= new MenuItem("mainLocation", "Gestionar Ubicaciones Principales");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

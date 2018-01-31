@@ -6,7 +6,6 @@
 
 package com.lacv.mercando.controllers.view.config;
 
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.controller.ExtConfigurationObjectController;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ConfigurationObjectConfig;
@@ -29,9 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GeneralViewConfigController extends ExtConfigurationObjectController {
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SecurityService securityService;
     
     
@@ -45,11 +41,13 @@ public class GeneralViewConfigController extends ExtConfigurationObjectControlle
         
         super.addControlMapping(viewConfig);
         
-        MenuItem menuItem= new MenuItem("Configuraci&oacute;n", "generalConfig", "Gestionar Configuraci&oacute;n General");
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Configuraci&oacute;n");
+        MenuItem menuItem= new MenuItem("generalConfig", "Gestionar Configuraci&oacute;n General");
         menuItem.setPageType(PageType.CONFIGURATION_OBJECT);
-        menuComponent.addItemMenu(menuItem);
-        
-        super.addMenuComponent(menuComponent);
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

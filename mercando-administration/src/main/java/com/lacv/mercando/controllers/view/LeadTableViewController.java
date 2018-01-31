@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.LeadTableDto;
 import com.lacv.mercando.model.mappers.LeadTableMapper;
 import com.lacv.mercando.services.LeadTableService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.TableColumn;
@@ -33,9 +32,6 @@ public class LeadTableViewController extends ExtEntityController {
     LeadTableService leadTableService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     LeadTableMapper leadTableMapper;
     
     @Autowired
@@ -50,9 +46,12 @@ public class LeadTableViewController extends ExtEntityController {
         view.addChildExtView("tableColumn", TableColumn.class, EntityConfig.TCV_1_TO_N);
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Tablas Lead", "leadTable", "Gestionar Tablas Lead");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Tablas Lead");
+        MenuItem menuItem= new MenuItem("leadTable", "Gestionar Tablas Lead");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

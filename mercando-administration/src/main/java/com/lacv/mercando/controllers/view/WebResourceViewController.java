@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.WebResourceDto;
 import com.lacv.mercando.model.mappers.WebResourceMapper;
 import com.lacv.mercando.services.WebResourceService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.WebresourceAuthorization;
@@ -34,9 +33,6 @@ public class WebResourceViewController extends ExtEntityController {
     WebResourceService webResourceService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     WebResourceMapper webResourceMapper;
     
     @Autowired
@@ -54,9 +50,12 @@ public class WebResourceViewController extends ExtEntityController {
         view.setDefaultOrderDir("ASC");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Seguridad", "webResource", "Gestionar Recursos Web");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Seguridad");
+        MenuItem menuItem= new MenuItem("webResource", "Gestionar Recursos Web");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

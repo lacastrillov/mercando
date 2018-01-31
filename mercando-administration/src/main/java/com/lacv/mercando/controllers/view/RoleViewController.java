@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.RoleDto;
 import com.lacv.mercando.model.mappers.RoleMapper;
 import com.lacv.mercando.services.RoleService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.RoleAuthorization;
@@ -33,9 +32,6 @@ public class RoleViewController extends ExtEntityController {
     RoleService roleService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     RoleMapper roleMapper;
     
     @Autowired
@@ -51,11 +47,12 @@ public class RoleViewController extends ExtEntityController {
         view.addChildExtView("roleAuthorization", RoleAuthorization.class, EntityConfig.TCV_N_TO_N);
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Seguridad", "role", "Gestionar Roles");
-        menuItem.setParentPosition(1);
-        menuItem.setItemPosition(1);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Seguridad", 1);
+        MenuItem menuItem= new MenuItem("role", "Gestionar Roles", 1);
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

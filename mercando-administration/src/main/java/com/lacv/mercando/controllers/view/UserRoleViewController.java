@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.UserRoleDto;
 import com.lacv.mercando.model.mappers.UserRoleMapper;
 import com.lacv.mercando.services.UserRoleService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class UserRoleViewController extends ExtEntityController {
     UserRoleService userRoleService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     UserRoleMapper userRoleMapper;
     
     @Autowired
@@ -49,9 +45,12 @@ public class UserRoleViewController extends ExtEntityController {
         view.activateNNMulticheckChild("role");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Seguridad", "userRole", "Gestionar Roles de Usuario");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Seguridad");
+        MenuItem menuItem= new MenuItem("userRole", "Gestionar Roles de Usuario");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

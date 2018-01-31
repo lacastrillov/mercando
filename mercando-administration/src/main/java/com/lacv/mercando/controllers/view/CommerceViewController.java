@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.CommerceDto;
 import com.lacv.mercando.model.mappers.CommerceMapper;
 import com.lacv.mercando.services.CommerceService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class CommerceViewController extends ExtEntityController {
     CommerceService commerceService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     CommerceMapper commerceMapper;
     
     @Autowired
@@ -49,9 +45,10 @@ public class CommerceViewController extends ExtEntityController {
         view.setMultipartFormData(true);
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Comercios", "commerce", "Gestionar Comercios");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Comercios");
+        MenuItem menuItem= new MenuItem("commerce", "Gestionar Comercios");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

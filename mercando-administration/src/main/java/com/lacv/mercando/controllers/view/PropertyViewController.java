@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.PropertyDto;
 import com.lacv.mercando.model.mappers.PropertyMapper;
 import com.lacv.mercando.services.PropertyService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class PropertyViewController extends ExtEntityController {
     PropertyService propertyService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     PropertyMapper propertyMapper;
     
     @Autowired
@@ -48,10 +44,12 @@ public class PropertyViewController extends ExtEntityController {
         view.setPluralEntityTitle("Propiedades");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Configuraci&oacute;n", "property", "Gestionar Propiedades");
-        menuItem.setParentPosition(2);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Configuraci&oacute;n", 2);
+        MenuItem menuItem= new MenuItem("property", "Gestionar Propiedades");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

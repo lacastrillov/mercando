@@ -8,7 +8,6 @@ package com.lacv.mercando.controllers.view;
 import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.services.ProductService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.ProcessButton;
 import com.dot.gcpbasedot.dto.config.ReportConfig;
@@ -34,9 +33,6 @@ public class ProductViewController extends ExtEntityController {
 
     @Autowired
     ProductService productService;
-
-    @Autowired
-    MenuComponent menuComponent;
     
     @Autowired
     SecurityService securityService;
@@ -50,9 +46,6 @@ public class ProductViewController extends ExtEntityController {
         view.addChildExtView("productImage", ProductImage.class, EntityConfig.TCV_1_TO_1);
         view.addComboboxChildDependent("category", "subCategory");
         super.addControlMapping(view);
-
-        MenuItem menuItem = new MenuItem("Productos", "product", "Gestionar Productos");
-        menuComponent.addItemMenu(menuItem);
         
         ReportConfig report = new ReportConfig("product", "reporteProductos", productService, ProductReportDto.class);
         report.setPluralReportTitle("Reporte de Productos");
@@ -74,12 +67,17 @@ public class ProductViewController extends ExtEntityController {
         
         super.addReportMapping(report);
         
-        MenuItem menuItem2 = new MenuItem("Productos", "product", "Reporte de Productos");
+        MenuItem menuParent= new MenuItem("Productos");
+        
+        MenuItem menuItem= new MenuItem("product", "Gestionar Productos");
+        menuParent.addSubMenu(menuItem);
+        
+        MenuItem menuItem2= new MenuItem("product", "Reporte de Productos");
         menuItem2.setReportName("reporteProductos");
         menuItem2.setPageType(PageType.REPORT);
-        menuComponent.addItemMenu(menuItem2);
+        menuParent.addSubMenu(menuItem);
         
-        super.addMenuComponent(menuComponent);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

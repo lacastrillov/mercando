@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.WebFileDto;
 import com.lacv.mercando.model.mappers.WebFileMapper;
 import com.lacv.mercando.services.WebFileService;
 import com.dot.gcpbasedot.controller.ExtFileExplorerController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.GridTemplate;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.FileExplorerConfig;
@@ -34,9 +33,6 @@ public class WebFileViewController extends ExtFileExplorerController {
     WebFileService webFileService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     WebFileMapper webFileMapper;
     
     @Autowired
@@ -57,11 +53,13 @@ public class WebFileViewController extends ExtFileExplorerController {
         
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Gestor de Contenidos", "webFile", "Explorador de Archivos");
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Gestor de Contenidos", 3);
+        MenuItem menuItem= new MenuItem("webFile", "Explorador de Archivos");
         menuItem.setPageType(PageType.FILE_EXPLORER);
-        menuItem.setParentPosition(3);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.InventoryOrderDto;
 import com.lacv.mercando.model.mappers.InventoryOrderMapper;
 import com.lacv.mercando.services.InventoryOrderService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.InventoryorderDetail;
@@ -33,9 +32,6 @@ public class InventoryOrderViewController extends ExtEntityController {
     InventoryOrderService inventoryOrderService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     InventoryOrderMapper inventoryOrderMapper;
     
     @Autowired
@@ -50,9 +46,10 @@ public class InventoryOrderViewController extends ExtEntityController {
         view.addChildExtView("inventoryorderDetail", InventoryorderDetail.class, EntityConfig.TCV_1_TO_N);
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Pedidos", "inventoryOrder", "Gestionar Ordenes de Inventario");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Pedidos");
+        MenuItem menuItem= new MenuItem("inventoryOrder", "Gestionar Ordenes de Inventario");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

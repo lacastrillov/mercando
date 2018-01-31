@@ -9,7 +9,6 @@ package com.lacv.mercando.controllers.view.process;
 import com.lacv.mercando.model.dtos.LogProcessDto;
 import com.lacv.mercando.model.dtos.process.BasicResultDto;
 import com.dot.gcpbasedot.controller.ExtProcessController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ProcessConfig;
 import com.dot.gcpbasedot.enums.PageType;
@@ -32,9 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SoapClientsViewProcessController extends ExtProcessController {
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SecurityService securityService;
     
     
@@ -48,11 +44,11 @@ public class SoapClientsViewProcessController extends ExtProcessController {
         process.addControlProcessView("createPlayer", "Crear Jugador", PlayerUserPDto.class, BasicResultDto.class);
         super.addControlMapping(process);
         
-        MenuItem menuItem= new MenuItem("Procesos", "soapClients", "Gestionar Clientes SOAP");
+        MenuItem menuParent= new MenuItem("Procesos de Negocio");
+        MenuItem menuItem= new MenuItem("soapClients", "Gestionar Clientes SOAP");
         menuItem.setPageType(PageType.PROCESS);
-        menuComponent.addItemMenu(menuItem);
-        
-        super.addMenuComponent(menuComponent);
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

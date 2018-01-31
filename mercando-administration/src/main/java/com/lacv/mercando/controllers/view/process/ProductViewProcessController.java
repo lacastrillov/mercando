@@ -9,7 +9,6 @@ package com.lacv.mercando.controllers.view.process;
 import com.lacv.mercando.model.dtos.LogProcessDto;
 import com.lacv.mercando.model.dtos.process.BasicResultDto;
 import com.dot.gcpbasedot.controller.ExtProcessController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ProcessConfig;
 import com.dot.gcpbasedot.enums.PageType;
@@ -33,9 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProductViewProcessController extends ExtProcessController {
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SecurityService securityService;
     
     
@@ -50,11 +46,11 @@ public class ProductViewProcessController extends ExtProcessController {
         
         super.addControlMapping(process);
         
-        MenuItem menuItem= new MenuItem("Procesos", "processProduct", "Gestionar Procesos de Producto");
+        MenuItem menuParent= new MenuItem("Procesos de Negocio");
+        MenuItem menuItem= new MenuItem("processProduct", "Gestionar Procesos de Producto");
         menuItem.setPageType(PageType.PROCESS);
-        menuComponent.addItemMenu(menuItem);
-        
-        super.addMenuComponent(menuComponent);
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

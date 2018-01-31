@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.SupplierDto;
 import com.lacv.mercando.model.mappers.SupplierMapper;
 import com.lacv.mercando.services.SupplierService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class SupplierViewController extends ExtEntityController {
     SupplierService supplierService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SupplierMapper supplierMapper;
     
     @Autowired
@@ -48,10 +44,10 @@ public class SupplierViewController extends ExtEntityController {
         view.setPluralEntityTitle("Proveedores");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Pedidos", "supplier", "Gestionar Proveedores");
-        menuItem.setParentPosition(8);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Pedidos", 8);
+        MenuItem menuItem= new MenuItem("supplier", "Gestionar Proveedores");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

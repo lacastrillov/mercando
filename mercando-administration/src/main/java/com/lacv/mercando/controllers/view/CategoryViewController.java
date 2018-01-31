@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.CategoryDto;
 import com.lacv.mercando.model.mappers.CategoryMapper;
 import com.lacv.mercando.services.CategoryService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.SubCategory;
@@ -37,9 +36,6 @@ public class CategoryViewController extends ExtEntityController {
     SubCategoryService subCategoryService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     CategoryMapper categoryMapper;
     
     @Autowired
@@ -56,10 +52,10 @@ public class CategoryViewController extends ExtEntityController {
         view.addInternalViewButton("product", "Ver productos");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Productos", "category", "Gestionar Categorias");
-        menuItem.setParentPosition(7);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Productos", 7);
+        MenuItem menuItem= new MenuItem("category", "Gestionar Categorias");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

@@ -274,19 +274,28 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
     @Override
     public List<MenuItem> configureVisibilityMenu(List<MenuItem> menuData) {
         for (MenuItem itemParent : menuData) {
-            itemParent.setVisible(false);
-            for(int j=0; j<itemParent.getSubMenus().size(); j++){
-                String requestURI= itemParent.getSubMenus().get(j).getHref();
-                boolean visibleMenu= checkAccessResource(requestURI);
-                if(visibleMenu){
-                    itemParent.getSubMenus().get(j).setVisible(true);
-                    itemParent.setVisible(true);
-                }else{
-                    itemParent.getSubMenus().get(j).setVisible(false);
-                }
-            }
+            checkVisibilityMenuItem(itemParent);
         }
         return menuData;
+    }
+    
+    private boolean checkVisibilityMenuItem(MenuItem menuItem){
+        if(menuItem.getType().equals(MenuItem.CHILD)){
+            String requestURI= menuItem.getHref();
+            boolean visible= checkAccessResource(requestURI);
+            menuItem.setVisible(visible);
+            return visible;
+        }else{
+            boolean visible= false;
+            for(MenuItem subMenuItem: menuItem.getSubMenus()){
+                boolean visibleItem= checkVisibilityMenuItem(subMenuItem);
+                if(visibleItem){
+                    visible= true;
+                }
+            }
+            menuItem.setVisible(visible);
+            return visible;
+        }
     }
 
     @Override

@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.AuthorizationDto;
 import com.lacv.mercando.model.mappers.AuthorizationMapper;
 import com.lacv.mercando.services.AuthorizationService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.services.security.SecurityService;
@@ -32,9 +31,6 @@ public class AuthorizationViewController extends ExtEntityController {
     AuthorizationService authorizationService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     AuthorizationMapper authorizationMapper;
     
     @Autowired
@@ -48,9 +44,12 @@ public class AuthorizationViewController extends ExtEntityController {
         view.setPluralEntityTitle("Autorizaciones");
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Seguridad", "authorization", "Gestionar Autorizaciones");
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema");
+        MenuItem menuParent1= new MenuItem("Seguridad");
+        MenuItem menuItem= new MenuItem("authorization", "Gestionar Autorizaciones");
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

@@ -11,7 +11,6 @@ import com.lacv.mercando.model.entities.UserRole;
 import com.lacv.mercando.model.mappers.UserMapper;
 import com.lacv.mercando.services.UserService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.ProcessButton;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
@@ -34,9 +33,6 @@ public class UserViewController extends ExtEntityController {
     
     @Autowired
     UserService userService;
-    
-    @Autowired
-    MenuComponent menuComponent;
     
     @Autowired
     UserMapper userMapper;
@@ -77,11 +73,12 @@ public class UserViewController extends ExtEntityController {
         
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Seguridad", "user", "Gestionar Usuarios");
-        menuItem.setItemPosition(2);
-        menuComponent.addItemMenu(menuItem);
-        
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Sistema", 1);
+        MenuItem menuParent1= new MenuItem("Seguridad");
+        MenuItem menuItem= new MenuItem("user", "Gestionar Usuarios", 2);
+        menuParent1.addSubMenu(menuItem);
+        menuParent.addSubMenu(menuParent1);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

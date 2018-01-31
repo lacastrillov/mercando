@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.PurchaseOrderDto;
 import com.lacv.mercando.model.mappers.PurchaseOrderMapper;
 import com.lacv.mercando.services.PurchaseOrderService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.Payment;
@@ -34,9 +33,6 @@ public class MyShoppingViewController extends ExtEntityController {
     PurchaseOrderService purchaseOrderService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     PurchaseOrderMapper purchaseOrderMapper;
     
     @Autowired
@@ -56,10 +52,10 @@ public class MyShoppingViewController extends ExtEntityController {
         view.setRestSession(true);
         super.addControlMapping(view);
         
-        MenuItem menuItem= new MenuItem("Ordenes de Compra", "myShopping", "Mis Compras");
-        menuItem.setParentPosition(9);
-        menuComponent.addItemMenu(menuItem);
-        super.addMenuComponent(menuComponent);
+        MenuItem menuParent= new MenuItem("Ordenes de Compra");
+        MenuItem menuItem= new MenuItem("myShopping", "Mis Compras");
+        menuParent.addSubMenu(menuItem);
+        menuComponent.addItemMenu(menuParent);
     }
     
     @Override

@@ -6,7 +6,6 @@
 
 package com.lacv.mercando.controllers.view;
 
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.controller.ExtTableController;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.TableConfig;
@@ -26,9 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DirectViewController extends ExtTableController {
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SecurityService securityService;
     
     
@@ -36,9 +32,6 @@ public class DirectViewController extends ExtTableController {
     public void init(){
         TableConfig view= new TableConfig("direct");
         super.addControlMapping(view);
-        /*MenuItem menuItem= new MenuItem("Pedidos", "inventoryOrder", "Gestionar Ordenes de Inventario");
-        menuComponent.addItemMenu(menuItem);*/
-        super.addMenuComponent(menuComponent);
     }
     
     @Override
