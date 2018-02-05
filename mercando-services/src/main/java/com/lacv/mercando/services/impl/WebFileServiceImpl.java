@@ -54,30 +54,23 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
     @Override
     @Transactional(readOnly= true)
     public WebFile findByPath(String path){
-        WebFile webFile, parentWebFile=null;
+        WebFile parentWebFile=null;
         String[] folders= path.split("/");
         
         if(folders.length>0){
-            Parameters p1= new Parameters();
-            p1.whereIsNull("webFile");
-            p1.whereEqual("name", folders[0]);
-            parentWebFile= super.loadByParameters(p1);
-            webFile= parentWebFile;
-                
-            for(int i=1; i<folders.length; i++){
-                if(!folders[i].equals("")){
-                    Parameters p2= new Parameters();
-                    p2.whereEqual("webFile", parentWebFile);
-                    p2.whereEqual("name", folders[i]);
-                    parentWebFile= super.loadByParameters(p2);
-                    if(parentWebFile!=null){
-                        webFile= parentWebFile;
+            for(String folder: folders){
+                if(!folder.equals("")){
+                    Parameters p= new Parameters();
+                    p.whereEqual("webFile", parentWebFile);
+                    p.whereEqual("name", folder);
+                    parentWebFile= super.loadByParameters(p);
+                    if(parentWebFile==null){
+                        return null;
                     }
                 }
             }
-            return webFile;
         }
-        return null;
+        return parentWebFile;
     }
     
     @Override
@@ -126,41 +119,70 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
     @Override
     @Transactional(value = TRANSACTION_MANAGER, propagation = Propagation.REQUIRED)
     public WebFile createFolder(WebFile parentWebFile, String folderName) {
-        WebFile webFile= new WebFile();
-        webFile.setName(folderName);
-        webFile.setCreationDate(new Date());
-        webFile.setType("folder");
-        webFile.setIcon("folder");
-        webFile.setModificationDate(new Date());
-        webFile.setSize(1);
-        webFile.setWebFile(parentWebFile);
-        super.create(webFile);
-        
-        String path= webFile.getPath();
-        String location= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + path;
-        FileService.createFolder(location + webFile.getName());
-        
-        return webFile;
+        if(!folderName.equals("")){
+            WebFile webFile= new WebFile();
+            webFile.setName(folderName);
+            webFile.setCreationDate(new Date());
+            webFile.setType("folder");
+            webFile.setIcon("folder");
+            webFile.setModificationDate(new Date());
+            webFile.setSize(1);
+            webFile.setWebFile(parentWebFile);
+            super.createForce(webFile);
+
+            String path= webFile.getPath();
+            String location= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + path;
+            FileService.createFolder(location + webFile.getName());
+            return webFile;
+        }
+        return null;
     }
 
     @Override
     @Transactional(value = TRANSACTION_MANAGER, propagation = Propagation.REQUIRED)
     public WebFile createEmptyFile(WebFile parentWebFile, String fileName) {
-        String extension= FilenameUtils.getExtension(fileName);
-        WebFile webFile= new WebFile();
-        webFile.setName(fileName);
-        webFile.setCreationDate(new Date());
-        webFile.setType(extension);
-        webFile.setIcon(Util.getSimpleContentType(extension));
-        webFile.setModificationDate(new Date());
-        webFile.setSize(1);
-        webFile.setWebFile(parentWebFile);
-        super.create(webFile);
+        if(fileName.equals("")){
+            String extension= FilenameUtils.getExtension(fileName);
+            WebFile webFile= new WebFile();
+            webFile.setName(fileName);
+            webFile.setCreationDate(new Date());
+            webFile.setType(extension);
+            webFile.setIcon(Util.getSimpleContentType(extension));
+            webFile.setModificationDate(new Date());
+            webFile.setSize(1);
+            webFile.setWebFile(parentWebFile);
+            super.create(webFile);
+
+            String path= webFile.getPath();
+            String location= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + path;
+            FileService.createFile(location + webFile.getName());
+
+            return webFile;
+        }else{
+            return null;
+        }
+    }
+    
+    @Override
+    @Transactional(value = TRANSACTION_MANAGER, propagation = Propagation.REQUIRED)
+    public WebFile createDirectoriesIfMissing(String path){
+        WebFile parentWebFile=null, webFile=null;
+        String[] folders= path.split("/");
         
-        String path= webFile.getPath();
-        String location= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + path;
-        FileService.createFile(location + webFile.getName());
-        
+        if(folders.length>0){
+            for(String folder: folders){
+                if(!folder.equals("")){
+                    Parameters p= new Parameters();
+                    p.whereEqual("webFile", parentWebFile);
+                    p.whereEqual("name", folder);
+                    webFile= super.loadByParameters(p);
+                    if(webFile==null){
+                        webFile= createFolder(parentWebFile, folder);
+                        parentWebFile= webFile;
+                    }
+                }
+            }
+        }
         return webFile;
     }
     
