@@ -33,22 +33,11 @@ public class DirectRestController extends RestDirectController {
     WebFileService webFileService;
     
     
-    private WebFile getParentWebFile(String tableName){
-        String folder= tableName.replaceFirst("lt_", "");
-        String pathSup= "archivos/";
-        String path= pathSup + folder + "/";
-        WebFile parentWebFile= webFileService.findByPath(path);
-        if(parentWebFile==null || !parentWebFile.getName().equals(folder)){
-            WebFile webParentSupFile= webFileService.findByPath(pathSup);
-            parentWebFile= webFileService.createFolder(webParentSupFile, folder);
-        }
-        return parentWebFile;
-    }
-    
     @Override
     public String saveFilePart(String tableName, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Integer idEntity) {
         try {
-            WebFile parentWebFile= getParentWebFile(tableName);
+            String path= "archivos/"+tableName.replaceFirst("lt_", "");
+            WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
             String newFileName= idEntity + "_" +fieldName+"."+FilenameUtils.getExtension(fileName);
             WebFile webFile= webFileService.createByFileData(parentWebFile, 0, newFileName, fileType, fileSize, is);
             

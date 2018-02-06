@@ -43,22 +43,12 @@ public class ProductImageRestController extends RestEntityController {
         super.addControlMapping("productImage", productImageService, productImageMapper);
     }
     
-    private WebFile getParentWebFile(Object idContainer){
-        String pathSup= "imagenes/producto/";
-        String path= pathSup + idContainer + "/";
-        WebFile parentWebFile= webFileService.findByPath(path);
-        if(parentWebFile==null || !parentWebFile.getName().equals(idContainer.toString())){
-            WebFile webParentSupFile= webFileService.findByPath(pathSup);
-            parentWebFile= webFileService.createFolder(webParentSupFile, idContainer.toString());
-        }
-        return parentWebFile;
-    }
-    
     @Override
     public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
         try {
             ProductImage productImage = productImageService.loadById(idEntity);
-            WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());
+            String path= "imagenes/producto/"+productImage.getProduct().getId();
+            WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
             
             String imageName= idEntity + "_" +"product-image."+FilenameUtils.getExtension(fileName);
             WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
@@ -76,7 +66,8 @@ public class ProductImageRestController extends RestEntityController {
     public String saveResizedImage(String fieldName, String fileName, String fileType, int width, int height, int fileSize, InputStream is, Object idEntity){
         try {
             ProductImage productImage = productImageService.loadById(idEntity);
-            WebFile parentWebFile= getParentWebFile(productImage.getProduct().getId());
+            String path= "imagenes/producto/"+productImage.getProduct().getId();
+            WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
             
             String imageName= idEntity + "_" + width + "x" + height + "_" +"product-image."+FilenameUtils.getExtension(fileName);
             webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
