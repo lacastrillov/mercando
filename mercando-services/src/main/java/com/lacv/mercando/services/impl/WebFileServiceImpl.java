@@ -178,8 +178,8 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
                     webFile= super.loadByParameters(p);
                     if(webFile==null){
                         webFile= createFolder(parentWebFile, folder);
-                        parentWebFile= webFile;
                     }
+                    parentWebFile= webFile;
                 }
             }
         }
