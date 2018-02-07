@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("userRoleService")
 public class UserRoleServiceImpl extends EntityServiceImpl1<UserRole> implements UserRoleService {

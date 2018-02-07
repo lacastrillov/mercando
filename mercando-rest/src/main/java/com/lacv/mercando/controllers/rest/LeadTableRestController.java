@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Controller
 @RequestMapping(value="/leadTable")

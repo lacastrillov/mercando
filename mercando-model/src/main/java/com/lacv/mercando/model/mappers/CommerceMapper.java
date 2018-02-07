@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("commerceMapper")
 public class CommerceMapper extends EntityMapperImpl<Commerce, CommerceDto> implements EntityMapper<Commerce, CommerceDto> {

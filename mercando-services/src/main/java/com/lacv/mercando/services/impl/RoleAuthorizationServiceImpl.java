@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("roleAuthorizationService")
 public class RoleAuthorizationServiceImpl extends EntityServiceImpl1<RoleAuthorization> implements RoleAuthorizationService {

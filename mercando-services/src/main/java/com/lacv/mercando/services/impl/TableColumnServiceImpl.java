@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("tableColumnService")
 public class TableColumnServiceImpl extends EntityServiceImpl1<TableColumn> implements TableColumnService {

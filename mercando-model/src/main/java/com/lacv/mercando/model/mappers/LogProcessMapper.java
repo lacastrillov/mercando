@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("logProcessMapper")
 public class LogProcessMapper extends EntityMapperImpl<LogProcess, LogProcessDto> implements EntityMapper<LogProcess, LogProcessDto> {

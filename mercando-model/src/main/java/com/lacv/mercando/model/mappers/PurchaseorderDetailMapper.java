@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("purchaseorderDetailMapper")
 public class PurchaseorderDetailMapper extends EntityMapperImpl<PurchaseorderDetail, PurchaseorderDetailDto> implements EntityMapper<PurchaseorderDetail, PurchaseorderDetailDto> {

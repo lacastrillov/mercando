@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("supplierMapper")
 public class SupplierMapper extends EntityMapperImpl<Supplier, SupplierDto> implements EntityMapper<Supplier, SupplierDto> {

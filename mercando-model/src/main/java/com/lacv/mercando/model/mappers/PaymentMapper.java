@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("paymentMapper")
 public class PaymentMapper extends EntityMapperImpl<Payment, PaymentDto> implements EntityMapper<Payment, PaymentDto> {

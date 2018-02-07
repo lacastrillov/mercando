@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("webresourceRoleMapper")
 public class WebresourceRoleMapper extends EntityMapperImpl<WebresourceRole, WebresourceRoleDto> implements EntityMapper<WebresourceRole, WebresourceRoleDto> {

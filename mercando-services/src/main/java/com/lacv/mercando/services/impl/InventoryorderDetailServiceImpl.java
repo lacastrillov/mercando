@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("inventoryorderDetailService")
 public class InventoryorderDetailServiceImpl extends EntityServiceImpl1<InventoryorderDetail> implements InventoryorderDetailService {

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Controller
 @RequestMapping(value="/soapClients")

@@ -32,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("purchaseOrderService")
 public class PurchaseOrderServiceImpl extends EntityServiceImpl1<PurchaseOrder> implements PurchaseOrderService {

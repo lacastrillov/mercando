@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("productMapper")
 public class ProductMapper extends EntityMapperImpl<Product, ProductDto> implements EntityMapper<Product, ProductDto> {

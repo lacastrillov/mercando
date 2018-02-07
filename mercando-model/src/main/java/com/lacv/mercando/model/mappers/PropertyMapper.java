@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("propertyMapper")
 public class PropertyMapper extends EntityMapperImpl<Property, PropertyDto> implements EntityMapper<Property, PropertyDto> {

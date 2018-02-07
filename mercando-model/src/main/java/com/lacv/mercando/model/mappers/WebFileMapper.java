@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("webFileMapper")
 public class WebFileMapper extends EntityMapperImpl<WebFile, WebFileDto> implements EntityMapper<WebFile, WebFileDto> {

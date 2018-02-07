@@ -16,7 +16,7 @@ function UserAuthentication() {
             
             $("#j_username, #j_password").keypress(function(e) {
                 if(e.which === 13) {
-                    $("#formLogin").submit();
+                    Instance.authenticate("formLogin");
                 }
             });
             

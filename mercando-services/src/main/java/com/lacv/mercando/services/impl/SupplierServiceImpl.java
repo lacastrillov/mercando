@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("supplierService")
 public class SupplierServiceImpl extends EntityServiceImpl1<Supplier> implements SupplierService {

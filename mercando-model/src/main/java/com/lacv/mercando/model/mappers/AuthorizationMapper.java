@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("authorizationMapper")
 public class AuthorizationMapper extends EntityMapperImpl<Authorization, AuthorizationDto> implements EntityMapper<Authorization, AuthorizationDto> {

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("userMapper")
 public class UserMapper extends EntityMapperImpl<User, UserDto> implements EntityMapper<User, UserDto> {

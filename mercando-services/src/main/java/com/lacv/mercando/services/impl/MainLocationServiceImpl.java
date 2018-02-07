@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("mainLocationService")
 public class MainLocationServiceImpl extends EntityServiceImpl1<MainLocation> implements MainLocationService {

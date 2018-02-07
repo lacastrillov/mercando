@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("webresourceAuthorizationService")
 public class WebresourceAuthorizationServiceImpl extends EntityServiceImpl1<WebresourceAuthorization> implements WebresourceAuthorizationService {

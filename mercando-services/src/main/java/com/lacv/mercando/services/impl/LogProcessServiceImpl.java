@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("logProcessService")
 public class LogProcessServiceImpl extends EntityServiceImpl1<LogProcess> implements LogProcessService {

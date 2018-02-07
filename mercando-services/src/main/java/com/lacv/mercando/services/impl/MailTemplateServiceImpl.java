@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("mailTemplateService")
 public class MailTemplateServiceImpl extends EntityServiceImpl1<MailTemplate> implements MailTemplateService {

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("productImageService")
 public class ProductImageServiceImpl extends EntityServiceImpl1<ProductImage> implements ProductImageService {

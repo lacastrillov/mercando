@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("webFileService")
 public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements WebFileService {

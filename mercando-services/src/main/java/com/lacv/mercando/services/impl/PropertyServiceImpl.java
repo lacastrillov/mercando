@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("propertyService")
 public class PropertyServiceImpl extends EntityServiceImpl1<Property> implements PropertyService {

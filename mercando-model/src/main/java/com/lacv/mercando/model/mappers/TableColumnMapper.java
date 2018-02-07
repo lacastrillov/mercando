@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("tableColumnMapper")
 public class TableColumnMapper extends EntityMapperImpl<TableColumn, TableColumnDto> implements EntityMapper<TableColumn, TableColumnDto> {

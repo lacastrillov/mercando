@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("webresourceRoleService")
 public class WebresourceRoleServiceImpl extends EntityServiceImpl1<WebresourceRole> implements WebresourceRoleService {

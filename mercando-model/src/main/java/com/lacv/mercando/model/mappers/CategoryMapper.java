@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("categoryMapper")
 public class CategoryMapper extends EntityMapperImpl<Category, CategoryDto> implements EntityMapper<Category, CategoryDto> {

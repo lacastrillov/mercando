@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("mailTemplateMapper")
 public class MailTemplateMapper extends EntityMapperImpl<MailTemplate, MailTemplateDto> implements EntityMapper<MailTemplate, MailTemplateDto> {

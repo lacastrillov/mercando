@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("inventoryOrderMapper")
 public class InventoryOrderMapper extends EntityMapperImpl<InventoryOrder, InventoryOrderDto> implements EntityMapper<InventoryOrder, InventoryOrderDto> {

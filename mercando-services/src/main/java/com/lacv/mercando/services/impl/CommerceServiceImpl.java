@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("commerceService")
 public class CommerceServiceImpl extends EntityServiceImpl1<Commerce> implements CommerceService {

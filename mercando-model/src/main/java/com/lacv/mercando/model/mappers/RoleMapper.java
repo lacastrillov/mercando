@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("roleMapper")
 public class RoleMapper extends EntityMapperImpl<Role, RoleDto> implements EntityMapper<Role, RoleDto> {

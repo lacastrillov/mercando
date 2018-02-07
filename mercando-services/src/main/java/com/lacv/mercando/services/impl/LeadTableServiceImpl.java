@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("leadTableService")
 public class LeadTableServiceImpl extends EntityServiceImpl1<LeadTable> implements LeadTableService {

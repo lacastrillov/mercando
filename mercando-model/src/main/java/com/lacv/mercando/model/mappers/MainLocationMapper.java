@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("mainLocationMapper")
 public class MainLocationMapper extends EntityMapperImpl<MainLocation, MainLocationDto> implements EntityMapper<MainLocation, MainLocationDto> {

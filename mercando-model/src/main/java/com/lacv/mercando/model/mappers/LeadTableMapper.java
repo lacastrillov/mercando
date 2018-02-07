@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("leadTableMapper")
 public class LeadTableMapper extends EntityMapperImpl<LeadTable, LeadTableDto> implements EntityMapper<LeadTable, LeadTableDto> {

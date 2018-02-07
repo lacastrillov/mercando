@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Component("webresourceAuthorizationMapper")
 public class WebresourceAuthorizationMapper extends EntityMapperImpl<WebresourceAuthorization, WebresourceAuthorizationDto> implements EntityMapper<WebresourceAuthorization, WebresourceAuthorizationDto> {

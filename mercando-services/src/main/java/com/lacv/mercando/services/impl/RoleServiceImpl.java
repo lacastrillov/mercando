@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("roleService")
 public class RoleServiceImpl extends EntityServiceImpl1<Role> implements RoleService {

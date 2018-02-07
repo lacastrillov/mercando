@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author nalvarez
+ * @author lcastrillo
  */
 @Service("categoryService")
 public class CategoryServiceImpl extends EntityServiceImpl1<Category> implements CategoryService {
