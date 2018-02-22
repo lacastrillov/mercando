@@ -214,8 +214,10 @@ function Util() {
 
     this.replaceAll = function (texto, origen, remplazo) {
         var textoFinal = texto;
-        while (textoFinal.indexOf(origen) !== -1) {
-            textoFinal = textoFinal.replace(origen, remplazo);
+        if(textoFinal!==null){
+            while (textoFinal.indexOf(origen) !== -1) {
+                textoFinal = textoFinal.replace(origen, remplazo);
+            }
         }
         return textoFinal;
     };
