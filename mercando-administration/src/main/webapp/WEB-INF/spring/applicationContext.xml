@@ -41,5 +41,5 @@
         <property name="appName" value="MERCANDO" />
         <property name="favicon" value="/img/habitares.png" />
     </bean>
-
+    
 </beans>

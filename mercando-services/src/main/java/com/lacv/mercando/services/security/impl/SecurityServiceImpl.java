@@ -23,6 +23,7 @@ import com.lacv.mercando.services.RoleAuthorizationService;
 import com.lacv.mercando.services.WebResourceService;
 import com.lacv.mercando.services.WebresourceAuthorizationService;
 import com.lacv.mercando.services.WebresourceRoleService;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -128,6 +130,19 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
         }
         throw new BadCredentialsException("Usuario y/o contraseña incorrectos");
     }
+    
+    @Override
+    public String connect(String basicAuthorization) {
+        if (basicAuthorization != null && basicAuthorization.startsWith("Basic")) {
+            // Authorization: Basic base64credentials
+            String base64Credentials = basicAuthorization.substring("Basic".length()).trim();
+            String credentials = new String(Base64.decodeBase64(base64Credentials), Charset.forName("UTF-8"));
+            // credentials = username:password
+            String[] values = credentials.split(":", 2);
+            return connect(values[0], values[1]);
+        }
+        throw new BadCredentialsException("Autorización incorrecta");
+    }
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
@@ -164,6 +179,18 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
         UserDetailsDto userDetails = getUserDetails();
         if(userDetails!=null){
             return userDetails.getUser();
+        }
+        return null;
+    }
+    
+    @Override
+    public String getBasicAuthorization(){
+        User user= getCurrentUser();
+        if(user!=null){
+            String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
+            String credentials= user.getUsername()+":"+contrasena;
+            String authorization= new String(Base64.encodeBase64(credentials.getBytes()), Charset.forName("UTF-8"));
+            return "Basic "+authorization;
         }
         return null;
     }

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-util.importJS('/js/util/Message.js');
+util.importJS('/libjs/util/Message.js');
+util.importJS('/libjs/user/UserAuthentication.js');
 util.importJS('/js/web/stores/ProductExtStore.js');
 util.importJS('/js/web/stores/ProductImageExtStore.js');
 util.importJS('/js/web/stores/PropertyExtStore.js');
-util.importJS('/js/web/usuario/UserAuthentication.js');
 
 function ShoppingCart() {
 

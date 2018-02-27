@@ -53,7 +53,7 @@
 
         <script src="/themes/js/bootshop.js"></script>
         <script src="/themes/js/jquery.lightbox-0.5.js"></script>
-        <script src="/js/util/Util.js"></script>
+        <script src="/libjs/util/Util.js"></script>
         <script src="/js/util/Validation.js"></script>
         <script>
             Ext.context= "";

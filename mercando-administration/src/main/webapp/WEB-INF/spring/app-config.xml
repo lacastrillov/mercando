@@ -27,6 +27,8 @@
     </bean>
     
     <mvc:resources mapping="/views/**" location="classpath:/WEB-INF/views/" />
+    <mvc:resources mapping="/libjs/**" location="classpath:/libjs/" />
+    <mvc:resources mapping="/libcss/**" location="classpath:/libcss/" />
     
     <context:property-placeholder location="classpath*:config/*.properties" ignore-unresolvable="true"/>
     
@@ -40,7 +42,6 @@
     
     <mvc:resources mapping="/css/**" location="/css/" />
     <mvc:resources mapping="/img/**" location="/img/" />
-    <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/js/**" location="/js/" />
 
 </beans>

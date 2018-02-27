@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-util.importJS('/js/util/Message.js');
+util.importJS('/libjs/util/Message.js');
 util.importJS('/js/web/stores/UserExtStore.js');
 
 function UserClient() {

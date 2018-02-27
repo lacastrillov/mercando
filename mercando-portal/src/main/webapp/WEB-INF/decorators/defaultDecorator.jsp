@@ -20,7 +20,7 @@
         <title><sitemesh:write property='title'>Mercando</sitemesh:write></title>
 
         <script type="text/javascript" src="/js/libs/jquery/jquery-3.1.0.min.js"></script>
-        <script type="text/javascript" src="/js/util/Util.js"></script>
+        <script type="text/javascript" src="/libjs/util/Util.js"></script>
         
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">

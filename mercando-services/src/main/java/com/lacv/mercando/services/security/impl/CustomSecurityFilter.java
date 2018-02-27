@@ -70,7 +70,7 @@ public class CustomSecurityFilter extends GenericFilterBean {
             logger.info("CustomSecurityFilter IN: "+requestURI);
             
             if(req.getHeader("Authorization")!=null){
-                connectUserByBasicAuthentication(req);
+                securityService.connect(req.getHeader("Authorization"));
             }
             
             boolean continueAccess= securityService.checkAccessResource(requestURI);
@@ -119,18 +119,6 @@ public class CustomSecurityFilter extends GenericFilterBean {
         }
         
         return false;
-    }
-    
-    public void connectUserByBasicAuthentication(HttpServletRequest req) {
-        String authorization = req.getHeader("Authorization");
-        if (authorization != null && authorization.startsWith("Basic")) {
-            // Authorization: Basic base64credentials
-            String base64Credentials = authorization.substring("Basic".length()).trim();
-            String credentials = new String(Base64.decodeBase64(base64Credentials), Charset.forName("UTF-8"));
-            // credentials = username:password
-            String[] values = credentials.split(":", 2);
-            securityService.connect(values[0], values[1]);
-        }
     }
 
     private static final class DefaultThrowableAnalyzer extends ThrowableAnalyzer {

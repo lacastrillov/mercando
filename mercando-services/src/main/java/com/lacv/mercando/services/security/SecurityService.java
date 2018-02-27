@@ -23,9 +23,13 @@ public interface SecurityService {
     
     String connect(String username, String password) throws AuthenticationException;
     
+    String connect(String basicAuthorization);
+    
     UserDetailsDto getUserDetails();
     
     User getCurrentUser();
+    
+    String getBasicAuthorization();
     
     boolean checkAccessResource(String requestURI);
     

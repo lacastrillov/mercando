@@ -8,7 +8,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<script src="/js/web/usuario/UserAuthentication.js"></script>
+<script src="/libjs/user/UserAuthentication.js"></script>
 <script src="/js/web/Searcher.js"></script>
 <script>
     var userAuthentication = new UserAuthentication();

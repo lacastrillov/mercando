@@ -83,10 +83,18 @@ public class AccountController {
     
     @RequestMapping(value = "/ajax/authenticate", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public String authenticate(@RequestParam(required = true) String j_username, @RequestParam(required = true) String j_password) {
+    public String authenticate(
+            @RequestParam(required = false) String j_username,
+            @RequestParam(required = false) String j_password,
+            @RequestParam(required = false) String basicAuthorization) {
+        
         Map data= new HashMap();
         try{
-            securityService.connect(j_username, j_password);
+            if(j_username!=null && j_password!=null){
+                securityService.connect(j_username, j_password);
+            }else{
+                securityService.connect(basicAuthorization);
+            }
             UserAndRolesDto userAndRoles= getUserAndRoles();
             data.put("success", true);
             data.put("user", userAndRoles.getUser());
@@ -123,6 +131,7 @@ public class AccountController {
         UserAndRolesDto userAndRoles= getUserAndRoles();
         if(userAndRoles!=null){
             data.put("session", true);
+            data.put("ba", securityService.getBasicAuthorization());
             data.put("user", userAndRoles.getUser());
             data.put("roles", userAndRoles.getRoles());
             

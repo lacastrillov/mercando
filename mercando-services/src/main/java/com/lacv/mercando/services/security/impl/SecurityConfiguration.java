@@ -62,5 +62,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/account/home*").access("isAuthenticated()");
         
     }
-
+    
 }
