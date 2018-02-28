@@ -54,6 +54,7 @@ public class CommerceDto implements BaseEntity {
     private Date creationDate;
     
     @TextField("Ubicaci&oacute;n Principal")
+    @TypeFormField(value = FieldType.MULTI_SELECT)
     private MainLocationDto mainLocation;
     
 
