@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +35,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
+    
+    public static final Logger LOGGER = Logger.getLogger(AccountController.class);
     
     @Autowired
     SecurityService securityService;
@@ -55,9 +56,27 @@ public class AccountController {
     public ModelAndView getHome(HttpServletRequest request, HttpServletResponse response, @RequestParam(required = false) String redirect) {
         if(redirect!=null && !redirect.equals("user")){
             try {
-                response.sendRedirect(new String(Base64.decodeBase64(redirect), StandardCharsets.UTF_8));
+                String page= new String(Base64.decodeBase64(redirect), StandardCharsets.UTF_8);
+                Integer index=0;
+                HttpSession session= request.getSession();
+                if(session.getAttribute("redirect")==null || !session.getAttribute("redirect").toString().equals(redirect)){
+                    session.setAttribute("redirect", redirect);
+                    session.setAttribute("index", index);
+                }else{
+                    index= (Integer)session.getAttribute("index")+1;
+                    session.setAttribute("index", index);
+                }
+                LOGGER.info(page+" "+index);
+                
+                if(index<3){
+                    response.sendRedirect(page);
+                }else{
+                    ModelAndView mav= new ModelAndView("pageRedirect");
+                    mav.addObject("page", page);
+                    return mav;
+                }
             } catch (IOException ex) {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+                LOGGER.error("ERROR getHome", ex);
             }
             return null;
         }else{
