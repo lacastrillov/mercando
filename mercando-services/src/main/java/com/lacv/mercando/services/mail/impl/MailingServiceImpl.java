@@ -45,7 +45,7 @@ public class MailingServiceImpl implements MailingService {
     @Autowired
     private JavaMailSender mailSender;
 
-    //@Autowired
+    @Autowired
     private VelocityEngine velocityEngine;
 
     @Autowired
