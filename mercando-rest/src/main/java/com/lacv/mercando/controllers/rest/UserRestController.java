@@ -51,7 +51,7 @@ public class UserRestController extends RestSessionController {
     @Override
     public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idParent) {
         String path= "imagenes/usuario/";
-        WebFile parentWebFile= webFileService.findByPath(path);
+        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
         
         try {
             String imageName= idParent + "_" +fileName.replaceAll(" ", "_");
@@ -70,7 +70,7 @@ public class UserRestController extends RestSessionController {
     @Override
     public String saveResizedImage(String fieldName, String fileName, String fileType, int width, int height, int fileSize, InputStream is, Object idParent){
         String path= "imagenes/usuario/";
-        WebFile parentWebFile= webFileService.findByPath(path);
+        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
         
         try {
             String imageName= idParent + "_" + width + "x" + height + "_" +fileName.replaceAll(" ", "_");

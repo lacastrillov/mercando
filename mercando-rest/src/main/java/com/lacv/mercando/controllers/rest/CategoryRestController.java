@@ -45,7 +45,7 @@ public class CategoryRestController extends RestEntityController {
     @Override
     public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idParent) {
         String path= "imagenes/categoria/";
-        WebFile parentWebFile= webFileService.findByPath(path);
+        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
         
         try {
             String imageName= idParent + "_" +fileName.replaceAll(" ", "_");
