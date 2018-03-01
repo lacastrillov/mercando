@@ -121,7 +121,7 @@ public class UserDto implements BaseEntity {
     private String tokenUser;
     
     @Size(max=45)
-    @TypeFormField(value = FieldType.LIST, data = {"Active", "Inactive", "Locked", "Deleted"})
+    @TypeFormField(value = FieldType.MULTI_SELECT, data = {"Active", "Inactive", "Locked", "Deleted"})
     @TextField("Estado")
     private String status;
     
