@@ -7,6 +7,7 @@ package com.lacv.mercando.model.dtos;
 
 import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.LabelField;
+import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.Size;
 import com.dot.gcpbasedot.annotation.TextField;
@@ -28,8 +29,9 @@ public class MainLocationDto implements BaseEntity {
     @ColumnWidth(100)
     private Integer id;
     
-    @Size(max=100)
     @Order(2)
+    @NotNull
+    @Size(max=100)
     @TextField("Nombre")
     private String mlName;
     
