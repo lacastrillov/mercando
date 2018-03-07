@@ -1,6 +1,0 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservice.services.training.expert.backbase.com/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <web:getAllPlayers/>
-   </soapenv:Body>
-</soapenv:Envelope>
