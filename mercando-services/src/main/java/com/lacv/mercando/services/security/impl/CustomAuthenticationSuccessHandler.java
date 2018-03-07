@@ -6,9 +6,9 @@
 package com.lacv.mercando.services.security.impl;
 
 import com.dot.gcpbasedot.dto.ConnectionResponse;
-import com.dot.gcpbasedot.dto.ExternalServiceDto;
+import com.dot.gcpbasedot.dto.RESTServiceDto;
 import com.dot.gcpbasedot.util.AESEncrypt;
-import com.dot.gcpbasedot.util.ExternalServiceConnection;
+import com.dot.gcpbasedot.util.RESTServiceConnection;
 import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.mercando.model.entities.User;
 import com.lacv.mercando.services.security.SecurityService;
@@ -53,8 +53,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 endpoint= contextApp+"/ajax/account/authenticate";
             }
             System.out.println("Login + "+endpoint);
-            ExternalServiceDto service= new ExternalServiceDto("login", endpoint, HttpMethod.POST, null);
-            ExternalServiceConnection authenticateConn= new ExternalServiceConnection(service);
+            RESTServiceDto service= new RESTServiceDto("login", endpoint, HttpMethod.POST, null);
+            RESTServiceConnection authenticateConn= new RESTServiceConnection(service);
             
             Map<String, String> parameters= new HashMap<>();
             parameters.put("j_username", username);

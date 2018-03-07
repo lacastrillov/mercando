@@ -6,8 +6,8 @@
 package com.lacv.mercando.services.security.impl;
 
 import com.dot.gcpbasedot.dto.ConnectionResponse;
-import com.dot.gcpbasedot.dto.ExternalServiceDto;
-import com.dot.gcpbasedot.util.ExternalServiceConnection;
+import com.dot.gcpbasedot.dto.RESTServiceDto;
+import com.dot.gcpbasedot.util.RESTServiceConnection;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +33,8 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
             String domain= request.getRequestURL().toString().replaceAll(request.getRequestURI(), "");
             String endpoint= domain+contextApp+"/ajax/account/logout";
             System.out.println("Logout + "+endpoint);
-            ExternalServiceDto service= new ExternalServiceDto("logout", endpoint, HttpMethod.GET, null);
-            ExternalServiceConnection authenticateConn= new ExternalServiceConnection(service);
+            RESTServiceDto service= new RESTServiceDto("logout", endpoint, HttpMethod.GET, null);
+            RESTServiceConnection authenticateConn= new RESTServiceConnection(service);
 
             ConnectionResponse connResponse= authenticateConn.get(null, null, null);
             System.out.println("Logout Response: "+connResponse.getCode());

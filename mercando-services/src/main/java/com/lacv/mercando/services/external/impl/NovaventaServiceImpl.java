@@ -5,7 +5,7 @@
  */
 package com.lacv.mercando.services.external.impl;
 
-import com.dot.gcpbasedot.dto.ExternalServiceDto;
+import com.dot.gcpbasedot.dto.RESTServiceDto;
 import com.dot.gcpbasedot.service.ExternalServiceImpl;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.NetworkPDto;
@@ -13,7 +13,6 @@ import com.lacv.mercando.model.dtos.process.ProductoPDto;
 import com.lacv.mercando.model.dtos.process.SolicitudePDto;
 import com.lacv.mercando.model.dtos.process.UsuarioPDto;
 import com.lacv.mercando.services.external.NovaventaService;
-import java.io.IOException;
 import javax.annotation.PostConstruct;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -27,34 +26,56 @@ public class NovaventaServiceImpl extends ExternalServiceImpl implements Novaven
     
     @PostConstruct
     public void init(){
-        ExternalServiceDto service0= new ExternalServiceDto("maquinasNovaventaXml", "https://portal-contenido-novaventa.appspot.com/rest/{entity}/find/xml.htm", HttpMethod.GET, SolicitudePDto.class);
-        service0.setResponseDataFormat(ExternalServiceDto.XML);
-        super.enableExternalService(service0);
+        RESTServiceDto service0= new RESTServiceDto("maquinasNovaventaXml", "https://portal-contenido-novaventa.appspot.com/rest/{entity}/find/xml.htm", HttpMethod.GET, SolicitudePDto.class);
+        service0.setResponseDataFormat(RESTServiceDto.XML);
+        super.enableRESTService(service0);
         
-        ExternalServiceDto service1= new ExternalServiceDto("maquinasNovaventa", "https://portal-contenido-novaventa.appspot.com/rest/{entity}/find.htm", HttpMethod.GET, SolicitudePDto.class);
-        super.enableExternalService(service1);
+        RESTServiceDto service1= new RESTServiceDto("maquinasNovaventa", "https://portal-contenido-novaventa.appspot.com/rest/{entity}/find.htm", HttpMethod.GET, SolicitudePDto.class);
+        super.enableRESTService(service1);
         
-        ExternalServiceDto service2= new ExternalServiceDto("merakiDevices", "https://dashboard.meraki.com/api/v0/networks/{networkId}/devices", HttpMethod.GET, NetworkPDto.class);
-        super.enableExternalService(service2);
+        RESTServiceDto service2= new RESTServiceDto("merakiDevices", "https://dashboard.meraki.com/api/v0/networks/{networkId}/devices", HttpMethod.GET, NetworkPDto.class);
+        super.enableRESTService(service2);
         
-        ExternalServiceDto service3= new ExternalServiceDto("noticiasCarroya", "http://www.carroya.com/noticias/", HttpMethod.POST, BasicPDto.class);
-        service3.setResponseDataFormat(ExternalServiceDto.HTML);
-        super.enableExternalService(service3);
+        RESTServiceDto service3= new RESTServiceDto("noticiasCarroya", "http://www.carroya.com/noticias/", HttpMethod.POST, BasicPDto.class);
+        service3.setResponseDataFormat(RESTServiceDto.HTML);
+        super.enableRESTService(service3);
         
-        ExternalServiceDto service4= new ExternalServiceDto("estaInBody", "http://localhost:8084/tempprocess/ajax/inbody", HttpMethod.POST, UsuarioPDto.class);
-        service4.setModeSendingData(ExternalServiceDto.IN_BODY);
-        super.enableExternalService(service4);
+        RESTServiceDto service4= new RESTServiceDto("estaInBody", "http://localhost:8084/tempprocess/ajax/inbody", HttpMethod.POST, UsuarioPDto.class);
+        service4.setModeSendingData(RESTServiceDto.IN_BODY);
+        super.enableRESTService(service4);
         
-        ExternalServiceDto service5= new ExternalServiceDto("estaInParameters", "http://localhost:8084/tempprocess/ajax/inparameters", HttpMethod.POST, ProductoPDto.class);
-        super.enableExternalService(service5);
+        RESTServiceDto service5= new RESTServiceDto("estaInParameters", "http://localhost:8084/tempprocess/ajax/inparameters", HttpMethod.POST, ProductoPDto.class);
+        super.enableRESTService(service5);
     }
     
-    public String maquinasNovaventaXml(SolicitudePDto solicitude) throws IOException{
-        return super.callExternalService("maquinasNovaventaXml", solicitude);
+    @Override
+    public String maquinasNovaventaXml(SolicitudePDto solicitude) {
+        return (String) super.callService("maquinasNovaventaXml", solicitude);
     }
     
-    public String maquinasNovaventa(SolicitudePDto solicitude) throws IOException{
-        return super.callExternalService("maquinasNovaventa", solicitude);
+    @Override
+    public String maquinasNovaventa(SolicitudePDto solicitude) {
+        return (String) super.callService("maquinasNovaventa", solicitude);
+    }
+    
+    @Override
+    public String merakiDevices(NetworkPDto network) {
+        return (String) super.callService("merakiDevices", network);
+    }
+    
+    @Override
+    public String noticiasCarroya(BasicPDto basic) {
+        return (String) super.callService("noticiasCarroya", basic);
+    }
+    
+    @Override
+    public String estaInBody(UsuarioPDto usuario) {
+        return (String) super.callService("estaInBody", usuario);
+    }
+    
+    @Override
+    public String estaInParameters(ProductoPDto producto) {
+        return (String) super.callService("estaInParameters", producto);
     }
     
 }
