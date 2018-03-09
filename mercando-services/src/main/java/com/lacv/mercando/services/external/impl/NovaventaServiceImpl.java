@@ -38,6 +38,7 @@ public class NovaventaServiceImpl extends ExternalServiceImpl implements Novaven
         
         RESTServiceDto service3= new RESTServiceDto("noticiasCarroya", "http://www.carroya.com/noticias/", HttpMethod.POST, BasicPDto.class);
         service3.setResponseDataFormat(RESTServiceDto.HTML);
+        service3.setSaveResponseInLog(false);
         super.enableRESTService(service3);
         
         RESTServiceDto service4= new RESTServiceDto("estaInBody", "http://localhost:8084/tempprocess/ajax/inbody", HttpMethod.POST, UsuarioPDto.class);

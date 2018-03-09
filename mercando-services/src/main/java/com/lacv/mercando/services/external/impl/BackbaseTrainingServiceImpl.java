@@ -12,11 +12,13 @@ import com.lacv.mercando.model.dtos.process.PlayerUserPDto;
 import com.lacv.mercando.model.dtos.process.UserNamePDto;
 import com.lacv.mercando.services.external.BackbaseTrainingService;
 import javax.annotation.PostConstruct;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author grupot
  */
+@Service
 public class BackbaseTrainingServiceImpl extends ExternalServiceImpl implements BackbaseTrainingService {
     
     public String ENDPOINT="http://0.0.0.0:9999/training-server/PlayerManager";
