@@ -5,6 +5,7 @@
  */
 package com.lacv.mercando.model.dtos;
 
+import com.lacv.system.model.dtos.UserDto;
 import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.LabelField;
 import com.dot.gcpbasedot.annotation.Order;

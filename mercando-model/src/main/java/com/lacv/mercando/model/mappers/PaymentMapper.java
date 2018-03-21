@@ -4,6 +4,7 @@
  */
 package com.lacv.mercando.model.mappers;
 
+import com.lacv.system.model.mappers.UserMapper;
 import com.dot.gcpbasedot.mapper.EntityMapper;
 import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.PaymentDto;

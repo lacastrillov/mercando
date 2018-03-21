@@ -12,7 +12,7 @@ import com.lacv.mercando.services.PurchaseOrderService;
 import com.dot.gcpbasedot.controller.RestSessionController;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import com.lacv.mercando.model.entities.PurchaseOrder;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import javax.annotation.PostConstruct;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

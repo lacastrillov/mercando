@@ -12,7 +12,7 @@ import com.dot.gcpbasedot.dto.config.ConfigurationObjectConfig;
 import com.dot.gcpbasedot.enums.PageType;
 import com.lacv.mercando.model.dtos.config.ContactConfigDto;
 import com.lacv.mercando.model.dtos.config.PortalConfigDto;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

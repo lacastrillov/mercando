@@ -5,6 +5,7 @@
  */
 package com.lacv.mercando.model.entities;
 
+import com.lacv.system.model.entities.User;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import java.sql.Time;
 import java.util.Date;

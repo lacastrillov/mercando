@@ -6,15 +6,15 @@
 
 package com.lacv.mercando.controllers.view.session;
 
-import com.lacv.mercando.model.dtos.UserDto;
-import com.lacv.mercando.model.mappers.UserMapper;
-import com.lacv.mercando.services.UserService;
+import com.lacv.system.model.dtos.UserDto;
+import com.lacv.system.model.mappers.UserMapper;
+import com.lacv.system.services.UserService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.ProcessButton;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
-import com.lacv.mercando.model.dtos.process.CreatePasswordDto;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.model.dtos.process.CreatePasswordDto;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

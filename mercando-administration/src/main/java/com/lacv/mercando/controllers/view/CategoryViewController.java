@@ -14,7 +14,7 @@ import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.services.SubCategoryService;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

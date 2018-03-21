@@ -4,7 +4,7 @@ import com.dot.gcpbasedot.dao.Parameters;
 import com.lacv.mercando.model.entities.Product;
 import com.lacv.mercando.services.ProductImageService;
 import com.lacv.mercando.services.ProductService;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;

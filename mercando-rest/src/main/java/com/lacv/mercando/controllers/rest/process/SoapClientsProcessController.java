@@ -7,10 +7,10 @@
 package com.lacv.mercando.controllers.rest.process;
 
 
-import com.lacv.mercando.model.entities.LogProcess;
-import com.lacv.mercando.model.entities.User;
-import com.lacv.mercando.services.LogProcessService;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.model.entities.LogProcess;
+import com.lacv.system.model.entities.User;
+import com.lacv.system.services.LogProcessService;
+import com.lacv.system.services.security.SecurityService;
 import com.dot.gcpbasedot.controller.RestProcessController;
 import com.lacv.mercando.services.external.BackbaseTrainingService;
 import javax.annotation.PostConstruct;

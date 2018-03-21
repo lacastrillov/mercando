@@ -9,8 +9,8 @@ package com.lacv.mercando.controllers.rest.config;
 
 import com.dot.gcpbasedot.controller.RestConfigurationController;
 import com.lacv.mercando.model.dtos.config.PortalConfigDto;
-import com.lacv.mercando.model.entities.WebFile;
-import com.lacv.mercando.services.WebFileService;
+import com.lacv.system.model.entities.WebFile;
+import com.lacv.system.services.WebFileService;
 import com.lacv.mercando.services.config.ContactConfigService;
 import com.lacv.mercando.services.config.PortalConfigService;
 import java.io.InputStream;

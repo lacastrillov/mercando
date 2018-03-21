@@ -7,12 +7,12 @@
 package com.lacv.mercando.controllers.rest.process;
 
 
-import com.lacv.mercando.model.dtos.process.BasicResultDto;
-import com.lacv.mercando.model.entities.LogProcess;
-import com.lacv.mercando.model.entities.User;
-import com.lacv.mercando.services.LogProcessService;
-import com.lacv.mercando.services.UserService;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.model.dtos.process.BasicResultDto;
+import com.lacv.system.model.entities.LogProcess;
+import com.lacv.system.model.entities.User;
+import com.lacv.system.services.LogProcessService;
+import com.lacv.system.services.UserService;
+import com.lacv.system.services.security.SecurityService;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
 import com.lacv.mercando.model.dtos.ProductDto;
@@ -21,11 +21,11 @@ import com.lacv.mercando.model.dtos.process.ProductListResultDto;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
 import com.lacv.mercando.model.entities.Product;
-import com.lacv.mercando.model.entities.WebFile;
+import com.lacv.system.model.entities.WebFile;
 import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
-import com.lacv.mercando.services.WebFileService;
-import com.lacv.mercando.services.mail.MailingService;
+import com.lacv.system.services.WebFileService;
+import com.lacv.system.services.mail.MailingService;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;

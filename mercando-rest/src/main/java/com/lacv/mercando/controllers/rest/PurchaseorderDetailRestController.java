@@ -14,7 +14,7 @@ import com.dot.gcpbasedot.domain.BaseEntity;
 import com.lacv.mercando.model.entities.PurchaseOrder;
 import com.lacv.mercando.model.entities.PurchaseorderDetail;
 import com.lacv.mercando.services.PurchaseOrderService;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.json.JSONArray;

@@ -22,10 +22,15 @@
 
     <!-- Scans the classpath of this application for @Components to deploy as beans -->
     
+    <context:component-scan base-package="com.lacv.system.daos" />
+    <context:component-scan base-package="com.lacv.system.services" />
+    <context:component-scan base-package="com.lacv.system.model.mappers" />
+    <context:component-scan base-package="com.lacv.system.model.constants" />
     <context:component-scan base-package="com.lacv.mercando.daos" />
     <context:component-scan base-package="com.lacv.mercando.services" />
     <context:component-scan base-package="com.lacv.mercando.model.mappers" />
     <context:component-scan base-package="com.lacv.mercando.model.constants" />
+    
     <context:component-scan base-package="com.dot.gcpbasedot.service.gcp" />
     <context:component-scan base-package="com.dot.gcpbasedot.components" />
     

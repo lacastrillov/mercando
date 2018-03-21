@@ -5,6 +5,7 @@
  */
 package com.lacv.mercando.model.dtos.process;
 
+import com.lacv.system.model.dtos.process.ContactUserPDto;
 import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.TextField;

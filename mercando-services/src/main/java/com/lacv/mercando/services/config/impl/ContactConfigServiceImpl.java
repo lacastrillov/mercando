@@ -7,7 +7,7 @@ package com.lacv.mercando.services.config.impl;
 
 import com.dot.gcpbasedot.dao.GenericDao;
 import com.dot.gcpbasedot.service.ConfigurationObjectServiceImpl;
-import com.lacv.mercando.daos.JsonObjectJpa;
+import com.lacv.system.daos.JsonObjectJpa;
 import com.lacv.mercando.model.dtos.config.ContactConfigDto;
 import com.lacv.mercando.services.config.ContactConfigService;
 import org.springframework.beans.factory.annotation.Autowired;

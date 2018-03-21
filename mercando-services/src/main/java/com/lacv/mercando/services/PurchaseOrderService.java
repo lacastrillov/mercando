@@ -9,7 +9,7 @@ package com.lacv.mercando.services;
 import com.lacv.mercando.model.entities.PurchaseOrder;
 import com.dot.gcpbasedot.service.EntityService;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
-import com.lacv.mercando.model.entities.User;
+import com.lacv.system.model.entities.User;
 
 
 

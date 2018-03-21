@@ -6,14 +6,14 @@
 
 package com.lacv.mercando.controllers.view.process;
 
-import com.lacv.mercando.model.dtos.LogProcessDto;
-import com.lacv.mercando.model.dtos.process.BasicResultDto;
+import com.lacv.system.model.dtos.LogProcessDto;
+import com.lacv.system.model.dtos.process.BasicResultDto;
 import com.dot.gcpbasedot.controller.ExtProcessController;
 import com.dot.gcpbasedot.dto.MenuItem;
 import com.dot.gcpbasedot.dto.config.ProcessConfig;
 import com.dot.gcpbasedot.enums.PageType;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
-import com.lacv.mercando.services.security.SecurityService;
+import com.lacv.system.services.security.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
