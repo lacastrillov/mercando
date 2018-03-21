@@ -40,6 +40,7 @@
     <bean id="extViewConfig" class="com.dot.gcpbasedot.components.ExtViewConfig">
         <property name="appName" value="MERCANDO" />
         <property name="favicon" value="/img/habitares.png" />
+        <property name="extJsVersion" value="6" />
     </bean>
     
 </beans>

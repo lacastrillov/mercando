@@ -18,7 +18,7 @@
                     <div style="height: 45px; padding-top: 35px;">
                         <c:if test="${!empty param.login_error}">
                             <div class="alert alert-error">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
                             </div>
                         </c:if>

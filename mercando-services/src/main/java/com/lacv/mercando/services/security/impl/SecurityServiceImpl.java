@@ -86,18 +86,15 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
     @Override
     public Authentication authenticate(Authentication a) throws AuthenticationException {
         User user = getUser(a.getName());
-
         if (user != null){
             String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
-            
-            if (contrasena.equals(a.getCredentials())) {
+            if (contrasena!=null && contrasena.equals(a.getCredentials())) {
                 UserDetailsDto userDetails = entityToUserDetail(user);
                 if (userDetails.isEnabled() == false) {
                     throw new BadCredentialsException("Error, el usuario esta inactivo");
                 } else if (userDetails.isAccountNonLocked() == false) {
                     throw new BadCredentialsException("Error, la cuenta de usuario esta bloqueada");
                 }
-
                 Authentication autentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
                 user.setFailedAttempts(0);
                 user.setLastLogin(new Date());
@@ -124,7 +121,7 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
         User user= getUser(username);
         if (user != null){
             String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
-            if (contrasena.equals(password)) {
+            if (contrasena!=null && contrasena.equals(password)) {
                 return connect(user);
             }
         }
