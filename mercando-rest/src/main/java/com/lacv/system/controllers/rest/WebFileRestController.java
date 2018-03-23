@@ -80,7 +80,7 @@ public class WebFileRestController extends RestEntityController {
             LOGGER.error("create " + entityRef, e);
             resultData = Util.getOperationCallback(null, "Error en creaci&oacute;n de " + entityRef + ": " + e.getMessage(), false);
         }
-        return super.getStringBytes(resultData);
+        return Util.getStringBytes(resultData);
     }
 
     @RequestMapping(value = "/update.htm")
@@ -125,7 +125,7 @@ public class WebFileRestController extends RestEntityController {
         }catch(Exception e){
             resultData= Util.getOperationCallback(null, "Error moviendo los archivos " + e.getMessage(), false);
         }
-        return getStringBytes(resultData);
+        return Util.getStringBytes(resultData);
     }
 
     @RequestMapping(value = "/delete/byfilter.htm", method = {RequestMethod.GET, RequestMethod.POST})
@@ -187,7 +187,7 @@ public class WebFileRestController extends RestEntityController {
             LOGGER.error("getNavigationTreeData " + entityRef, e);
             resultData = "Error in getNavigationTreeData";
         }
-        return super.getStringBytes(resultData);
+        return Util.getStringBytes(resultData);
     }
     
     private Map exploreInDepth(WebFile webFile){
