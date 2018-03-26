@@ -48,6 +48,7 @@ public class MyAccountViewController extends ExtEntityController {
         view.setMultipartFormData(true);
         view.setPreloadedForm(true);
         view.setRestSession(true);
+        view.setVisibleSeeAllButton(true);
         
         ProcessButton setPasswordButton= new ProcessButton();
         setPasswordButton.setMainProcessRef("processUser");

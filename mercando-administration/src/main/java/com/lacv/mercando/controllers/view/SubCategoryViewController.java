@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.SubCategoryDto;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;
 import com.lacv.mercando.services.SubCategoryService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,6 @@ public class SubCategoryViewController extends ExtEntityController {
     SubCategoryService subCategoryService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     SubCategoryMapper subCategoryMapper;
     
     
@@ -41,6 +37,7 @@ public class SubCategoryViewController extends ExtEntityController {
         view.setSingularEntityTitle("Sub Categoria");
         view.setPluralEntityTitle("Sub Categorias");
         view.setMultipartFormData(true);
+        view.setVisibleSeeAllButton(true);
         super.addControlMapping(view);
     }
     

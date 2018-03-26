@@ -43,6 +43,7 @@ public class CommerceViewController extends ExtEntityController {
         view.setSingularEntityTitle("Comercio");
         view.setPluralEntityTitle("Comercios");
         view.setMultipartFormData(true);
+        view.setVisibleSeeAllButton(true);
         super.addControlMapping(view);
         
         MenuItem menuParent= new MenuItem("Comercios");

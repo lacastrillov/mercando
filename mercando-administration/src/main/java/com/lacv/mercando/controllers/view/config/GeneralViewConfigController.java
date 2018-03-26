@@ -33,13 +33,14 @@ public class GeneralViewConfigController extends ExtConfigurationObjectControlle
     
     @PostConstruct
     public void init(){
-        ConfigurationObjectConfig viewConfig= new ConfigurationObjectConfig("generalConfig");
-        viewConfig.setMainConfigurationTitle("Gestionar Configuraci&oacute;n General");
-        viewConfig.addControlConfigurationObjectView("portalConfig", "Configuraci&oacute;n del Portal", PortalConfigDto.class);
-        viewConfig.addControlConfigurationObjectView("contactConfig", "Configuraci&oacute;n de Contacto", ContactConfigDto.class);
-        viewConfig.addMultipartFormConfig("portalConfig");
+        ConfigurationObjectConfig view= new ConfigurationObjectConfig("generalConfig");
+        view.setMainConfigurationTitle("Gestionar Configuraci&oacute;n General");
+        view.addControlConfigurationObjectView("portalConfig", "Configuraci&oacute;n del Portal", PortalConfigDto.class);
+        view.addControlConfigurationObjectView("contactConfig", "Configuraci&oacute;n de Contacto", ContactConfigDto.class);
+        view.addMultipartFormConfig("portalConfig");
+        view.setVisibleSeeAllButton(true);
         
-        super.addControlMapping(viewConfig);
+        super.addControlMapping(view);
         
         MenuItem menuParent= new MenuItem("Sistema");
         MenuItem menuParent1= new MenuItem("Configuraci&oacute;n");

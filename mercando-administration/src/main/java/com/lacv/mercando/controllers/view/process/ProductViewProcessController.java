@@ -43,6 +43,7 @@ public class ProductViewProcessController extends ExtProcessController {
         process.addControlProcessView("adicionarFotos", "Adicionar Fotos", ProductBasicDataPDto.class, BasicResultDto.class);
         process.addControlProcessView("listarProductosJoin", "Listar Productos Join", BasicPDto.class, ProductListResultDto.class);
         process.addMultipartFormProcess("adicionarFotos");
+        process.setVisibleSeeAllButton(true);
         
         super.addControlMapping(process);
         

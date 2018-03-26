@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.lacv.system.controllers.view;
+package com.lacv.mercando.controllers.view;
 
 import com.lacv.mercando.model.dtos.SupplierDto;
 import com.lacv.mercando.model.mappers.SupplierMapper;

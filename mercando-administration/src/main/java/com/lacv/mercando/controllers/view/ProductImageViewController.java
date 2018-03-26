@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.ProductImageDto;
 import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.config.ReportConfig;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import com.lacv.mercando.model.dtos.reports.ProductImageReportDto;
@@ -31,9 +30,6 @@ public class ProductImageViewController extends ExtEntityController {
     ProductImageService productImageService;
     
     @Autowired
-    MenuComponent menuComponent;
-    
-    @Autowired
     ProductImageMapper productImageMapper;
     
     
@@ -43,6 +39,7 @@ public class ProductImageViewController extends ExtEntityController {
         view.setSingularEntityTitle("Imagen");
         view.setPluralEntityTitle("Imagenes");
         view.setMultipartFormData(true);
+        view.setVisibleSeeAllButton(true);
         view.setDefaultOrder("order", "ASC");
         super.addControlMapping(view);
         

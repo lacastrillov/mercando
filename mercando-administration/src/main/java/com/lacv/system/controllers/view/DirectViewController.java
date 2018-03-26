@@ -31,6 +31,7 @@ public class DirectViewController extends ExtTableController {
     @PostConstruct
     public void init(){
         TableConfig view= new TableConfig("direct");
+        view.setVisibleSeeAllButton(true);
         super.addControlMapping(view);
     }
     
