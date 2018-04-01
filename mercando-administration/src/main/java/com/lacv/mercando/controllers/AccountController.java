@@ -158,6 +158,13 @@ public class AccountController {
         return mav;
     }
     
+    @RequestMapping(value = "/reconfigureAccessControl", method = RequestMethod.GET)
+    @ResponseBody
+    public String reconfigureAccessControl() {
+        securityService.reconfigureAccessControl();
+        return "Success";
+    }
+    
     private UserAndRolesDto getUserAndRoles(){
         UserAndRolesDto userAndRoles= new UserAndRolesDto();
         User user= securityService.getCurrentUser();

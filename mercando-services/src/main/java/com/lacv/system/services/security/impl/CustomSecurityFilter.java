@@ -1,10 +1,11 @@
 package com.lacv.system.services.security.impl;
 
+import com.dot.gcpbasedot.dto.RESTServiceDto;
+import com.dot.gcpbasedot.util.RESTServiceConnection;
 import com.lacv.system.model.dtos.security.UserDetailsDto;
 import com.lacv.system.services.security.SecurityService;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
@@ -39,6 +41,8 @@ public class CustomSecurityFilter extends GenericFilterBean {
     
     @Autowired
     SecurityService securityService;
+    
+    private final String[] MODULES= {"","/vista"};
     
     private final String[] accessControlModifiers= {
         "/rest/webResource/create.htm",
@@ -80,6 +84,7 @@ public class CustomSecurityFilter extends GenericFilterBean {
                 
                 if(accessControlModifiersList.contains(requestURI)){
                     securityService.reconfigureAccessControl();
+                    replicateAccessControl(req);
                 }
             }else{
                 accessDenied(req, resp);
@@ -99,6 +104,21 @@ public class CustomSecurityFilter extends GenericFilterBean {
                 throw ase;
             }
         }
+    }
+    
+    private void replicateAccessControl(HttpServletRequest req){
+        String domain = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort();
+        for(String module: MODULES){
+            String reconfigureAccessControlUrl= domain+module+"/account/reconfigureAccessControl";
+            RESTServiceDto restService= new RESTServiceDto("ReconfigureAccessControlUrl", reconfigureAccessControlUrl, HttpMethod.GET, null);
+            RESTServiceConnection restServiceConnection= new RESTServiceConnection(restService);
+            try {
+                restServiceConnection.get(null, null, null);
+            } catch (IOException ex) {
+                logger.error("replyAccessControl ", ex);
+            }
+        }
+            
     }
 
     private boolean accessDenied(HttpServletRequest req, HttpServletResponse resp) throws IOException {
