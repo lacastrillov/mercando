@@ -48,10 +48,12 @@ public class ProductDto implements BaseEntity {
     
     @Order(7)
     @TextField("Precio Sugerido")
+    @TypeFormField(FieldType.PRICE)
     private Integer seggestedUnitPrice;
     
     @Order(8)
     @TextField("Precio Unitario")
+    @TypeFormField(FieldType.PRICE)
     private Integer buyUnitPrice;
     
     @Order(9)

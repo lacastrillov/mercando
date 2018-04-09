@@ -52,21 +52,25 @@ public class PurchaseOrderDto implements BaseEntity {
     @Order(6)
     @ColumnWidth(150)
     @TextField("Sub total")
+    @TypeFormField(FieldType.PRICE)
     private Integer subTotal;
     
     @Order(7)
     @ColumnWidth(150)
     @TextField("Descuento")
+    @TypeFormField(FieldType.PRICE)
     private Integer discount;
     
     @Order(8)
     @ColumnWidth(150)
     @TextField("IVA")
+    @TypeFormField(FieldType.PRICE)
     private Integer iva;
     
     @Order(9)
     @ColumnWidth(150)
     @TextField("Total")
+    @TypeFormField(FieldType.PRICE)
     private Integer total;
     
     @Order(10)

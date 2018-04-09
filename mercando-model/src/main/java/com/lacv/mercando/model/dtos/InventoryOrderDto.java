@@ -42,6 +42,7 @@ public class InventoryOrderDto implements BaseEntity {
     private Time recordTime;
     
     @TextField("Total")
+    @TypeFormField(FieldType.PRICE)
     private Integer total;
     
     @TextField("Estado")

@@ -59,7 +59,8 @@ public class LogProcessDto implements BaseEntity {
     private Time recordTime;
     
     @Order(9)
-    @TextField("Duration mls")
+    @TextField("Duration h:m:s")
+    @TypeFormField(value = FieldType.DURATION)
     private Integer duration;
     
     @Order(10)

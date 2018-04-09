@@ -36,6 +36,7 @@ public class PaymentDto implements BaseEntity {
     
     @Order(3)
     @TextField("Valor")
+    @TypeFormField(FieldType.PRICE)
     private Integer amount;
     
     @TextField("Fecha")

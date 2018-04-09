@@ -9,7 +9,9 @@ import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.ReadOnly;
 import com.dot.gcpbasedot.annotation.TextField;
+import com.dot.gcpbasedot.annotation.TypeFormField;
 import com.dot.gcpbasedot.domain.BaseEntity;
+import com.dot.gcpbasedot.enums.FieldType;
 
 /**
  *
@@ -36,16 +38,19 @@ public class PurchaseorderDetailDto implements BaseEntity {
     @Order(4)
     @ColumnWidth(150)
     @TextField("Precio Unitario")
+    @TypeFormField(FieldType.PRICE)
     private Integer unitPrice;
     
     @Order(5)
     @ColumnWidth(150)
     @TextField("Sub total")
+    @TypeFormField(FieldType.PRICE)
     private Integer subTotal;
     
     @Order(6)
     @ColumnWidth(150)
     @TextField("Descuento")
+    @TypeFormField(FieldType.PRICE)
     private Integer discount;
     
     @Order(7)
@@ -56,6 +61,7 @@ public class PurchaseorderDetailDto implements BaseEntity {
     @Order(8)
     @ColumnWidth(150)
     @TextField("Total")
+    @TypeFormField(FieldType.PRICE)
     private Integer total;
     
     @TextField("Orden de Compra")
