@@ -30,6 +30,7 @@
     <class>com.lacv.system.model.entities.MailTemplate</class>
     <class>com.lacv.system.model.entities.Authorization</class>
     <class>com.lacv.system.model.entities.LogProcess</class>
+    <class>com.lacv.system.model.entities.WebObject</class>
     <properties>
       <property name="eclipselink.cache.shared.default" value="false"/>
       <property name="wildfly.jpa.default-unit" value="true"/>
