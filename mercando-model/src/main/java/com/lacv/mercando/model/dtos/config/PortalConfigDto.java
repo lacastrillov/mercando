@@ -51,6 +51,11 @@ public class PortalConfigDto {
     @TypeFormField(FieldType.HTML_EDITOR)
     private String review;
     
+    @Order(8)
+    @TextField("Estado CRON")
+    @TypeFormField(value=FieldType.RADIOS, data={"ON","OFF"})
+    private String cronStatus;
+    
     @TextField("Ubicaciones")
     private List<String> locations;
 
@@ -174,6 +179,20 @@ public class PortalConfigDto {
      */
     public void setLocations(List<String> locations) {
         this.locations = locations;
+    }
+
+    /**
+     * @return the cronStatus
+     */
+    public String getCronStatus() {
+        return cronStatus;
+    }
+
+    /**
+     * @param cronStatus the cronStatus to set
+     */
+    public void setCronStatus(String cronStatus) {
+        this.cronStatus = cronStatus;
     }
     
 }

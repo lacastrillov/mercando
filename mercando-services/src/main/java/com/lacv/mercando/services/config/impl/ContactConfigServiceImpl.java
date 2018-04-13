@@ -6,7 +6,7 @@
 package com.lacv.mercando.services.config.impl;
 
 import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.ConfigurationObjectServiceImpl;
+import com.dot.gcpbasedot.service.ConfigurationObjectServiceImpl1;
 import com.lacv.system.daos.JsonObjectJpa;
 import com.lacv.mercando.model.dtos.config.ContactConfigDto;
 import com.lacv.mercando.services.config.ContactConfigService;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author lacastrillov
  */
 @Service
-public class ContactConfigServiceImpl extends ConfigurationObjectServiceImpl<ContactConfigDto> implements ContactConfigService {
+public class ContactConfigServiceImpl extends ConfigurationObjectServiceImpl1<ContactConfigDto> implements ContactConfigService {
     
     @Autowired
     JsonObjectJpa jsonObjectDao;
