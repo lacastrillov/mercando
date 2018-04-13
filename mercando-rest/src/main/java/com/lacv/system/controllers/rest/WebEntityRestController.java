@@ -5,16 +5,16 @@
  */
 package com.lacv.system.controllers.rest;
 
-import com.lacv.system.model.entities.WebObject;
-import com.lacv.system.model.mappers.WebObjectMapper;
-import com.lacv.system.services.WebObjectService;
+import com.lacv.system.model.entities.WebEntity;
+import com.lacv.system.model.mappers.WebEntityMapper;
 import com.dot.gcpbasedot.controller.RestEntityController;
 import com.dot.gcpbasedot.dao.Parameters;
 import com.dot.gcpbasedot.util.FileService;
 import com.dot.gcpbasedot.util.Util;
 import com.google.gson.Gson;
 import com.lacv.system.model.constants.WebConstants;
-import com.lacv.system.model.dtos.WebObjectDto;
+import com.lacv.system.model.dtos.WebEntityDto;
+import com.lacv.system.model.entities.User;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,20 +29,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.lacv.system.services.WebEntityService;
+import com.lacv.system.services.security.SecurityService;
 
 /**
  *
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value = "/webObject")
-public class WebObjectRestController extends RestEntityController {
+@RequestMapping(value = "/webEntity")
+public class WebEntityRestController extends RestEntityController {
 
     @Autowired
-    WebObjectService webObjectService;
+    WebEntityService webEntityService;
 
     @Autowired
-    WebObjectMapper webObjectMapper;
+    WebEntityMapper webEntityMapper;
+    
+    @Autowired
+    SecurityService securityService;
     
     @Autowired
     WebConstants webConstants;
@@ -50,7 +55,12 @@ public class WebObjectRestController extends RestEntityController {
 
     @PostConstruct
     public void init() {
-        super.addControlMapping("webObject", webObjectService, webObjectMapper);
+        super.addControlMapping("webEntity", webEntityService, webEntityMapper);
+    }
+    
+    public String getClientId(){
+        User user= securityService.getCurrentUser();
+        return user.getUsername();
     }
 
     @RequestMapping(value = "/create.htm")
@@ -60,19 +70,20 @@ public class WebObjectRestController extends RestEntityController {
         String resultData;
         try {
             JSONObject jsonObject = new JSONObject(data);
-            WebObject webObject = null;
-            WebObject parentWebObject = null;
-            if(jsonObject.has("webObject")){
-                parentWebObject= webObjectService.loadById(jsonObject.getLong("webObject"));
+            jsonObject.put("author", getClientId());
+            WebEntity webEntity = null;
+            WebEntity parentWebEntity = null;
+            if(jsonObject.has("webEntity")){
+                parentWebEntity= webEntityService.loadById(jsonObject.getLong("webEntity"));
             }
 
-            if (jsonObject.getString("type").equals("folder")) {
-                webObject = webObjectService.createFolder(parentWebObject, jsonObject.getString("name"));
-            } else if (jsonObject.getString("type").equals("file")) {
-                webObject = webObjectService.createEmptyFile(parentWebObject, jsonObject.getString("name"));
+            if (jsonObject.getString("entityRef").equals("folder")) {
+                webEntity = webEntityService.createFolder(parentWebEntity, jsonObject.getString("name"));
+            } else {
+                webEntity = webEntityService.createEmptyFile(parentWebEntity, jsonObject.getString("name"));
             }
 
-            WebObjectDto dto = (WebObjectDto) mapper.entityToDto(webObject);
+            WebEntityDto dto = (WebEntityDto) mapper.entityToDto(webEntity);
             resultData = Util.getOperationCallback(dto, "Creaci&oacute;n de " + entityRef + " realizada...", true);
         } catch (Exception e) {
             LOGGER.error("create " + entityRef, e);
@@ -88,10 +99,10 @@ public class WebObjectRestController extends RestEntityController {
         JSONObject jsonObject = new JSONObject(data);
 
         if (jsonObject.has("id") && jsonObject.has("name")) {
-            WebObject webObject = webObjectService.loadById(jsonObject.getLong("id"));
-            if (!webObject.getName().equals(jsonObject.getString("name"))) {
-                String location = webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + webObject.getPath();
-                FileService.renameFile(location + webObject.getName(), location + jsonObject.getString("name"));
+            WebEntity webEntity = webEntityService.loadById(jsonObject.getLong("id"));
+            if (!webEntity.getName().equals(jsonObject.getString("name"))) {
+                String location = webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + webEntity.getPath();
+                FileService.renameFile(location + webEntity.getName(), location + jsonObject.getString("name"));
             }
         }
 
@@ -105,16 +116,16 @@ public class WebObjectRestController extends RestEntityController {
         JSONObject jsonObject = new JSONObject(filter);
         String resultData;
         try{
-            Long destWebObjectId= jsonObject.getJSONObject("uv").getLong("webObject");
-            WebObject destWebObject= webObjectService.loadById(destWebObjectId);
-            String destLocation= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + ((destWebObject!=null)?destWebObject.getPath():"");
+            Long destWebEntityId= jsonObject.getJSONObject("uv").getLong("webEntity");
+            WebEntity destWebEntity= webEntityService.loadById(destWebEntityId);
+            String destLocation= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + ((destWebEntity!=null)?destWebEntity.getPath():"");
             
             JSONArray fileIdToMove= jsonObject.getJSONObject("in").getJSONArray("id");
             for(int i=0; i<fileIdToMove.length(); i++){
-                WebObject sourceWebObject= webObjectService.loadById(fileIdToMove.getLong(i));
-                String sourceLocation= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + sourceWebObject.getPath();
-                File sourceFile= new File(sourceLocation + sourceWebObject.getName());
-                File destFile= new File(destLocation + ((destWebObject!=null)?destWebObject.getName():""));
+                WebEntity sourceWebEntity= webEntityService.loadById(fileIdToMove.getLong(i));
+                String sourceLocation= webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + sourceWebEntity.getPath();
+                File sourceFile= new File(sourceLocation + sourceWebEntity.getName());
+                File destFile= new File(destLocation + ((destWebEntity!=null)?destWebEntity.getName():""));
                 
                 FileService.move(sourceFile, destFile);
             }
@@ -133,14 +144,14 @@ public class WebObjectRestController extends RestEntityController {
         String result = super.deleteByFilter(filter);
         JSONObject jsonResult = new JSONObject(result);
         if (jsonResult.getBoolean("success")) {
-            JSONArray webObjects = jsonResult.getJSONArray("data");
-            for (int i = 0; i < webObjects.length(); i++) {
-                JSONObject webObject = webObjects.getJSONObject(i);
-                String path = (webObject.has("path")) ? webObject.getString("path") : "";
+            JSONArray webEntitys = jsonResult.getJSONArray("data");
+            for (int i = 0; i < webEntitys.length(); i++) {
+                JSONObject webEntity = webEntitys.getJSONObject(i);
+                String path = (webEntity.has("path")) ? webEntity.getString("path") : "";
                 LOGGER.info("path: " + path);
                 String location = webConstants.LOCAL_DIR + WebConstants.ROOT_FOLDER + path;
 
-                FileService.deleteFile(location + webObject.getString("name"));
+                FileService.deleteFile(location + webEntity.getString("name"));
             }
         }
 
@@ -156,12 +167,12 @@ public class WebObjectRestController extends RestEntityController {
             Map tree = new LinkedHashMap();
             Map childs= new LinkedHashMap();
             Parameters p= new Parameters();
-            p.whereIsNull("webObject");
-            p.whereEqual("typeClass", "folder");
+            p.whereIsNull("webEntity");
+            p.whereEqual("entityRef", "folder");
             p.orderBy("name", "ASC");
-            List<WebObject> webObjects= webObjectService.findByParameters(p);
-            for(WebObject webObject: webObjects){
-                childs.put(webObject.getId()+"::"+webObject.getName(), exploreInDepth(webObject));
+            List<WebEntity> webEntitys= webEntityService.findByParameters(p);
+            for(WebEntity webEntity: webEntitys){
+                childs.put(webEntity.getId()+"::"+webEntity.getName(), exploreInDepth(webEntity));
             }
             tree.put("0::Raíz", childs);
             resultData=gson.toJson(tree);
@@ -172,15 +183,15 @@ public class WebObjectRestController extends RestEntityController {
         return Util.getStringBytes(resultData);
     }
     
-    private Map exploreInDepth(WebObject webObject){
+    private Map exploreInDepth(WebEntity webEntity){
         Map child= new LinkedHashMap();
         Parameters p= new Parameters();
-        p.whereEqual("webObject", webObject);
-        p.whereEqual("typeClass", "folder");
+        p.whereEqual("webEntity", webEntity);
+        p.whereEqual("entityRef", "folder");
         p.orderBy("name", "ASC");
-        List<WebObject> webObjects= webObjectService.findByParameters(p);
-        for(WebObject childWebObject: webObjects){
-            child.put(childWebObject.getId()+"::"+childWebObject.getName(), exploreInDepth(childWebObject));
+        List<WebEntity> webEntitys= webEntityService.findByParameters(p);
+        for(WebEntity childWebEntity: webEntitys){
+            child.put(childWebEntity.getId()+"::"+childWebEntity.getName(), exploreInDepth(childWebEntity));
         }
         return child;
     }

@@ -5,6 +5,7 @@
  */
 package com.lacv.system.model.entities;
 
+import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import java.util.Date;
 import java.util.List;
@@ -23,16 +24,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoader;
 
 /**
  *
  * @author lacastrillov
  */
 @Entity
-@Table(name = "web_object")
+@Table(name = "web_entity")
 @NamedQueries({
-    @NamedQuery(name = "WebObject.findAll", query = "SELECT w FROM WebObject w")})
-public class WebObject implements BaseEntity {
+    @NamedQuery(name = "WebEntity.findAll", query = "SELECT w FROM WebEntity w")})
+public class WebEntity implements BaseEntity {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,29 +59,29 @@ public class WebObject implements BaseEntity {
     @Column(name = "name")
     private String name;
     @Size(max = 255)
-    @Column(name = "type_class")
-    private String typeClass;
+    @Column(name = "entity_ref")
+    private String entityRef;
     @Size(max = 100)
-    @Column(name = "type_name")
-    private String typeName;
+    @Column(name = "entity_name")
+    private String entityName;
     @Size(max = 100)
-    @Column(name = "object_id")
-    private String objectId;
-    @Column(name = "object_order")
-    private Integer objectOrder;
+    @Column(name = "entity_id")
+    private String entityId;
+    @Column(name = "entity_order")
+    private Integer entityOrder;
     @Size(max = 45)
     @Column(name = "status")
     private String status;
-    @OneToMany(mappedBy = "webObject")
-    private List<WebObject> webObjectList;
+    @OneToMany(mappedBy = "webEntity")
+    private List<WebEntity> webEntityList;
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     @ManyToOne
-    private WebObject webObject;
+    private WebEntity webEntity;
 
-    public WebObject() {
+    public WebEntity() {
     }
 
-    public WebObject(Long id) {
+    public WebEntity(Long id) {
         this.id = id;
     }
 
@@ -132,36 +135,36 @@ public class WebObject implements BaseEntity {
         this.name = name;
     }
 
-    public String getTypeClass() {
-        return typeClass;
+    public String getEntityRef() {
+        return entityRef;
     }
 
-    public void setTypeClass(String typeClass) {
-        this.typeClass = typeClass;
+    public void setEntityRef(String entityRef) {
+        this.entityRef = entityRef;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public String getEntityName() {
+        return entityName;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getEntityId() {
+        return entityId;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
+    public void setEntityId(String entityId) {
+        this.entityId = entityId;
     }
 
-    public Integer getObjectOrder() {
-        return objectOrder;
+    public Integer getEntityOrder() {
+        return entityOrder;
     }
 
-    public void setObjectOrder(Integer objectOrder) {
-        this.objectOrder = objectOrder;
+    public void setEntityOrder(Integer entityOrder) {
+        this.entityOrder = entityOrder;
     }
 
     public String getStatus() {
@@ -172,28 +175,35 @@ public class WebObject implements BaseEntity {
         this.status = status;
     }
 
-    public List<WebObject> getWebObjectList() {
-        return webObjectList;
+    public List<WebEntity> getWebEntityList() {
+        return webEntityList;
     }
 
-    public void setWebObjectList(List<WebObject> webObjectList) {
-        this.webObjectList = webObjectList;
+    public void setWebEntityList(List<WebEntity> webEntityList) {
+        this.webEntityList = webEntityList;
     }
 
-    public WebObject getWebObject() {
-        return webObject;
+    public WebEntity getWebEntity() {
+        return webEntity;
     }
 
-    public void setWebObject(WebObject webObject) {
-        this.webObject = webObject;
+    public void setWebEntity(WebEntity webEntity) {
+        this.webEntity = webEntity;
+    }
+    
+    public String getLocation() {
+        ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
+        MenuComponent menuComponent= (MenuComponent) ctx.getBean("menuComponent");
+        String location= menuComponent.getContextPath() + menuComponent.getBasePath() + "/" + this.entityRef + "/entity.htm" ;
+        return location+"#?id="+this.entityId+"&tab=1";
     }
     
     public String getPath(){
         String path="";
-        WebObject parent= getWebObject();
+        WebEntity parent= getWebEntity();
         while(parent!=null){
             path= parent.getName()+"/"+path;
-            parent= parent.getWebObject();
+            parent= parent.getWebEntity();
         }
         
         return path;
@@ -209,10 +219,10 @@ public class WebObject implements BaseEntity {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WebObject)) {
+        if (!(object instanceof WebEntity)) {
             return false;
         }
-        WebObject other = (WebObject) object;
+        WebEntity other = (WebEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -221,7 +231,7 @@ public class WebObject implements BaseEntity {
 
     @Override
     public String toString() {
-        return "com.lacv.system.model.entities.WebObject[ id=" + id + " ]";
+        return "com.lacv.system.model.entities.WebEntity[ id=" + id + " ]";
     }
     
 }

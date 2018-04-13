@@ -6,13 +6,12 @@
 
 package com.lacv.system.controllers.view;
 
-import com.lacv.system.model.dtos.WebObjectDto;
-import com.lacv.system.model.mappers.WebObjectMapper;
-import com.lacv.system.services.WebObjectService;
-import com.dot.gcpbasedot.controller.ExtObjectExplorerController;
+import com.lacv.system.model.dtos.WebEntityDto;
+import com.lacv.system.model.mappers.WebEntityMapper;
+import com.dot.gcpbasedot.controller.ExtEntityExplorerController;
 import com.dot.gcpbasedot.dto.GridTemplate;
 import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.ObjectExplorerConfig;
+import com.dot.gcpbasedot.dto.config.EntityExplorerConfig;
 import com.dot.gcpbasedot.enums.PageType;
 import com.lacv.system.services.security.SecurityService;
 import java.util.List;
@@ -20,20 +19,21 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.lacv.system.services.WebEntityService;
 
 /**
  *
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/webObject")
-public class WebObjectViewController extends ExtObjectExplorerController {
+@RequestMapping(value="/webEntity")
+public class WebEntityViewController extends ExtEntityExplorerController {
     
     @Autowired
-    WebObjectService webObjectService;
+    WebEntityService webEntityService;
     
     @Autowired
-    WebObjectMapper webObjectMapper;
+    WebEntityMapper webEntityMapper;
     
     @Autowired
     SecurityService securityService;
@@ -41,12 +41,16 @@ public class WebObjectViewController extends ExtObjectExplorerController {
     
     @PostConstruct
     public void init(){
-        ObjectExplorerConfig view= new ObjectExplorerConfig("webObject", webObjectService, WebObjectDto.class);
-        view.setSingularEntityTitle("Objeto Web");
-        view.setPluralEntityTitle("Objectos Web");
-        view.setMultipartFormData(true);
+        EntityExplorerConfig view= new EntityExplorerConfig("webEntity", webEntityService, WebEntityDto.class);
+        view.setSingularEntityTitle("Entidad Web");
+        view.setPluralEntityTitle("Entidades Web");
+        view.addEntityRef("commerce", "Comercio");
+        view.addEntityRef("product", "Producto");
+        view.addEntityRef("user", "Usuario");
+        view.addEntityRef("category", "Categoria");
+        view.addEntityRef("supplier", "Proveedor");
         
-        GridTemplate gridTemplate= new GridTemplate("webObject.vm");
+        GridTemplate gridTemplate= new GridTemplate("webEntity.vm");
         gridTemplate.setNumColumns(6);
         view.setGridTemplate(gridTemplate);
         view.setActiveGridTemplateAsParent(true);
@@ -55,8 +59,8 @@ public class WebObjectViewController extends ExtObjectExplorerController {
         
         MenuItem menuParent= new MenuItem("Sistema");
         MenuItem menuParent1= new MenuItem("Gestor de Contenidos", 3);
-        MenuItem menuItem= new MenuItem("webObject", "Explorador de Objetos");
-        menuItem.setPageType(PageType.OBJECT_EXPLORER);
+        MenuItem menuItem= new MenuItem("webEntity", "Explorador de Entidades");
+        menuItem.setPageType(PageType.ENTITY_EXPLORER);
         menuParent1.addSubMenu(menuItem);
         menuParent.addSubMenu(menuParent1);
         menuComponent.addItemMenu(menuParent);

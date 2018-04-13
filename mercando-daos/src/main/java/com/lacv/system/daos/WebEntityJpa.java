@@ -5,14 +5,14 @@
  */
 package com.lacv.system.daos;
 
-import com.lacv.system.model.entities.WebObject;
+import com.lacv.system.model.entities.WebEntity;
 import com.dot.gcpbasedot.dao.GenericDao;
 
 /**
  *
  * @author desarrollador
  */
-public interface WebObjectJpa extends GenericDao<WebObject> {
+public interface WebEntityJpa extends GenericDao<WebEntity> {
 
     
 }

@@ -6,8 +6,8 @@ package com.lacv.system.model.mappers;
 
 import com.dot.gcpbasedot.mapper.EntityMapper;
 import com.dot.gcpbasedot.mapper.EntityMapperImpl;
-import com.lacv.system.model.dtos.WebObjectDto;
-import com.lacv.system.model.entities.WebObject;
+import com.lacv.system.model.dtos.WebEntityDto;
+import com.lacv.system.model.entities.WebEntity;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -16,27 +16,28 @@ import org.springframework.stereotype.Component;
  *
  * @author lcastrillo
  */
-@Component("webObjectMapper")
-public class WebObjectMapper extends EntityMapperImpl<WebObject, WebObjectDto> implements EntityMapper<WebObject, WebObjectDto> {
+@Component("webEntityMapper")
+public class WebEntityMapper extends EntityMapperImpl<WebEntity, WebEntityDto> implements EntityMapper<WebEntity, WebEntityDto> {
 
     
     @Override
-    public WebObjectDto entityToDto(WebObject entity) {
-        WebObjectDto dto= new WebObjectDto();
+    public WebEntityDto entityToDto(WebEntity entity) {
+        WebEntityDto dto= new WebEntityDto();
         if(entity!=null){
             dto.setId(entity.getId());
             dto.setAuthor(entity.getAuthor());
             dto.setCreationDate(entity.getCreationDate());
             dto.setIcon(entity.getIcon());
             dto.setPath(entity.getPath());
+            dto.setLocation(entity.getLocation());
             dto.setModificationDate(entity.getModificationDate());
             dto.setName(entity.getName());
-            dto.setObjectId(entity.getObjectId());
-            dto.setObjectOrder(entity.getObjectOrder());
+            dto.setEntityId(entity.getEntityId());
+            dto.setEntityOrder(entity.getEntityOrder());
+            dto.setEntityRef(entity.getEntityRef());
+            dto.setEntityName(entity.getEntityName());
             dto.setStatus(entity.getStatus());
-            dto.setTypeClass(entity.getTypeClass());
-            dto.setTypeName(entity.getTypeName());
-            dto.setWebObject((WebObjectDto) entityToDto(entity.getWebObject()));
+            dto.setWebEntity((WebEntityDto) entityToDto(entity.getWebEntity()));
         }
         return dto;
     }
@@ -47,10 +48,10 @@ public class WebObjectMapper extends EntityMapperImpl<WebObject, WebObjectDto> i
      * @return
      */
     @Override
-    public List<WebObjectDto> listEntitiesToListDtos(List<WebObject> entities){
-        List<WebObjectDto> dtos= new ArrayList<>();
+    public List<WebEntityDto> listEntitiesToListDtos(List<WebEntity> entities){
+        List<WebEntityDto> dtos= new ArrayList<>();
         if(entities!=null){
-            for(WebObject entity: entities){
+            for(WebEntity entity: entities){
                 dtos.add(entityToDto(entity));
             }
         }
