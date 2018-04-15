@@ -31,7 +31,7 @@ public interface WebEntityService extends EntityService<WebEntity> {
     
     WebEntity createFolder(WebEntity parentWebEntity, String folderName);
     
-    WebEntity createEmptyFile(WebEntity parentWebEntity, String fileName);
+    WebEntity create(WebEntity parentWebEntity, String name, String entityRef, String entityName);
     
     WebEntity createDirectoriesIfMissing(String path);
     

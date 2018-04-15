@@ -12,7 +12,6 @@ import com.dot.gcpbasedot.dao.Parameters;
 import com.dot.gcpbasedot.reflection.EntityReflection;
 import com.dot.gcpbasedot.service.EntityService;
 import com.dot.gcpbasedot.service.EntityServiceImpl1;
-import com.dot.gcpbasedot.util.Util;
 import com.lacv.system.model.constants.WebConstants;
 import com.lacv.system.model.entities.WebEntity;
 import com.lacv.system.model.mappers.WebEntityMapper;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -180,6 +178,7 @@ public class WebEntityServiceImpl extends EntityServiceImpl1<WebEntity> implemen
             webEntity.setCreationDate(new Date());
             webEntity.setEntityRef("folder");
             webEntity.setIcon("folder");
+            webEntity.setEntityName("folder");
             webEntity.setModificationDate(new Date());
             webEntity.setWebEntity(parentWebEntity);
             super.createForce(webEntity);
@@ -191,16 +190,18 @@ public class WebEntityServiceImpl extends EntityServiceImpl1<WebEntity> implemen
 
     @Override
     @Transactional(value = TRANSACTION_MANAGER, propagation = Propagation.REQUIRED)
-    public WebEntity createEmptyFile(WebEntity parentWebEntity, String fileName) {
-        if(fileName.equals("")){
-            String extension= FilenameUtils.getExtension(fileName);
+    public WebEntity create(WebEntity parentWebEntity, String name, String entityRef, String entityName) {
+        if(!name.equals("")){
             WebEntity webEntity= new WebEntity();
-            webEntity.setName(fileName);
+            webEntity.setName(name);
             webEntity.setCreationDate(new Date());
-            webEntity.setEntityRef(extension);
-            webEntity.setIcon(Util.getSimpleContentType(extension));
+            webEntity.setEntityRef(entityRef);
+            webEntity.setIcon(entityRef);
             webEntity.setModificationDate(new Date());
             webEntity.setWebEntity(parentWebEntity);
+            webEntity.setEntityOrder(0);
+            webEntity.setEntityName(entityName);
+            webEntity.setStatus("Active");
             super.create(webEntity);
 
             return webEntity;

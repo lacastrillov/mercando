@@ -7,7 +7,7 @@
         href='#?id=${item.id}&tab=1'
     #end
     >
-      <figure><img class="img-responsive" src="/img/icon_types/${item.icon}.png" alt=""></figure>
+      <figure><img class="img-responsive" src="/img/icon_entities/${item.icon}.png" title="${item.entityName}" alt=""></figure>
       <div class="cnt-usuario">
         <strong>${item.name}</strong>
       </div>

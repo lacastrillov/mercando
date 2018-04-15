@@ -45,6 +45,7 @@ public class WebFileViewController extends ExtFileExplorerController {
         view.setSingularEntityTitle("Archivo Web");
         view.setPluralEntityTitle("Archivos Web");
         view.setMultipartFormData(true);
+        view.setDefaultOrder("type", "ASC");
         
         GridTemplate gridTemplate= new GridTemplate("webFile.vm");
         gridTemplate.setNumColumns(6);
@@ -53,12 +54,10 @@ public class WebFileViewController extends ExtFileExplorerController {
         
         super.addControlMapping(view);
         
-        MenuItem menuParent= new MenuItem("Sistema");
-        MenuItem menuParent1= new MenuItem("Gestor de Contenidos", 3);
+        MenuItem menuParent= new MenuItem("Gestor de Contenidos", 3);
         MenuItem menuItem= new MenuItem("webFile", "Explorador de Archivos");
         menuItem.setPageType(PageType.FILE_EXPLORER);
-        menuParent1.addSubMenu(menuItem);
-        menuParent.addSubMenu(menuParent1);
+        menuParent.addSubMenu(menuItem);
         menuComponent.addItemMenu(menuParent);
     }
     

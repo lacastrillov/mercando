@@ -8,6 +8,7 @@ import com.dot.gcpbasedot.mapper.EntityMapper;
 import com.dot.gcpbasedot.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.CommerceDto;
 import com.lacv.mercando.model.entities.Commerce;
+import com.lacv.system.model.mappers.UserMapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class CommerceMapper extends EntityMapperImpl<Commerce, CommerceDto> impl
     
     @Autowired
     MainLocationMapper mainLocationMapper;
+    
+    @Autowired
+    UserMapper userMapper;
 
     
     @Override
@@ -36,6 +40,7 @@ public class CommerceMapper extends EntityMapperImpl<Commerce, CommerceDto> impl
             dto.setCommerceTag(entity.getCommerceTag());
             dto.setCreationDate(entity.getCreationDate());
             dto.setMainLocation(mainLocationMapper.entityToDto(entity.getMainLocation()));
+            dto.setUser(userMapper.entityToDto(entity.getUser()));
         }
         return dto;
     }

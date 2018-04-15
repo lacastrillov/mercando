@@ -7,6 +7,7 @@ package com.lacv.system.model.entities;
 
 import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.domain.BaseEntity;
+import com.dot.gcpbasedot.interfaces.WebEntityInterface;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -35,7 +36,7 @@ import org.springframework.web.context.ContextLoader;
 @Table(name = "web_entity")
 @NamedQueries({
     @NamedQuery(name = "WebEntity.findAll", query = "SELECT w FROM WebEntity w")})
-public class WebEntity implements BaseEntity {
+public class WebEntity implements BaseEntity, WebEntityInterface {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -95,82 +96,102 @@ public class WebEntity implements BaseEntity {
         this.id = (Long) id;
     }
 
+    @Override
     public String getAuthor() {
         return author;
     }
 
+    @Override
     public void setAuthor(String author) {
         this.author = author;
     }
 
+    @Override
     public Date getCreationDate() {
         return creationDate;
     }
 
+    @Override
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
+    @Override
     public Date getModificationDate() {
         return modificationDate;
     }
 
+    @Override
     public void setModificationDate(Date modificationDate) {
         this.modificationDate = modificationDate;
     }
 
+    @Override
     public String getIcon() {
         return icon;
     }
 
+    @Override
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getEntityRef() {
         return entityRef;
     }
 
+    @Override
     public void setEntityRef(String entityRef) {
         this.entityRef = entityRef;
     }
 
+    @Override
     public String getEntityName() {
         return entityName;
     }
 
+    @Override
     public void setEntityName(String entityName) {
         this.entityName = entityName;
     }
 
+    @Override
     public String getEntityId() {
         return entityId;
     }
 
+    @Override
     public void setEntityId(String entityId) {
         this.entityId = entityId;
     }
 
+    @Override
     public Integer getEntityOrder() {
         return entityOrder;
     }
 
+    @Override
     public void setEntityOrder(Integer entityOrder) {
         this.entityOrder = entityOrder;
     }
 
+    @Override
     public String getStatus() {
         return status;
     }
 
+    @Override
     public void setStatus(String status) {
         this.status = status;
     }
@@ -191,13 +212,21 @@ public class WebEntity implements BaseEntity {
         this.webEntity = webEntity;
     }
     
+    @Override
     public String getLocation() {
-        ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
-        MenuComponent menuComponent= (MenuComponent) ctx.getBean("menuComponent");
-        String location= menuComponent.getContextPath() + menuComponent.getBasePath() + "/" + this.entityRef + "/entity.htm" ;
-        return location+"#?id="+this.entityId+"&tab=1";
+        if(!this.entityRef.equals("folder")){
+            ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
+            MenuComponent menuComponent= (MenuComponent) ctx.getBean("menuComponent");
+            String contextPath= (menuComponent.getContextPath().equals("/rest"))?"/vista":menuComponent.getContextPath();
+            String location= contextPath + menuComponent.getBasePath() + "/" + this.entityRef + "/entity.htm?onlyForm=1&webEntityId="+this.id+"#?tab=1";
+            location+=(this.entityId!=null)?"&id="+this.entityId:"";
+            return location;
+        }else{
+            return getPath()+this.getName();
+        }
     }
     
+    @Override
     public String getPath(){
         String path="";
         WebEntity parent= getWebEntity();

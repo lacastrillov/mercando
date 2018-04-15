@@ -141,7 +141,7 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
     @Override
     @Transactional(value = TRANSACTION_MANAGER, propagation = Propagation.REQUIRED)
     public WebFile createEmptyFile(WebFile parentWebFile, String fileName) {
-        if(fileName.equals("")){
+        if(!fileName.equals("")){
             String extension= FilenameUtils.getExtension(fileName);
             WebFile webFile= new WebFile();
             webFile.setName(fileName);

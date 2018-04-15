@@ -40,12 +40,14 @@ public class WebEntityDto implements BaseEntity {
     @ReadOnly
     @Size(max = 255)
     @TextField("Ref Entidad")
+    @HideField({HideView.FILTER, HideView.FORM})
     private String entityRef;
     
     @Order(4)
     @ReadOnly
     @Size(max = 100)
     @TextField("Nombre Entidad")
+    @TypeFormField(value = FieldType.LIST, data = {"Categoria", "Comercio", "Producto", "Proveedor", "Usuario"})
     private String entityName;
     
     @Order(5)
@@ -60,11 +62,13 @@ public class WebEntityDto implements BaseEntity {
     @Order(7)
     @TextField("Path")
     @ReadOnly
+    @HideField({HideView.FILTER})
     private String path;
     
     @Order(8)
     @TextField("Ubicaci&oacute;n")
     @ReadOnly
+    @HideField({HideView.FILTER})
     private String location;
     
     @Order(9)
@@ -73,7 +77,7 @@ public class WebEntityDto implements BaseEntity {
     private Date creationDate;
     
     @Order(10)
-    @TextField("Fecha creaci&oacute;n")
+    @TextField("Fecha modificaci&oacute;n")
     @ReadOnly
     private Date modificationDate;
     
@@ -81,6 +85,7 @@ public class WebEntityDto implements BaseEntity {
     @ReadOnly
     @Size(max = 255)
     @TextField("Icono")
+    @HideField({HideView.FILTER})
     private String icon;
     
     @Order(12)

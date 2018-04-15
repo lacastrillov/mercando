@@ -14,6 +14,7 @@ import com.dot.gcpbasedot.annotation.TextField;
 import com.dot.gcpbasedot.annotation.TypeFormField;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import com.dot.gcpbasedot.enums.FieldType;
+import com.lacv.system.model.dtos.UserDto;
 import java.util.Date;
 
 /**
@@ -56,6 +57,9 @@ public class CommerceDto implements BaseEntity {
     @TextField("Ubicaci&oacute;n Principal")
     @TypeFormField(value = FieldType.MULTI_SELECT)
     private MainLocationDto mainLocation;
+    
+    @TextField("Usuario")
+    private UserDto user;
     
 
     public CommerceDto() {
@@ -121,6 +125,14 @@ public class CommerceDto implements BaseEntity {
 
     public void setMainLocation(MainLocationDto mainLocation) {
         this.mainLocation = mainLocation;
+    }
+
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 
     @Override
