@@ -56,6 +56,7 @@ public class PurchaseorderDetailDto implements BaseEntity {
     @Order(7)
     @ColumnWidth(150)
     @TextField("IVA")
+    @TypeFormField(FieldType.PRICE)
     private Integer iva;
     
     @Order(8)

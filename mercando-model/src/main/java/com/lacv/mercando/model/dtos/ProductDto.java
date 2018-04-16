@@ -7,6 +7,7 @@ package com.lacv.mercando.model.dtos;
 
 import com.dot.gcpbasedot.annotation.ColumnWidth;
 import com.dot.gcpbasedot.annotation.LabelField;
+import com.dot.gcpbasedot.annotation.NotNull;
 import com.dot.gcpbasedot.annotation.Order;
 import com.dot.gcpbasedot.annotation.ReadOnly;
 import com.dot.gcpbasedot.annotation.TextField;
@@ -31,10 +32,12 @@ public class ProductDto implements BaseEntity {
     private Integer id;
     
     @Order(2)
+    @NotNull
     @TextField("C&oacute;digo")
     private String code;
     
     @Order(3)
+    @NotNull
     @TextField("Nombre")
     private String name;
     
