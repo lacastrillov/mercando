@@ -5,6 +5,7 @@
  */
 package com.lacv.system.model.entities;
 
+import com.dot.gcpbasedot.components.ServerDomain;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import com.lacv.system.model.constants.WebConstants;
 import java.util.Date;
@@ -177,8 +178,8 @@ public class WebFile implements BaseEntity {
     
     public String getLocation() {
         ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
-        WebConstants webConstants= (WebConstants) ctx.getBean("webConstants");
-        return webConstants.LOCAL_DOMAIN + WebConstants.ROOT_FOLDER + getPath() + getName();
+        ServerDomain serverDomain= (ServerDomain) ctx.getBean("serverDomain");
+        return serverDomain.getDomainWithPort() + "/" + WebConstants.ROOT_FOLDER + getPath() + getName();
     }
     
     public String getPath(){

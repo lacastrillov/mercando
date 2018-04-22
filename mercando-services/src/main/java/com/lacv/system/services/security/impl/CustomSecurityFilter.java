@@ -1,5 +1,6 @@
 package com.lacv.system.services.security.impl;
 
+import com.dot.gcpbasedot.components.ServerDomain;
 import com.dot.gcpbasedot.dto.RESTServiceDto;
 import com.dot.gcpbasedot.util.RESTServiceConnection;
 import com.lacv.system.model.dtos.security.UserDetailsDto;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -42,33 +44,44 @@ public class CustomSecurityFilter extends GenericFilterBean {
     @Autowired
     SecurityService securityService;
     
-    private final String[] MODULES= {"","/vista"};
+    @Autowired
+    ServerDomain serverDomain;
+    /*@Autowired
+    private ServletContext context;
     
-    private final String[] accessControlModifiers= {
-        "/rest/webResource/create.htm",
-        "/rest/webResource/update.htm",
-        "/rest/webResource/delete.htm",
-        "/rest/webResource/delete/byfilter.htm",
-        "/rest/webresourceRole/create.htm",
-        "/rest/webresourceRole/update.htm",
-        "/rest/webresourceRole/delete.htm",
-        "/rest/webresourceRole/delete/byfilter.htm",
-        "/rest/webresourceAuthorization/create.htm",
-        "/rest/webresourceAuthorization/update.htm",
-        "/rest/webresourceAuthorization/delete.htm",
-        "/rest/webresourceAuthorization/delete/byfilter.htm"
-    };
+    private final String[] MODULES= {};*/
     
-    private final List accessControlModifiersList= Arrays.asList(accessControlModifiers);
+    private String[] accessControlModifiers;
+    
+    private List accessControlModifiersList;
 
     private final ThrowableAnalyzer throwableAnalyzer = new DefaultThrowableAnalyzer();
     
+    @PostConstruct
+    public void init(){
+        accessControlModifiers= new String[]{
+            serverDomain.getApplicationContext()+"/rest/webResource/create.htm",
+            serverDomain.getApplicationContext()+"/rest/webResource/update.htm",
+            serverDomain.getApplicationContext()+"/rest/webResource/delete.htm",
+            serverDomain.getApplicationContext()+"/rest/webResource/delete/byfilter.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceRole/create.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceRole/update.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceRole/delete.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceRole/delete/byfilter.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceAuthorization/create.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceAuthorization/update.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceAuthorization/delete.htm",
+            serverDomain.getApplicationContext()+"/rest/webresourceAuthorization/delete/byfilter.htm"
+        };
+        accessControlModifiersList= Arrays.asList(accessControlModifiers);
+    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         resp.setHeader("x-frame-options", "allow");
+        serverDomain.initDomain(req);
         try {
             String requestURI= req.getRequestURI();
             logger.info("CustomSecurityFilter IN: "+requestURI);
@@ -84,7 +97,7 @@ public class CustomSecurityFilter extends GenericFilterBean {
                 
                 if(accessControlModifiersList.contains(requestURI)){
                     securityService.reconfigureAccessControl();
-                    replicateAccessControl(req);
+                    replicateAccessControl();
                 }
             }else{
                 accessDenied(req, resp);
@@ -106,16 +119,18 @@ public class CustomSecurityFilter extends GenericFilterBean {
         }
     }
     
-    private void replicateAccessControl(HttpServletRequest req){
-        String domain = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort();
-        for(String module: MODULES){
-            String reconfigureAccessControlUrl= domain+module+"/account/reconfigureAccessControl";
-            RESTServiceDto restService= new RESTServiceDto("ReconfigureAccessControlUrl", reconfigureAccessControlUrl, HttpMethod.GET, null);
-            RESTServiceConnection restServiceConnection= new RESTServiceConnection(restService);
-            try {
-                restServiceConnection.get(null, null, null);
-            } catch (IOException ex) {
-                logger.error("replyAccessControl ", ex);
+    private void replicateAccessControl(){
+        String domain = serverDomain.getDomainWithPort();
+        for(String module: serverDomain.getModules()){
+            if(!module.equals("rest")){
+                String reconfigureAccessControlUrl= domain+module+"/account/reconfigureAccessControl";
+                RESTServiceDto restService= new RESTServiceDto("ReconfigureAccessControlUrl", reconfigureAccessControlUrl, HttpMethod.GET, null);
+                RESTServiceConnection restServiceConnection= new RESTServiceConnection(restService);
+                try {
+                    restServiceConnection.get(null, null, null);
+                } catch (IOException ex) {
+                    logger.error("replyAccessControl ", ex);
+                }
             }
         }
             
@@ -128,14 +143,14 @@ public class CustomSecurityFilter extends GenericFilterBean {
         if ("XMLHttpRequest".equals(ajaxHeader)) {
             resp.sendError(403, "Acceso denegado");
         } else if(userDetails!=null) {
-            resp.sendRedirect("/account/denied");
+            resp.sendRedirect(serverDomain.getApplicationContext()+"/account/denied");
         } else {
             String queryString= "";
             if(req.getQueryString()!=null){
                 queryString= "?" + URLDecoder.decode(req.getQueryString(), "UTF-8");
             }
             String redirectUrl= req.getRequestURI() + queryString;
-            resp.sendRedirect("/account/home?redirect="+Base64.encodeBase64String(redirectUrl.getBytes("UTF-8")));
+            resp.sendRedirect(serverDomain.getApplicationContext()+"/account/home?redirect="+Base64.encodeBase64String(redirectUrl.getBytes("UTF-8")));
         }
         
         return false;

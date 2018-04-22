@@ -5,7 +5,7 @@
  */
 package com.lacv.system.model.entities;
 
-import com.dot.gcpbasedot.components.MenuComponent;
+import com.dot.gcpbasedot.components.ServerDomain;
 import com.dot.gcpbasedot.domain.BaseEntity;
 import com.dot.gcpbasedot.interfaces.WebEntityInterface;
 import java.util.Date;
@@ -216,9 +216,9 @@ public class WebEntity implements BaseEntity, WebEntityInterface {
     public String getLocation() {
         if(!this.entityRef.equals("folder")){
             ApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
-            MenuComponent menuComponent= (MenuComponent) ctx.getBean("menuComponent");
-            String contextPath= (menuComponent.getContextPath().equals("/rest"))?"/vista":menuComponent.getContextPath();
-            String location= contextPath + menuComponent.getBasePath() + "/" + this.entityRef + "/entity.htm?onlyForm=1&webEntityId="+this.id+"#?tab=1";
+            ServerDomain serverDomain= (ServerDomain) ctx.getBean("serverDomain");
+            String location= serverDomain.getApplicationContext() + serverDomain.getAdminPath() + "/" +
+                    this.entityRef + "/entity.htm?onlyForm=1&webEntityId="+this.id+"#?tab=1";
             location+=(this.entityId!=null)?"&id="+this.entityId:"";
             return location;
         }else{
