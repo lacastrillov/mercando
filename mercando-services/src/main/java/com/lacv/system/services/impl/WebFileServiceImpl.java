@@ -15,7 +15,7 @@ import com.dot.gcpbasedot.dao.GenericDao;
 import com.dot.gcpbasedot.dao.Parameters;
 import com.dot.gcpbasedot.service.EntityServiceImpl1;
 import com.dot.gcpbasedot.util.FileService;
-import com.dot.gcpbasedot.util.Util;
+import com.dot.gcpbasedot.util.Formats;
 import com.google.api.services.storage.model.StorageObject;
 import com.lacv.system.model.constants.WebConstants;
 import java.io.IOException;
@@ -85,7 +85,7 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
             webFile.setName(fileName);
             webFile.setType(fileType);
             webFile.setSize(fileSize);
-            webFile.setIcon(Util.getSimpleContentType(fileType));
+            webFile.setIcon(Formats.getSimpleContentType(fileType));
             webFile.setCreationDate(new Date());
             webFile.setModificationDate(new Date());
 
@@ -108,7 +108,7 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
         webFile.setName(object.getName());
         webFile.setSize(object.getSize().intValue());
         webFile.setType(object.getContentType());
-        webFile.setIcon(Util.getSimpleContentType(object.getContentType()));
+        webFile.setIcon(Formats.getSimpleContentType(object.getContentType()));
         webFile.setCreationDate(new Date());
         webFile.setModificationDate(new Date());
         
@@ -147,7 +147,7 @@ public class WebFileServiceImpl extends EntityServiceImpl1<WebFile> implements W
             webFile.setName(fileName);
             webFile.setCreationDate(new Date());
             webFile.setType(extension);
-            webFile.setIcon(Util.getSimpleContentType(extension));
+            webFile.setIcon(Formats.getSimpleContentType(extension));
             webFile.setModificationDate(new Date());
             webFile.setSize(1);
             webFile.setWebFile(parentWebFile);

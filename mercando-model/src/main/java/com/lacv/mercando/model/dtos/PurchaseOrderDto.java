@@ -39,6 +39,7 @@ public class PurchaseOrderDto implements BaseEntity {
     
     @Order(3)
     @TextField("Fecha Registro")
+    @TypeFormField(value = FieldType.DATETIME)
     private Date registrationDate;
     
     @Order(4)

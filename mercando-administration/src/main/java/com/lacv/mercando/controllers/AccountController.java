@@ -1,7 +1,7 @@
 package com.lacv.mercando.controllers;
 
 import com.dot.gcpbasedot.dao.Parameters;
-import com.dot.gcpbasedot.util.Util;
+import com.dot.gcpbasedot.util.JSONService;
 import com.lacv.system.model.dtos.RoleDto;
 import com.lacv.system.model.dtos.UserDto;
 import com.lacv.system.model.dtos.UserRoleDto;
@@ -100,12 +100,12 @@ public class AccountController {
             data.put("user", userAndRoles.getUser());
             data.put("roles", userAndRoles.getRoles());
             
-            return Util.objectToJson(data);
+            return JSONService.objectToJson(data);
         }catch(AuthenticationException ex){
             data.put("success", false);
             data.put("message", "Usuario y/o contraseña incorrectos");
         }
-        return Util.objectToJson(data);
+        return JSONService.objectToJson(data);
     }
     
     @RequestMapping(value = "/ajax/logout", method = {RequestMethod.POST, RequestMethod.GET})
@@ -116,12 +116,12 @@ public class AccountController {
             session.invalidate();
             data.put("success", true);
             data.put("message", "Logout done");
-            return Util.objectToJson(data);
+            return JSONService.objectToJson(data);
         }catch(AuthenticationException ex){
             data.put("success", false);
             data.put("message", "Logout Error");
         }
-        return Util.objectToJson(data);
+        return JSONService.objectToJson(data);
     }
     
     @RequestMapping(value = "/ajax/userInSession", method = {RequestMethod.POST, RequestMethod.GET})
@@ -135,12 +135,12 @@ public class AccountController {
             data.put("user", userAndRoles.getUser());
             data.put("roles", userAndRoles.getRoles());
             
-            return Util.objectToJson(data);
+            return JSONService.objectToJson(data);
         }else{
             data.put("session", false);
             data.put("message", "No hay usuario en sesion");
         }
-        return Util.objectToJson(data);
+        return JSONService.objectToJson(data);
     }
     
     @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})

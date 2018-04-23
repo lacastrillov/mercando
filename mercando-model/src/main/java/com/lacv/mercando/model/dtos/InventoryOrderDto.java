@@ -36,6 +36,7 @@ public class InventoryOrderDto implements BaseEntity {
     private Long number;
     
     @TextField("Fecha Registro")
+    @TypeFormField(value = FieldType.DATETIME)
     private Date registrationDate;
     
     @TextField("Hora Registro")
