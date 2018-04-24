@@ -46,10 +46,6 @@ public class CustomSecurityFilter extends GenericFilterBean {
     
     @Autowired
     ServerDomain serverDomain;
-    /*@Autowired
-    private ServletContext context;
-    
-    private final String[] MODULES= {};*/
     
     private String[] accessControlModifiers;
     
@@ -120,10 +116,15 @@ public class CustomSecurityFilter extends GenericFilterBean {
     }
     
     private void replicateAccessControl(){
-        String domain = serverDomain.getDomainWithPort();
+        String emptyRoot= serverDomain.getContextPath().replace(serverDomain.getApplicationContext(), "");
+        if(!emptyRoot.equals("") && !serverDomain.getModules().contains("")){
+            serverDomain.getModules().add("");
+        }
         for(String module: serverDomain.getModules()){
-            if(!module.equals("rest")){
-                String reconfigureAccessControlUrl= domain+module+"/account/reconfigureAccessControl";
+            if(!module.equals(serverDomain.getContextPath())){
+                String reconfigureAccessControlUrl= serverDomain.getDomainWithPort()+serverDomain.getApplicationContext()+
+                        module+"/account/reconfigureAccessControl";
+                logger.info("replicateAccessControl "+reconfigureAccessControlUrl);
                 RESTServiceDto restService= new RESTServiceDto("ReconfigureAccessControlUrl", reconfigureAccessControlUrl, HttpMethod.GET, null);
                 RESTServiceConnection restServiceConnection= new RESTServiceConnection(restService);
                 try {
