@@ -119,6 +119,7 @@ public class WebEntityServiceImpl extends EntityServiceImpl1<WebEntity> implemen
     }
     
     @Override
+    @Transactional(readOnly= true)
     public List<Object> findEntities(Parameters p, Class type){
         List<Object> entities= new ArrayList<>();
         List<WebEntity> webEntities= super.findByParameters(p);
@@ -132,6 +133,13 @@ public class WebEntityServiceImpl extends EntityServiceImpl1<WebEntity> implemen
     }
     
     @Override
+    public Object loadEntity(String path, Class type) {
+        WebEntity webEntity= findByPath(path);
+        return loadEntity(webEntity, type);
+    }
+    
+    @Override
+    @Transactional(readOnly= true)
     public Object loadEntity(WebEntity webEntity, Class type) {
         String entityRef= refEntities.get(type);
         EntityService entityService= services.get(type);
