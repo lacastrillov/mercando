@@ -25,6 +25,8 @@ public interface WebEntityService extends EntityService<WebEntity> {
     
     List<Object> findEntities(Parameters p, Class type);
     
+    Object loadEntity(String path, Class type);
+    
     Object loadEntity(WebEntity webEntity, Class type);
     
     WebEntity findByPath(String path);
