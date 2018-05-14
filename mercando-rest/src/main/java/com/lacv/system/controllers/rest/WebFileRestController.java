@@ -14,7 +14,7 @@ import com.dot.gcpbasedot.enums.WebFileType;
 import com.dot.gcpbasedot.util.FileService;
 import com.dot.gcpbasedot.util.Util;
 import com.google.gson.Gson;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.system.model.dtos.WebFileDto;
 import java.io.File;
 import java.io.InputStream;

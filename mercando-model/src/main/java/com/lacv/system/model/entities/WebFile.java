@@ -7,7 +7,7 @@ package com.lacv.system.model.entities;
 
 import com.dot.gcpbasedot.components.ServerDomain;
 import com.dot.gcpbasedot.domain.BaseEntity;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.mercando.model.constants.WebConstants;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;

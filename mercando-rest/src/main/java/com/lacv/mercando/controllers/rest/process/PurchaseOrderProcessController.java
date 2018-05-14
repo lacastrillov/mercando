@@ -7,7 +7,7 @@ package com.lacv.mercando.controllers.rest.process;
 
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.system.model.dtos.process.BasicResultDto;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
 import com.lacv.system.model.entities.LogProcess;

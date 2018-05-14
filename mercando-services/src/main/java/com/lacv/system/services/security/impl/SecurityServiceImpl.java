@@ -6,25 +6,28 @@
 package com.lacv.system.services.security.impl;
 
 import com.dot.gcpbasedot.dto.MenuItem;
+import com.dot.gcpbasedot.dto.UserByToken;
 import com.dot.gcpbasedot.util.AESEncrypt;
+import com.dot.gcpbasedot.util.JwtUtil;
+import com.lacv.system.model.constants.SystemConstants;
 import com.lacv.system.model.dtos.security.UserDetailsDto;
-import com.lacv.system.model.entities.User;
-import com.lacv.system.model.entities.UserRole;
-import com.lacv.system.services.UserRoleService;
-import com.lacv.system.services.UserService;
-import com.lacv.system.services.security.SecurityService;
-import com.lacv.system.model.constants.WebConstants;
 import com.lacv.system.model.dtos.security.WebResourceAuthorities;
 import com.lacv.system.model.entities.RoleAuthorization;
+import com.lacv.system.model.entities.User;
+import com.lacv.system.model.entities.UserRole;
 import com.lacv.system.model.entities.WebResource;
 import com.lacv.system.model.entities.WebresourceAuthorization;
 import com.lacv.system.model.entities.WebresourceRole;
 import com.lacv.system.services.RoleAuthorizationService;
+import com.lacv.system.services.UserRoleService;
+import com.lacv.system.services.UserService;
 import com.lacv.system.services.WebResourceService;
 import com.lacv.system.services.WebresourceAuthorizationService;
 import com.lacv.system.services.WebresourceRoleService;
+import com.lacv.system.services.security.SecurityService;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -58,7 +61,7 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
     
     protected static final Logger LOGGER = Logger.getLogger(SecurityServiceImpl.class);
     
-    AESEncrypt myInstance= AESEncrypt.getDefault(WebConstants.SECURITY_SALT);
+    AESEncrypt myInstance= AESEncrypt.getDefault(SystemConstants.SECURITY_SALT);
 
     @Autowired
     UserService userService;
@@ -87,7 +90,7 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
     public Authentication authenticate(Authentication a) throws AuthenticationException {
         User user = getUser(a.getName());
         if (user != null){
-            String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
+            String contrasena= myInstance.decrypt(user.getPassword(), SystemConstants.SECURITY_SEED_PASSW);
             if (contrasena!=null && contrasena.equals(a.getCredentials())) {
                 UserDetailsDto userDetails = entityToUserDetail(user);
                 if (userDetails.isEnabled() == false) {
@@ -101,11 +104,11 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
                 userService.update(user);
                 return autentication;
             } else {
-                user.setFailedAttempts(user.getFailedAttempts() + 1);
+                user.setFailedAttempts(((user.getFailedAttempts()!=null)?user.getFailedAttempts():0) + 1);
                 userService.update(user);
             }
         }
-        throw new BadCredentialsException("Usuario y/o contraseña incorrectos");
+        throw new BadCredentialsException("Usuario y/o clave incorrectos");
     }
 
     @Override
@@ -113,23 +116,27 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
         UserDetailsDto userDetails = entityToUserDetail(user);
         Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(auth);
-        return RequestContextHolder.currentRequestAttributes().getSessionId();
+        try{
+            return RequestContextHolder.currentRequestAttributes().getSessionId();
+        }catch(IllegalStateException e){
+            return "SESSIONID-NF";
+        }
     }
     
     @Override
     public String connect(String username, String password) throws AuthenticationException {
         User user= getUser(username);
         if (user != null){
-            String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
+            String contrasena= myInstance.decrypt(user.getPassword(), SystemConstants.SECURITY_SEED_PASSW);
             if (contrasena!=null && contrasena.equals(password)) {
                 return connect(user);
             }
         }
-        throw new BadCredentialsException("Usuario y/o contraseña incorrectos");
+        throw new BadCredentialsException("Usuario y/o clave incorrectos");
     }
     
     @Override
-    public String connect(String basicAuthorization) {
+    public String connect(String basicAuthorization) throws AuthenticationException {
         if (basicAuthorization != null && basicAuthorization.startsWith("Basic")) {
             // Authorization: Basic base64credentials
             String base64Credentials = basicAuthorization.substring("Basic".length()).trim();
@@ -138,7 +145,20 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
             String[] values = credentials.split(":", 2);
             return connect(values[0], values[1]);
         }
-        throw new BadCredentialsException("Autorización incorrecta");
+        throw new BadCredentialsException("Autorizacion incorrecta");
+    }
+    
+    @Override
+    public String connectByToken(String token) throws AuthenticationException {
+        if(token!=null){
+            JwtUtil jwt= new JwtUtil();
+            long currentTime= new Date().getTime();
+            UserByToken userByToken= jwt.parseToken(token, SystemConstants.SECURITY_SEED_PASSW);
+            if(userByToken!=null && currentTime < userByToken.getExpiration()){
+                return connect(userByToken.getUsername(), userByToken.getPassword());
+            }
+        }
+        throw new BadCredentialsException("Token invalido o expirado");
     }
 
     private List<GrantedAuthority> getGrantedAuthorities(User user) {
@@ -184,14 +204,34 @@ public class SecurityServiceImpl implements AuthenticationProvider, SecurityServ
     public String getBasicAuthorization(){
         User user= getCurrentUser();
         if(user!=null){
-            String contrasena= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
+            String contrasena= myInstance.decrypt(user.getPassword(), SystemConstants.SECURITY_SEED_PASSW);
             String credentials= user.getUsername()+":"+contrasena;
             String authorization= new String(Base64.encodeBase64(credentials.getBytes()), Charset.forName("UTF-8"));
             return "Basic "+authorization;
         }
         return null;
     }
-
+    
+    @Override
+    public String generateAuthenticationToken(int minutesDuration){
+        JwtUtil jwt= new JwtUtil();
+        User user= getCurrentUser();
+        Date currentTime= new Date();
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(currentTime);
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(currentTime);
+        cal2.set(Calendar.MINUTE, cal2.get(Calendar.MINUTE)+minutesDuration);
+        
+        UserByToken userByToken= new UserByToken();
+        userByToken.setUsername(user.getUsername());
+        userByToken.setPassword(myInstance.decrypt(user.getPassword(), SystemConstants.SECURITY_SEED_PASSW));
+        userByToken.setCreation(cal1.getTimeInMillis());
+        userByToken.setExpiration(cal2.getTimeInMillis());
+        
+        return jwt.generateToken(userByToken, SystemConstants.SECURITY_SEED_PASSW);
+    }
+    
     private UserDetailsDto entityToUserDetail(User user) {
         UserDetailsDto userDetails = new UserDetailsDto();
         long idUsuariolong = user.getId();

@@ -9,7 +9,7 @@ import com.dot.gcpbasedot.dto.ConnectionResponse;
 import com.dot.gcpbasedot.dto.RESTServiceDto;
 import com.dot.gcpbasedot.util.AESEncrypt;
 import com.dot.gcpbasedot.util.RESTServiceConnection;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.system.model.constants.SystemConstants;
 import com.lacv.system.model.entities.User;
 import com.lacv.system.services.security.SecurityService;
 import java.io.IOException;
@@ -36,13 +36,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Autowired
     SecurityService securityService;
     
-    AESEncrypt myInstance= AESEncrypt.getDefault(WebConstants.SECURITY_SALT);
+    AESEncrypt myInstance= AESEncrypt.getDefault(SystemConstants.SECURITY_SALT);
  
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         User user = securityService.getCurrentUser();
         String username= user.getUsername();
-        String password= myInstance.decrypt(user.getPassword(), WebConstants.SECURITY_SEED_PASSW);
+        String password= myInstance.decrypt(user.getPassword(), SystemConstants.SECURITY_SEED_PASSW);
         
         System.out.println("onAuthenticationSuccess "+username);
         for(String contextApp: CONTEXT_APPS){

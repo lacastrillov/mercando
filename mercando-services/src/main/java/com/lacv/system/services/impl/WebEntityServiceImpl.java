@@ -12,7 +12,7 @@ import com.dot.gcpbasedot.dao.Parameters;
 import com.dot.gcpbasedot.reflection.EntityReflection;
 import com.dot.gcpbasedot.service.EntityService;
 import com.dot.gcpbasedot.service.EntityServiceImpl1;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.system.model.constants.SystemConstants;
 import com.lacv.system.model.entities.WebEntity;
 import com.lacv.system.model.mappers.WebEntityMapper;
 import com.lacv.system.daos.WebEntityJpa;
@@ -54,7 +54,7 @@ public class WebEntityServiceImpl extends EntityServiceImpl1<WebEntity> implemen
     WebEntityMapper webEntityMapper;
     
     @Autowired
-    WebConstants webConstants;
+    SystemConstants webConstants;
     
     @Autowired
     CategoryService categoryService;

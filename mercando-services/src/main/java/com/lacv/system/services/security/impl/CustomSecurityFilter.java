@@ -84,6 +84,8 @@ public class CustomSecurityFilter extends GenericFilterBean {
             
             if(req.getHeader("Authorization")!=null){
                 securityService.connect(req.getHeader("Authorization"));
+            }else if(req.getHeader("Auth-Token")!=null){
+                securityService.connectByToken(req.getHeader("Auth-Token"));
             }
             
             boolean continueAccess= securityService.checkAccessResource(requestURI);
@@ -99,6 +101,8 @@ public class CustomSecurityFilter extends GenericFilterBean {
                 accessDenied(req, resp);
             }
             logger.info("CustomSecurityFilter END ");
+        } catch (AuthenticationException ex){
+            resp.sendError(403, ex.getMessage());
         } catch (Exception ex) {
             logger.error("CustomSecurityFilter ex ", ex);
             

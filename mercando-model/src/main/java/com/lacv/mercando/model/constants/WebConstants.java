@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lacv.system.model.constants;
+package com.lacv.mercando.model.constants;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,10 +25,6 @@ public class WebConstants {
     public String LOCAL_DIR;
     
     public static final String ROOT_FOLDER= "recursos/";
-
-    public static final String SECURITY_SEED_PASSW = "=12GJHG#$%467ryf";
-    
-    public static final String SECURITY_SALT = "38684329";
     
     public static final String CLIENT_ROLE= "Cliente";
 

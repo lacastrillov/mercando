@@ -10,6 +10,7 @@ package com.lacv.system.controllers.rest.process;
 import com.dot.gcpbasedot.annotation.DoProcess;
 import com.dot.gcpbasedot.controller.RestProcessController;
 import com.dot.gcpbasedot.util.AESEncrypt;
+import com.lacv.mercando.model.constants.WebConstants;
 import com.lacv.system.model.dtos.process.BasicResultDto;
 import com.lacv.system.model.dtos.process.CreatePasswordDto;
 import com.lacv.system.model.entities.LogProcess;
@@ -17,7 +18,7 @@ import com.lacv.system.model.entities.User;
 import com.lacv.system.services.LogProcessService;
 import com.lacv.system.services.UserService;
 import com.lacv.system.services.security.SecurityService;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.system.model.constants.SystemConstants;
 import com.lacv.system.model.dtos.process.ContactUserPDto;
 import com.lacv.system.model.dtos.process.RegisterUserPDto;
 import com.lacv.system.model.entities.Role;
@@ -63,7 +64,7 @@ public class UserProcessController extends RestProcessController {
     @Autowired
     PropertyService propertyService;
     
-    AESEncrypt myInstance= AESEncrypt.getDefault(WebConstants.SECURITY_SALT);
+    AESEncrypt myInstance= AESEncrypt.getDefault(SystemConstants.SECURITY_SALT);
     
     @PostConstruct
     public void init(){
@@ -86,7 +87,7 @@ public class UserProcessController extends RestProcessController {
         result.setSuccess(false);
         if(user!=null){
             if(createPassword.getPassword().equals(createPassword.getConfirmPassword())){
-                user.setPassword(myInstance.encrypt(createPassword.getPassword(), WebConstants.SECURITY_SEED_PASSW));
+                user.setPassword(myInstance.encrypt(createPassword.getPassword(), SystemConstants.SECURITY_SEED_PASSW));
                 userService.update(user);
                 result.setMessage("La contraseña se ha creado correctamente");
                 result.setSuccess(true);
@@ -136,7 +137,7 @@ public class UserProcessController extends RestProcessController {
             user.setLastName(registerUserPDto.getLastName());
             user.setCell(registerUserPDto.getCell());
             user.setEmail(registerUserPDto.getEmail());
-            user.setPassword(myInstance.encrypt(registerUserPDto.getPassword(), WebConstants.SECURITY_SEED_PASSW));
+            user.setPassword(myInstance.encrypt(registerUserPDto.getPassword(), SystemConstants.SECURITY_SEED_PASSW));
             user.setRegistrationDate(new Date());
             user.setFailedAttempts(0);
             user.setUsername(registerUserPDto.getEmail());

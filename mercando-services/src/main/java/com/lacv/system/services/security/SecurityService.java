@@ -23,13 +23,17 @@ public interface SecurityService {
     
     String connect(String username, String password) throws AuthenticationException;
     
-    String connect(String basicAuthorization);
+    String connect(String basicAuthorization) throws AuthenticationException;
+    
+    String connectByToken(String token) throws AuthenticationException;
     
     UserDetailsDto getUserDetails();
     
     User getCurrentUser();
     
     String getBasicAuthorization();
+    
+    String generateAuthenticationToken(int minutesDuration);
     
     boolean checkAccessResource(String requestURI);
     

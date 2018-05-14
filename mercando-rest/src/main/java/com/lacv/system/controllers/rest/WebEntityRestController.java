@@ -11,7 +11,7 @@ import com.dot.gcpbasedot.controller.RestEntityController;
 import com.dot.gcpbasedot.dao.Parameters;
 import com.dot.gcpbasedot.util.Util;
 import com.google.gson.Gson;
-import com.lacv.system.model.constants.WebConstants;
+import com.lacv.system.model.constants.SystemConstants;
 import com.lacv.system.model.dtos.WebEntityDto;
 import com.lacv.system.model.entities.User;
 import java.util.LinkedHashMap;
@@ -46,7 +46,7 @@ public class WebEntityRestController extends RestEntityController {
     SecurityService securityService;
     
     @Autowired
-    WebConstants webConstants;
+    SystemConstants webConstants;
     
 
     @PostConstruct
