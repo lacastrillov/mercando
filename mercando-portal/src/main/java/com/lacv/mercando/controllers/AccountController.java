@@ -127,6 +127,29 @@ public class AccountController {
         return JSONService.objectToJson(data);
     }
     
+    @RequestMapping(value = "/ajax/generateAthenticationToken", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public String generateAthenticationToken(
+            @RequestParam(required = true) String j_username,
+            @RequestParam(required = true) String j_password) {
+        
+        Map data= new HashMap();
+        try{
+            if(j_username!=null && j_password!=null){
+                securityService.connect(j_username, j_password);
+            }
+            int minutesDuration= 10;
+            String token= securityService.generateAuthenticationToken(minutesDuration);
+            
+            data.put("success", true);
+            data.put("token", token);
+        }catch(AuthenticationException ex){
+            data.put("success", false);
+            data.put("message", "Usuario y/o contraseña incorrectos");
+        }
+        return JSONService.objectToJson(data);
+    }
+    
     @RequestMapping(value = "/ajax/logout", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public String logout(HttpSession session) {
