@@ -135,6 +135,22 @@ public class Commerce implements BaseEntity {
     public void setMainLocation(MainLocation mainLocation) {
         this.mainLocation = mainLocation;
     }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     @Override
     public int hashCode() {
@@ -159,22 +175,6 @@ public class Commerce implements BaseEntity {
     @Override
     public String toString() {
         return "com.lacv.marketplatform.entities.Commerce[ commerceId=" + id + " ]";
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
     }
     
 }
