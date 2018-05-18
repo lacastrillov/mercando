@@ -152,5 +152,5 @@
         <module>mercando-rest</module>
         <module>mercando-administration</module>
         <module>mercando-portal</module>
-  </modules>
+    </modules>
 </project>

@@ -10,7 +10,6 @@ import com.lacv.mercando.model.dtos.InventoryorderDetailDto;
 import com.lacv.mercando.model.mappers.InventoryorderDetailMapper;
 import com.lacv.mercando.services.InventoryorderDetailService;
 import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.components.MenuComponent;
 import com.dot.gcpbasedot.dto.config.EntityConfig;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,6 @@ public class InventoryorderDetailViewController extends ExtEntityController {
     
     @Autowired
     InventoryorderDetailService inventoryorderDetailService;
-    
-    @Autowired
-    MenuComponent menuComponent;
     
     @Autowired
     InventoryorderDetailMapper inventoryorderDetailMapper;
