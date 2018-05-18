@@ -34,6 +34,7 @@ function ShoppingCart() {
             productImageExtStore= new ProductImageExtStore();
             propertyExtStore= new PropertyExtStore();
             userAuthentication= new UserAuthentication();
+            userAuthentication.MODULES= ['/services','/admin'];
             
             Instance.setIVA();
             Instance.updateProductSummary();
