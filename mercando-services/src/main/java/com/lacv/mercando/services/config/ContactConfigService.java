@@ -5,7 +5,7 @@
  */
 package com.lacv.mercando.services.config;
 
-import com.dot.gcpbasedot.service.ConfigurationObjectService;
+import com.lacv.jmagrexs.service.ConfigurationObjectService;
 import com.lacv.mercando.model.dtos.config.ContactConfigDto;
 
 /**

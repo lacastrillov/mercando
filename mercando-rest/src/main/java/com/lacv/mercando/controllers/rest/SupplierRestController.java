@@ -9,7 +9,7 @@ package com.lacv.mercando.controllers.rest;
 
 import com.lacv.mercando.model.mappers.SupplierMapper;
 import com.lacv.mercando.services.SupplierService;
-import com.dot.gcpbasedot.controller.RestEntityController;
+import com.lacv.jmagrexs.controller.rest.RestEntityController;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/supplier")
+@RequestMapping(value="/rest/supplier")
 public class SupplierRestController extends RestEntityController {
     
     @Autowired

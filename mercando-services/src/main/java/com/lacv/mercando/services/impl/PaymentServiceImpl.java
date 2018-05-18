@@ -11,8 +11,8 @@ import com.lacv.mercando.daos.PaymentJpa;
 import com.lacv.mercando.model.entities.Payment;
 import com.lacv.mercando.model.mappers.PaymentMapper;
 import com.lacv.mercando.services.PaymentService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @author lcastrillo
  */
 @Service("paymentService")
-public class PaymentServiceImpl extends EntityServiceImpl1<Payment> implements PaymentService {
+public class PaymentServiceImpl extends EntityServiceImpl<Payment> implements PaymentService {
     
     @Autowired
     public PaymentJpa paymentJpa;

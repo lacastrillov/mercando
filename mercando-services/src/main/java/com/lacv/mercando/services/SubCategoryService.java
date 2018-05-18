@@ -7,7 +7,7 @@
 package com.lacv.mercando.services;
 
 import com.lacv.mercando.model.entities.SubCategory;
-import com.dot.gcpbasedot.service.EntityService;
+import com.lacv.jmagrexs.service.EntityService;
 
 
 

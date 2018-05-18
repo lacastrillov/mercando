@@ -7,25 +7,25 @@
 package com.lacv.mercando.controllers.rest.process;
 
 
-import com.lacv.system.model.dtos.process.BasicResultDto;
-import com.lacv.system.model.entities.LogProcess;
-import com.lacv.system.model.entities.User;
-import com.lacv.system.services.LogProcessService;
-import com.lacv.system.services.UserService;
-import com.lacv.system.services.security.SecurityService;
-import com.dot.gcpbasedot.annotation.DoProcess;
-import com.dot.gcpbasedot.controller.RestProcessController;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
+import com.lacv.jmagrexs.annotation.DoProcess;
+import com.lacv.jmagrexs.controller.rest.RestProcessController;
+import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.entities.LogProcess;
+import com.lacv.jmagrexs.modules.common.services.LogProcessService;
+import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
+import com.lacv.jmagrexs.modules.mail.services.MailingService;
+import com.lacv.jmagrexs.modules.security.entities.User;
+import com.lacv.jmagrexs.modules.security.services.UserService;
 import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
 import com.lacv.mercando.model.dtos.process.ProductListResultDto;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.ProductBasicDataPDto;
 import com.lacv.mercando.model.entities.Product;
-import com.lacv.system.model.entities.WebFile;
 import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
-import com.lacv.system.services.WebFileService;
-import com.lacv.system.services.mail.MailingService;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/processProduct")
+@RequestMapping(value="/rest/processProduct")
 public class ProductProcessController extends RestProcessController {
     
     @Autowired

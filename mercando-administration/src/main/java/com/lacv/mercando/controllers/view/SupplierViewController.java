@@ -9,10 +9,10 @@ package com.lacv.mercando.controllers.view;
 import com.lacv.mercando.model.dtos.SupplierDto;
 import com.lacv.mercando.model.mappers.SupplierMapper;
 import com.lacv.mercando.services.SupplierService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/supplier")
+@RequestMapping(value="/vista/supplier")
 public class SupplierViewController extends ExtEntityController {
     
     @Autowired

@@ -5,12 +5,12 @@
  */
 package com.lacv.mercando.model.dtos.process;
 
-import com.dot.gcpbasedot.annotation.HideField;
-import com.dot.gcpbasedot.annotation.Order;
-import com.dot.gcpbasedot.annotation.TextField;
-import com.dot.gcpbasedot.annotation.TypeFormField;
-import com.dot.gcpbasedot.enums.FieldType;
-import com.dot.gcpbasedot.enums.HideView;
+import com.lacv.jmagrexs.annotation.HideField;
+import com.lacv.jmagrexs.annotation.Order;
+import com.lacv.jmagrexs.annotation.TextField;
+import com.lacv.jmagrexs.annotation.TypeFormField;
+import com.lacv.jmagrexs.enums.FieldType;
+import com.lacv.jmagrexs.enums.HideView;
 
 /**
  *

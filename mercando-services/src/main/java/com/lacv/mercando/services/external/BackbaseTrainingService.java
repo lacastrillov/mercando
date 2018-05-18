@@ -5,7 +5,7 @@
  */
 package com.lacv.mercando.services.external;
 
-import com.dot.gcpbasedot.service.ExternalService;
+import com.lacv.jmagrexs.service.ExternalService;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.PlayerUserPDto;
 import com.lacv.mercando.model.dtos.process.UserNamePDto;

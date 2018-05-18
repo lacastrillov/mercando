@@ -21,24 +21,42 @@
     <import resource="mail-velocity-config.xml"/>
 
     <!-- Scans the classpath of this application for @Components to deploy as beans -->
-    
-    <context:component-scan base-package="com.lacv.system.daos" />
-    <context:component-scan base-package="com.lacv.system.services" />
-    <context:component-scan base-package="com.lacv.system.model.mappers" />
-    <context:component-scan base-package="com.lacv.system.model.constants" />
+    <context:component-scan base-package="com.lacv.jmagrexs.service.gcp" />
+    <context:component-scan base-package="com.lacv.jmagrexs.components" />
+    <bean id="serverDomain" class="com.lacv.jmagrexs.components.ServerDomain">
+        <property name="adminContext" value="/admin" />
+        <property name="restContext" value="/services" />
+    </bean>
+    <!-- Scans the classpath of this application for SYSTEM MODULES -->
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.common">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.entityexplorer">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.fileexplorer">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.leadtable">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.mail">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:component-scan base-package="com.lacv.jmagrexs.modules.security">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!-- Scans the classpath of this application for @Components to deploy as beans -->
     <context:component-scan base-package="com.lacv.mercando.daos" />
     <context:component-scan base-package="com.lacv.mercando.services" />
     <context:component-scan base-package="com.lacv.mercando.model.mappers" />
     <context:component-scan base-package="com.lacv.mercando.model.constants" />
     
-    <context:component-scan base-package="com.dot.gcpbasedot.service.gcp" />
-    <context:component-scan base-package="com.dot.gcpbasedot.components" />
-    
-    <bean id="tableColumnsConfig" class="com.dot.gcpbasedot.components.TableColumnsConfig">
+    <bean id="tableColumnsConfig" class="com.lacv.jmagrexs.components.TableColumnsConfig">
         <property name="columsConfigNameQuery" value="queriesTableColumn.columsConfig" />
     </bean>
     
-    <bean id="extViewConfig" class="com.dot.gcpbasedot.components.ExtViewConfig">
+    <bean id="extViewConfig" class="com.lacv.jmagrexs.components.ExtViewConfig">
         <property name="appName" value="MERCANDO" />
         <property name="extJsVersion" value="4" />
         <property name="favicon" value="/img/habitares.png" />

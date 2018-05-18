@@ -15,6 +15,7 @@
         <script type="text/javascript" src="/libjs/user/UserAuthentication.js"></script>
         <script>
             var userAuthentication = new UserAuthentication();
+            userAuthentication.MODULES= ['/services','/admin'];
             userAuthentication.replicateAuthentication(function(){
                 location.href="${page}";
             });

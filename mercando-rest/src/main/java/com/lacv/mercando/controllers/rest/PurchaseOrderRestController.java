@@ -9,10 +9,10 @@ package com.lacv.mercando.controllers.rest;
 
 import com.lacv.mercando.model.mappers.PurchaseOrderMapper;
 import com.lacv.mercando.services.PurchaseOrderService;
-import com.dot.gcpbasedot.controller.RestSessionController;
-import com.dot.gcpbasedot.domain.BaseEntity;
+import com.lacv.jmagrexs.controller.rest.RestSessionController;
+import com.lacv.jmagrexs.domain.BaseEntity;
 import com.lacv.mercando.model.entities.PurchaseOrder;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import javax.annotation.PostConstruct;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/purchaseOrder")
+@RequestMapping(value="/rest/purchaseOrder")
 public class PurchaseOrderRestController extends RestSessionController {
     
     @Autowired

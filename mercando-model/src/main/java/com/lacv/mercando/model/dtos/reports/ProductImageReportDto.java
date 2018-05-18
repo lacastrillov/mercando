@@ -5,12 +5,12 @@
  */
 package com.lacv.mercando.model.dtos.reports;
 
-import com.dot.gcpbasedot.annotation.ColumnWidth;
-import com.dot.gcpbasedot.annotation.Order;
-import com.dot.gcpbasedot.annotation.TextField;
-import com.dot.gcpbasedot.annotation.TypeFormField;
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.enums.FieldType;
+import com.lacv.jmagrexs.annotation.ColumnWidth;
+import com.lacv.jmagrexs.annotation.Order;
+import com.lacv.jmagrexs.annotation.TextField;
+import com.lacv.jmagrexs.annotation.TypeFormField;
+import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.jmagrexs.enums.FieldType;
 
 /**
  *

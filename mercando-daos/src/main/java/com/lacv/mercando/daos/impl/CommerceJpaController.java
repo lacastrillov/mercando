@@ -7,11 +7,7 @@ package com.lacv.mercando.daos.impl;
 
 import com.lacv.mercando.daos.CommerceJpa;
 import com.lacv.mercando.model.entities.Commerce;
-import com.dot.gcpbasedot.dao.JPAAbstractDao;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lacv.jmagrexs.dao.JPAGenericDao;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,17 +15,6 @@ import org.springframework.stereotype.Repository;
  * @author lacastrillov
  */
 @Repository
-public class CommerceJpaController extends JPAAbstractDao<Commerce> implements CommerceJpa {
-
-    @Autowired
-    public void init(DataSource dataSource){
-        super.setDataSource(dataSource);
-    }
-    
-    @Override
-    @PersistenceContext(unitName ="MarketPlatformPU")
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager= entityManager;
-    }
+public class CommerceJpaController extends JPAGenericDao<Commerce> implements CommerceJpa {
     
 }

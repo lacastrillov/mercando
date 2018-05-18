@@ -7,8 +7,8 @@
 package com.lacv.mercando.controllers.rest;
 
 
-import com.dot.gcpbasedot.controller.RestSessionController;
-import com.dot.gcpbasedot.domain.BaseEntity;
+import com.lacv.jmagrexs.controller.rest.RestSessionController;
+import com.lacv.jmagrexs.domain.BaseEntity;
 import com.lacv.mercando.model.mappers.PaymentMapper;
 import com.lacv.mercando.services.PaymentService;
 import javax.annotation.PostConstruct;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/payment")
+@RequestMapping(value="/rest/payment")
 public class PaymentRestController extends RestSessionController {
     
     @Autowired

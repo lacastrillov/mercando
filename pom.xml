@@ -23,8 +23,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>4.3.11.RELEASE</org.springframework.version>
-        <spring.security.version>4.2.3.RELEASE</spring.security.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <sitemesh.version>3.0.1</sitemesh.version>
@@ -34,7 +32,12 @@
         <dependency>
             <groupId>com.lacv</groupId>
             <artifactId>jmagrexs</artifactId>
-            <version>1.0.1</version>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lacv</groupId>
+            <artifactId>jmagrexs-modules</artifactId>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.web</groupId>
@@ -135,7 +138,7 @@
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
                 <jdbc.username>root</jdbc.username>
-                <jdbc.password>calsatrilievlo</jdbc.password>
+                <jdbc.password>dot54321</jdbc.password>
                 <mail.host>smtp.gmail.com</mail.host>
                 <mail.port>587</mail.port>
                 <mail.username>enviocorreodot1@gmail.com</mail.username>

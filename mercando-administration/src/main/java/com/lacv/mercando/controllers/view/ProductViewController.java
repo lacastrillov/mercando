@@ -7,16 +7,16 @@ package com.lacv.mercando.controllers.view;
 
 import com.lacv.mercando.model.dtos.ProductDto;
 import com.lacv.mercando.services.ProductService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.ProcessButton;
-import com.dot.gcpbasedot.dto.config.ReportConfig;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
-import com.dot.gcpbasedot.enums.PageType;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.ProcessButton;
+import com.lacv.jmagrexs.dto.config.ReportConfig;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
+import com.lacv.jmagrexs.enums.PageType;
 import com.lacv.mercando.model.dtos.process.ActivationProductPDto;
 import com.lacv.mercando.model.dtos.reports.ProductReportDto;
 import com.lacv.mercando.model.entities.ProductImage;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/vista/product")
 public class ProductViewController extends ExtEntityController {
 
     @Autowired

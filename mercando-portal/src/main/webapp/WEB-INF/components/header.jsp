@@ -12,6 +12,7 @@
 <script src="/js/web/Searcher.js"></script>
 <script>
     var userAuthentication = new UserAuthentication();
+    userAuthentication.MODULES= ['/services','/admin'];
     var searcher= new Searcher();
 </script>
 

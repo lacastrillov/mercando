@@ -9,9 +9,9 @@ package com.lacv.mercando.controllers.view;
 import com.lacv.mercando.model.dtos.ProductImageDto;
 import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.config.ReportConfig;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.config.ReportConfig;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
 import com.lacv.mercando.model.dtos.reports.ProductImageReportDto;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/productImage")
+@RequestMapping(value="/vista/productImage")
 public class ProductImageViewController extends ExtEntityController {
     
     @Autowired

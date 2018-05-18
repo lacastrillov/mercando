@@ -29,7 +29,7 @@
     </bean>
 
     <!-- Configuracion para el manejo de velocity -->
-    <bean id="velocityEngine" class="com.dot.gcpbasedot.util.velocity.VelocityEngineFactoryBean">
+    <bean id="velocityEngine" class="com.lacv.jmagrexs.util.velocity.VelocityEngineFactoryBean">
         <property name="velocityProperties">
             <value>
                 resource.loader=class

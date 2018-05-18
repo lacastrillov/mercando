@@ -11,16 +11,16 @@ import com.lacv.mercando.daos.PurchaseOrderJpa;
 import com.lacv.mercando.model.entities.PurchaseOrder;
 import com.lacv.mercando.model.mappers.PurchaseOrderMapper;
 import com.lacv.mercando.services.PurchaseOrderService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
-import com.dot.gcpbasedot.util.Util;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.modules.common.services.PropertyService;
+import com.lacv.jmagrexs.modules.security.entities.User;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
+import com.lacv.jmagrexs.util.Util;
 import com.lacv.mercando.model.dtos.process.ShippingCartItemPDto;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
 import com.lacv.mercando.model.entities.Product;
 import com.lacv.mercando.model.entities.PurchaseorderDetail;
-import com.lacv.system.model.entities.User;
 import com.lacv.mercando.services.ProductService;
-import com.lacv.system.services.PropertyService;
 import com.lacv.mercando.services.PurchaseorderDetailService;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author lcastrillo
  */
 @Service("purchaseOrderService")
-public class PurchaseOrderServiceImpl extends EntityServiceImpl1<PurchaseOrder> implements PurchaseOrderService {
+public class PurchaseOrderServiceImpl extends EntityServiceImpl<PurchaseOrder> implements PurchaseOrderService {
     
     @Autowired
     public PurchaseOrderJpa purchaseOrderJpa;

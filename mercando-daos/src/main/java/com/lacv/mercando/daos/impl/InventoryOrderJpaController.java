@@ -7,11 +7,7 @@ package com.lacv.mercando.daos.impl;
 
 import com.lacv.mercando.daos.InventoryOrderJpa;
 import com.lacv.mercando.model.entities.InventoryOrder;
-import com.dot.gcpbasedot.dao.JPAAbstractDao;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lacv.jmagrexs.dao.JPAGenericDao;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,17 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author lacastrillov
  */
 @Repository
-public class InventoryOrderJpaController extends JPAAbstractDao<InventoryOrder> implements InventoryOrderJpa {
+public class InventoryOrderJpaController extends JPAGenericDao<InventoryOrder> implements InventoryOrderJpa {
 
-    @Autowired
-    public void init(DataSource dataSource){
-        super.setDataSource(dataSource);
-    }
-    
-    @Override
-    @PersistenceContext(unitName ="MarketPlatformPU")
-    public void setEntityManager(EntityManager entityManager) {
-        this.entityManager= entityManager;
-    }
     
 }

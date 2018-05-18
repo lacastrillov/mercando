@@ -9,8 +9,8 @@ package com.lacv.mercando.controllers.rest;
 
 import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
-import com.dot.gcpbasedot.controller.RestSessionController;
-import com.dot.gcpbasedot.domain.BaseEntity;
+import com.lacv.jmagrexs.controller.rest.RestSessionController;
+import com.lacv.jmagrexs.domain.BaseEntity;
 import javax.annotation.PostConstruct;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/product")
+@RequestMapping(value="/rest/product")
 public class ProductRestController extends RestSessionController {
     
     @Autowired
