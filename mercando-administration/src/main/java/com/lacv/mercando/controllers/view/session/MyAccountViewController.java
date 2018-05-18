@@ -6,15 +6,15 @@
 
 package com.lacv.mercando.controllers.view.session;
 
-import com.lacv.system.model.dtos.UserDto;
-import com.lacv.system.model.mappers.UserMapper;
-import com.lacv.system.services.UserService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.ProcessButton;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
-import com.lacv.system.model.dtos.process.CreatePasswordDto;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.ProcessButton;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
+import com.lacv.jmagrexs.modules.security.dtos.UserDto;
+import com.lacv.jmagrexs.modules.security.dtos.process.CreatePasswordDto;
+import com.lacv.jmagrexs.modules.security.mappers.UserMapper;
+import com.lacv.jmagrexs.modules.security.services.UserService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/myAccount")
+@RequestMapping(value="/vista/myAccount")
 public class MyAccountViewController extends ExtEntityController {
     
     @Autowired

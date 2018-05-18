@@ -6,18 +6,18 @@
 
 package com.lacv.mercando.controllers.view.process;
 
-import com.lacv.system.model.dtos.LogProcessDto;
 import com.lacv.mercando.model.dtos.process.MainLocationPDto;
 import com.lacv.mercando.model.dtos.process.ProductoPDto;
 import com.lacv.mercando.model.dtos.process.ResultadoPDto;
 import com.lacv.mercando.model.dtos.process.UsuarioPDto;
-import com.dot.gcpbasedot.controller.ExtProcessController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.ProcessConfig;
-import com.dot.gcpbasedot.enums.PageType;
-import com.lacv.system.model.dtos.PropertyDto;
-import com.lacv.system.model.dtos.process.BasicResultDto;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.controller.view.ExtProcessController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.config.ProcessConfig;
+import com.lacv.jmagrexs.enums.PageType;
+import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.dtos.LogProcessDto;
+import com.lacv.jmagrexs.modules.common.dtos.PropertyDto;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/processMainLocation")
+@RequestMapping(value="/vista/processMainLocation")
 public class MainLocationViewProcessController extends ExtProcessController {
     
     @Autowired

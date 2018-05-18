@@ -5,7 +5,7 @@
  */
 package com.lacv.mercando.model.entities;
 
-import com.dot.gcpbasedot.domain.BaseEntity;
+import com.lacv.jmagrexs.domain.BaseEntity;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;

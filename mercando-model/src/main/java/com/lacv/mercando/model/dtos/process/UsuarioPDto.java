@@ -5,11 +5,11 @@
  */
 package com.lacv.mercando.model.dtos.process;
 
-import com.dot.gcpbasedot.annotation.NotNull;
-import com.dot.gcpbasedot.annotation.Order;
-import com.dot.gcpbasedot.annotation.TextField;
-import com.dot.gcpbasedot.annotation.TypeFormField;
-import com.dot.gcpbasedot.enums.FieldType;
+import com.lacv.jmagrexs.annotation.NotNull;
+import com.lacv.jmagrexs.annotation.Order;
+import com.lacv.jmagrexs.annotation.TextField;
+import com.lacv.jmagrexs.annotation.TypeFormField;
+import com.lacv.jmagrexs.enums.FieldType;
 import java.util.Date;
 
 /**

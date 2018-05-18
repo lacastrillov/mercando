@@ -6,7 +6,7 @@
 package com.lacv.mercando.daos;
 
 import com.lacv.mercando.model.entities.MainLocation;
-import com.dot.gcpbasedot.dao.GenericDao;
+import com.lacv.jmagrexs.dao.GenericDao;
 
 /**
  *

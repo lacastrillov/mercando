@@ -7,10 +7,10 @@
 package com.lacv.mercando.controllers.rest.config;
 
 
-import com.dot.gcpbasedot.controller.RestConfigurationController;
+import com.lacv.jmagrexs.controller.rest.RestConfigurationController;
+import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.dtos.config.PortalConfigDto;
-import com.lacv.system.model.entities.WebFile;
-import com.lacv.system.services.WebFileService;
 import com.lacv.mercando.services.config.ContactConfigService;
 import com.lacv.mercando.services.config.PortalConfigService;
 import java.io.InputStream;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/generalConfig")
+@RequestMapping(value="/rest/generalConfig")
 public class GeneralConfigController extends RestConfigurationController {
     
     @Autowired

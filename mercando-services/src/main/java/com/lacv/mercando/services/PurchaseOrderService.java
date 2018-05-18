@@ -6,10 +6,10 @@
 
 package com.lacv.mercando.services;
 
+import com.lacv.jmagrexs.modules.security.entities.User;
 import com.lacv.mercando.model.entities.PurchaseOrder;
-import com.dot.gcpbasedot.service.EntityService;
+import com.lacv.jmagrexs.service.EntityService;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
-import com.lacv.system.model.entities.User;
 
 
 

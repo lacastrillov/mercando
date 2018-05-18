@@ -6,13 +6,13 @@
 
 package com.lacv.mercando.controllers.view.config;
 
-import com.dot.gcpbasedot.controller.ExtConfigurationObjectController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.ConfigurationObjectConfig;
-import com.dot.gcpbasedot.enums.PageType;
+import com.lacv.jmagrexs.controller.view.ExtConfigurationObjectController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.config.ConfigurationObjectConfig;
+import com.lacv.jmagrexs.enums.PageType;
 import com.lacv.mercando.model.dtos.config.ContactConfigDto;
 import com.lacv.mercando.model.dtos.config.PortalConfigDto;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/generalConfig")
+@RequestMapping(value="/vista/generalConfig")
 public class GeneralViewConfigController extends ExtConfigurationObjectController {
     
     @Autowired

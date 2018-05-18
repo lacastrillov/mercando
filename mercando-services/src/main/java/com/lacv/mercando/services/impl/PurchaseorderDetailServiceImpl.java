@@ -11,8 +11,8 @@ import com.lacv.mercando.daos.PurchaseorderDetailJpa;
 import com.lacv.mercando.model.entities.PurchaseorderDetail;
 import com.lacv.mercando.model.mappers.PurchaseorderDetailMapper;
 import com.lacv.mercando.services.PurchaseorderDetailService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @author lcastrillo
  */
 @Service("purchaseorderDetailService")
-public class PurchaseorderDetailServiceImpl extends EntityServiceImpl1<PurchaseorderDetail> implements PurchaseorderDetailService {
+public class PurchaseorderDetailServiceImpl extends EntityServiceImpl<PurchaseorderDetail> implements PurchaseorderDetailService {
     
     @Autowired
     public PurchaseorderDetailJpa purchaseorderDetailJpa;

@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.mapper.EntityMapper;
-import com.dot.gcpbasedot.mapper.EntityMapperImpl;
+import com.lacv.jmagrexs.mapper.EntityMapper;
+import com.lacv.jmagrexs.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.PurchaseorderDetailDto;
 import com.lacv.mercando.model.entities.PurchaseorderDetail;
 import java.util.ArrayList;

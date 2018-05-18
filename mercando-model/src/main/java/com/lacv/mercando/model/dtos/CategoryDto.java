@@ -5,17 +5,17 @@
  */
 package com.lacv.mercando.model.dtos;
 
-import com.dot.gcpbasedot.annotation.ColumnWidth;
-import com.dot.gcpbasedot.annotation.HideField;
-import com.dot.gcpbasedot.annotation.LabelField;
-import com.dot.gcpbasedot.annotation.NotNull;
-import com.dot.gcpbasedot.annotation.Order;
-import com.dot.gcpbasedot.annotation.ReadOnly;
-import com.dot.gcpbasedot.annotation.TextField;
-import com.dot.gcpbasedot.annotation.TypeFormField;
-import com.dot.gcpbasedot.domain.BaseEntity;
-import com.dot.gcpbasedot.enums.FieldType;
-import com.dot.gcpbasedot.enums.HideView;
+import com.lacv.jmagrexs.annotation.ColumnWidth;
+import com.lacv.jmagrexs.annotation.HideField;
+import com.lacv.jmagrexs.annotation.LabelField;
+import com.lacv.jmagrexs.annotation.NotNull;
+import com.lacv.jmagrexs.annotation.Order;
+import com.lacv.jmagrexs.annotation.ReadOnly;
+import com.lacv.jmagrexs.annotation.TextField;
+import com.lacv.jmagrexs.annotation.TypeFormField;
+import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.jmagrexs.enums.FieldType;
+import com.lacv.jmagrexs.enums.HideView;
 import java.util.List;
 
 /**

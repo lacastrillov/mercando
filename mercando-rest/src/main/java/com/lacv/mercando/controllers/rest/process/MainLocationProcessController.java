@@ -11,16 +11,16 @@ import com.lacv.mercando.model.dtos.process.MainLocationPDto;
 import com.lacv.mercando.model.dtos.process.ProductoPDto;
 import com.lacv.mercando.model.dtos.process.ResultadoPDto;
 import com.lacv.mercando.model.dtos.process.UsuarioPDto;
-import com.lacv.system.model.entities.LogProcess;
-import com.lacv.system.services.LogProcessService;
-import com.dot.gcpbasedot.annotation.DoProcess;
-import com.dot.gcpbasedot.controller.RestProcessController;
-import com.lacv.system.model.dtos.PropertyDto;
-import com.lacv.system.model.dtos.process.BasicResultDto;
-import com.lacv.system.model.entities.Property;
-import com.lacv.system.model.entities.WebFile;
-import com.lacv.system.services.PropertyService;
-import com.lacv.system.services.WebFileService;
+import com.lacv.jmagrexs.annotation.DoProcess;
+import com.lacv.jmagrexs.controller.rest.RestProcessController;
+import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.dtos.PropertyDto;
+import com.lacv.jmagrexs.modules.common.entities.LogProcess;
+import com.lacv.jmagrexs.modules.common.entities.Property;
+import com.lacv.jmagrexs.modules.common.services.LogProcessService;
+import com.lacv.jmagrexs.modules.common.services.PropertyService;
+import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import java.io.InputStream;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/processMainLocation")
+@RequestMapping(value="/rest/processMainLocation")
 public class MainLocationProcessController extends RestProcessController {
     
     @Autowired

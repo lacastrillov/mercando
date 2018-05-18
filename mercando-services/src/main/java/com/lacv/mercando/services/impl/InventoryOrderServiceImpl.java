@@ -11,8 +11,8 @@ import com.lacv.mercando.daos.InventoryOrderJpa;
 import com.lacv.mercando.model.entities.InventoryOrder;
 import com.lacv.mercando.model.mappers.InventoryOrderMapper;
 import com.lacv.mercando.services.InventoryOrderService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @author lcastrillo
  */
 @Service("inventoryOrderService")
-public class InventoryOrderServiceImpl extends EntityServiceImpl1<InventoryOrder> implements InventoryOrderService {
+public class InventoryOrderServiceImpl extends EntityServiceImpl<InventoryOrder> implements InventoryOrderService {
     
     @Autowired
     public InventoryOrderJpa inventoryOrderJpa;

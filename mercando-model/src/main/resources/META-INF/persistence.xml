@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="MarketPlatformPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="PERSISTENCE_UNIT" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.lacv.mercando.model.entities.Category</class>
     <class>com.lacv.mercando.model.entities.Commerce</class>
@@ -14,23 +14,24 @@
     <class>com.lacv.mercando.model.entities.Supplier</class>
     <class>com.lacv.mercando.model.entities.ProductImage</class>
     <class>com.lacv.mercando.model.entities.SubCategory</class>
-    <class>com.lacv.system.model.entities.WebresourceAuthorization</class>
-    <class>com.lacv.system.model.entities.JsonObject</class>
-    <class>com.lacv.system.model.entities.Role</class>
-    <class>com.lacv.system.model.entities.TableColumn</class>
-    <class>com.lacv.system.model.entities.UserRole</class>
-    <class>com.lacv.system.model.entities.Mail</class>
-    <class>com.lacv.system.model.entities.User</class>
-    <class>com.lacv.system.model.entities.RoleAuthorization</class>
-    <class>com.lacv.system.model.entities.Property</class>
-    <class>com.lacv.system.model.entities.WebResource</class>
-    <class>com.lacv.system.model.entities.WebresourceRole</class>
-    <class>com.lacv.system.model.entities.LeadTable</class>
-    <class>com.lacv.system.model.entities.WebFile</class>
-    <class>com.lacv.system.model.entities.MailTemplate</class>
-    <class>com.lacv.system.model.entities.Authorization</class>
-    <class>com.lacv.system.model.entities.LogProcess</class>
-    <class>com.lacv.system.model.entities.WebEntity</class>
+    
+    <class>com.lacv.jmagrexs.modules.security.entities.Authorization</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.WebresourceRole</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.RoleAuthorization</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.WebresourceAuthorization</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.UserRole</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.WebResource</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.User</class>
+    <class>com.lacv.jmagrexs.modules.security.entities.Role</class>
+    <class>com.lacv.jmagrexs.modules.leadtable.entities.LeadTable</class>
+    <class>com.lacv.jmagrexs.modules.leadtable.entities.TableColumn</class>
+    <class>com.lacv.jmagrexs.modules.mail.entities.MailTemplate</class>
+    <class>com.lacv.jmagrexs.modules.mail.entities.Mail</class>
+    <class>com.lacv.jmagrexs.modules.entityexplorer.entities.WebEntity</class>
+    <class>com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile</class>
+    <class>com.lacv.jmagrexs.modules.common.entities.LogProcess</class>
+    <class>com.lacv.jmagrexs.modules.common.entities.Property</class>
+    <class>com.lacv.jmagrexs.modules.common.entities.JsonObject</class>
     <properties>
       <property name="eclipselink.cache.shared.default" value="false"/>
       <property name="wildfly.jpa.default-unit" value="true"/>

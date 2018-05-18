@@ -5,19 +5,19 @@
  */
 package com.lacv.mercando.controllers.rest.process;
 
-import com.dot.gcpbasedot.annotation.DoProcess;
-import com.dot.gcpbasedot.controller.RestProcessController;
+import com.lacv.jmagrexs.annotation.DoProcess;
+import com.lacv.jmagrexs.controller.rest.RestProcessController;
+import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.entities.LogProcess;
+import com.lacv.jmagrexs.modules.common.services.LogProcessService;
+import com.lacv.jmagrexs.modules.security.entities.User;
+import com.lacv.jmagrexs.modules.security.entities.UserRole;
+import com.lacv.jmagrexs.modules.security.services.UserRoleService;
+import com.lacv.jmagrexs.modules.security.services.UserService;
 import com.lacv.mercando.model.constants.WebConstants;
-import com.lacv.system.model.dtos.process.BasicResultDto;
 import com.lacv.mercando.model.dtos.process.ShoppingCartPDto;
-import com.lacv.system.model.entities.LogProcess;
-import com.lacv.system.model.entities.User;
-import com.lacv.system.model.entities.UserRole;
-import com.lacv.system.services.LogProcessService;
 import com.lacv.mercando.services.PurchaseOrderService;
-import com.lacv.system.services.UserRoleService;
-import com.lacv.system.services.UserService;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/processPurchaseOrder")
+@RequestMapping(value="/rest/processPurchaseOrder")
 public class PurchaseOrderProcessController extends RestProcessController  {
     
     @Autowired

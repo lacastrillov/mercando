@@ -7,7 +7,7 @@
 package com.lacv.mercando.controllers.rest;
 
 
-import com.dot.gcpbasedot.controller.RestEntityController;
+import com.lacv.jmagrexs.controller.rest.RestEntityController;
 import com.lacv.mercando.model.mappers.MainLocationMapper;
 import com.lacv.mercando.services.MainLocationService;
 import javax.annotation.PostConstruct;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/mainLocation")
+@RequestMapping(value="/rest/mainLocation")
 public class MainLocationRestController extends RestEntityController {
     
     @Autowired

@@ -7,12 +7,12 @@
 package com.lacv.mercando.controllers.rest;
 
 
-import com.dot.gcpbasedot.controller.RestEntityController;
+import com.lacv.jmagrexs.controller.rest.RestEntityController;
+import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.entities.Commerce;
 import com.lacv.mercando.model.mappers.CommerceMapper;
 import com.lacv.mercando.services.CommerceService;
-import com.lacv.system.model.entities.WebFile;
-import com.lacv.system.services.WebFileService;
 import java.io.InputStream;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/commerce")
+@RequestMapping(value="/rest/commerce")
 public class CommerceRestController extends RestEntityController {
     
     @Autowired

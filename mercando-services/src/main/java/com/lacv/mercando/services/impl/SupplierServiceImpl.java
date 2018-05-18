@@ -11,8 +11,8 @@ import com.lacv.mercando.daos.SupplierJpa;
 import com.lacv.mercando.model.entities.Supplier;
 import com.lacv.mercando.model.mappers.SupplierMapper;
 import com.lacv.mercando.services.SupplierService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @author lcastrillo
  */
 @Service("supplierService")
-public class SupplierServiceImpl extends EntityServiceImpl1<Supplier> implements SupplierService {
+public class SupplierServiceImpl extends EntityServiceImpl<Supplier> implements SupplierService {
     
     @Autowired
     public SupplierJpa supplierJpa;

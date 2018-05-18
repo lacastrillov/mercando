@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+util.importJS('/js/web/extlib/CommonExtView.js');
 
 function UserExtStore(){
     
     var Instance = this;
     
-    var errorGeneral= "Error de servidor";
-    var error403= "Usted no tiene permisos para realizar esta operaci&oacute;n";
+    var commonExtView= new CommonExtView();
+    
     var baseAction= "";
     
     
+
     Instance.find= function(filter, params, func){
         Ext.Ajax.request({
-            url: Ext.context+'/rest/user/'+baseAction+'find.htm',
+            url: Ext.restContext+'/rest/user/'+baseAction+'find.htm',
             method: "GET",
             params: ((filter!==null && filter!=="")?"filter="+encodeURIComponent(filter):"") + params,
             success: function(response){
@@ -24,12 +25,7 @@ function UserExtStore(){
                 func(responseText);
             },
             failure: function(response){
-                console.log(response);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
             }
         });
     };
@@ -42,7 +38,7 @@ function UserExtStore(){
             waitConfig: {interval:200}
         });
         Ext.Ajax.request({
-            url: Ext.context+'/rest/user/'+baseAction+operation+'.htm',
+            url: Ext.restContext+'/rest/user/'+baseAction+operation+'.htm',
             method: "POST",
             params: "data="+encodeURIComponent(data),
             success: function(response){
@@ -51,50 +47,48 @@ function UserExtStore(){
                 func(responseText);
             },
             failure: function(response){
-                console.log(response);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
             }
         });
     };
     
     Instance.load= function(idEntity, func){
         Ext.Ajax.request({
-            url: Ext.context+'/rest/user/'+baseAction+'load.htm',
+            url: Ext.restContext+'/rest/user/'+baseAction+'load.htm',
             method: "GET",
-            params: 'data='+encodeURIComponent('{"id":'+idEntity+'}'),
+            params: 'idEntity='+idEntity,
             success: function(response){
                 var responseText= Ext.decode(response.responseText);
                 func(responseText.data);
             },
             failure: function(response){
-                console.log(response);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
             }
         });
     };
     
     Instance.upload= function(form, idEntity, func){
         form.submit({
-            url: Ext.context+'/rest/user/'+baseAction+'diskupload/'+idEntity+'.htm',
+            url: Ext.restContext+'/rest/user/'+baseAction+'diskupload/'+idEntity+'.htm',
             waitMsg: 'Subiendo archivo...',
             success: function(form, action) {
                 func(action.result);
             },
             failure: function(response){
-                console.log(response);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
+            }
+        });
+    };
+    
+    Instance.import= function(form, typeReport, func){
+        form.submit({
+            url: Ext.restContext+'/rest/user/'+baseAction+'import/'+typeReport+'.htm',
+            waitMsg: 'Importando archivo...',
+            success: function(form, action) {
+                func(action.result);
+            },
+            failure: function(response){
+                commonExtView.processFailure(response);
             }
         });
     };
@@ -107,7 +101,7 @@ function UserExtStore(){
             waitConfig: {interval:200}
         });
         Ext.Ajax.request({
-            url: Ext.context+"/rest/"+mainProcessRef+"/doProcess.htm",
+            url: Ext.restContext+"/rest/"+mainProcessRef+"/doProcess.htm",
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json'
@@ -118,12 +112,7 @@ function UserExtStore(){
                 func(response.responseText);
             },
             failure: function(response){
-                console.log(response.responseText);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
             }
         });
     };
@@ -136,7 +125,7 @@ function UserExtStore(){
             waitConfig: {interval:200}
         });
         Ext.Ajax.request({
-            url: Ext.context+'/rest/user/'+baseAction+'delete/byfilter.htm',
+            url: Ext.restContext+'/rest/user/'+baseAction+'delete/byfilter.htm',
             method: "GET",
             params: (filter!==null && filter!=="")?"filter="+encodeURIComponent(filter):"",
             success: function(response){
@@ -145,23 +134,9 @@ function UserExtStore(){
                 Ext.MessageBox.hide();
             },
             failure: function(response){
-                console.log(response);
-                if(response.status===403){
-                    showErrorMessage(error403);
-                }else{
-                    showErrorMessage(errorGeneral);
-                }
+                commonExtView.processFailure(response);
             }
         });
     };
-    
-    function showErrorMessage(errorMsg){
-        Ext.MessageBox.show({
-            title: 'REMOTE EXCEPTION',
-            msg: errorMsg,
-            icon: Ext.MessageBox.ERROR,
-            buttons: Ext.Msg.OK
-        });
-    }
 
 }

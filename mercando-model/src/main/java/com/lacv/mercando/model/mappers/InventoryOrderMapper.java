@@ -4,9 +4,9 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.lacv.system.model.mappers.UserMapper;
-import com.dot.gcpbasedot.mapper.EntityMapper;
-import com.dot.gcpbasedot.mapper.EntityMapperImpl;
+import com.lacv.jmagrexs.mapper.EntityMapper;
+import com.lacv.jmagrexs.mapper.EntityMapperImpl;
+import com.lacv.jmagrexs.modules.security.mappers.UserMapper;
 import com.lacv.mercando.model.dtos.InventoryOrderDto;
 import com.lacv.mercando.model.entities.InventoryOrder;
 import java.util.ArrayList;

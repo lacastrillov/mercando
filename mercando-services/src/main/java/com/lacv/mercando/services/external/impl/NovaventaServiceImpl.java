@@ -5,8 +5,8 @@
  */
 package com.lacv.mercando.services.external.impl;
 
-import com.dot.gcpbasedot.dto.RESTServiceDto;
-import com.dot.gcpbasedot.service.ExternalServiceImpl;
+import com.lacv.jmagrexs.dto.RESTServiceDto;
+import com.lacv.jmagrexs.service.ExternalServiceImpl;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.NetworkPDto;
 import com.lacv.mercando.model.dtos.process.ProductoPDto;

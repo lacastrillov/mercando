@@ -56,7 +56,7 @@
         <script src="/libjs/util/Util.js"></script>
         <script src="/js/util/Validation.js"></script>
         <script>
-            Ext.context= "";
+            Ext.restContext= "/services";
         </script>
         
         <sitemesh:write property='head'/>

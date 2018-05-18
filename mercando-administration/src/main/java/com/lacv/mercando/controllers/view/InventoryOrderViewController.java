@@ -9,11 +9,11 @@ package com.lacv.mercando.controllers.view;
 import com.lacv.mercando.model.dtos.InventoryOrderDto;
 import com.lacv.mercando.model.mappers.InventoryOrderMapper;
 import com.lacv.mercando.services.InventoryOrderService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
 import com.lacv.mercando.model.entities.InventoryorderDetail;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/inventoryOrder")
+@RequestMapping(value="/vista/inventoryOrder")
 public class InventoryOrderViewController extends ExtEntityController {
     
     @Autowired

@@ -1,13 +1,13 @@
 package com.lacv.mercando.controllers.portal;
 
-import com.dot.gcpbasedot.dao.Parameters;
-import com.dot.gcpbasedot.util.FilterQueryJSON;
+import com.lacv.jmagrexs.dao.Parameters;
+import com.lacv.jmagrexs.util.FilterQueryJSON;
 import com.lacv.mercando.model.entities.Product;
 import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.services.ProductImageService;
 import com.lacv.mercando.services.ProductService;
 import com.lacv.mercando.services.SubCategoryService;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

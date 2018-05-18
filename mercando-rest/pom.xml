@@ -29,7 +29,7 @@
 
     <build>
         <outputDirectory>target/${project.artifactId}/WEB-INF/classes</outputDirectory> 
-        <finalName>rest</finalName>
+        <finalName>services</finalName>
         <resources>
             <!-- Para que los resources sean procesados -->
             <resource>

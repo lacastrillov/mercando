@@ -35,7 +35,7 @@ function UserClient() {
         if(Instance.registerValidate()){
             var data = {};
             $("#userRegistrationForm").serializeArray().map(function(x){data[x.name] = x.value;});
-            userExtStore.doProcess("processUser", "registerUser", data, function(responseText){
+            userExtStore.doProcess("processClient", "registerUser", data, function(responseText){
                 message.showMessage("Registro de usuario", JSON.parse(responseText).message);
                 $('#userRegistrationForm').trigger("reset");
             });
@@ -46,7 +46,7 @@ function UserClient() {
         if(Instance.contactValidate()){
             var data = {};
             $("#userContactForm").serializeArray().map(function(x){data[x.name] = x.value;});
-            userExtStore.doProcess("processUser", "contactUser", data, function(responseText){
+            userExtStore.doProcess("processClient", "contactUser", data, function(responseText){
                 message.showMessage("Contacto de usuario", JSON.parse(responseText).message);
                 $('#userContactForm').trigger("reset");
             });

@@ -11,8 +11,8 @@ import com.lacv.mercando.daos.SubCategoryJpa;
 import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;
 import com.lacv.mercando.services.SubCategoryService;
-import com.dot.gcpbasedot.dao.GenericDao;
-import com.dot.gcpbasedot.service.EntityServiceImpl1;
+import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
  * @author lcastrillo
  */
 @Service("subCategoryService")
-public class SubCategoryServiceImpl extends EntityServiceImpl1<SubCategory> implements SubCategoryService {
+public class SubCategoryServiceImpl extends EntityServiceImpl<SubCategory> implements SubCategoryService {
     
     @Autowired
     public SubCategoryJpa subCategoryJpa;

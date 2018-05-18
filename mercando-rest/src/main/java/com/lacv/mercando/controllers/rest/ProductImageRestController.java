@@ -9,10 +9,10 @@ package com.lacv.mercando.controllers.rest;
 
 import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
-import com.dot.gcpbasedot.controller.RestEntityController;
+import com.lacv.jmagrexs.controller.rest.RestEntityController;
+import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.entities.ProductImage;
-import com.lacv.system.model.entities.WebFile;
-import com.lacv.system.services.WebFileService;
 import java.io.InputStream;
 import javax.annotation.PostConstruct;
 import org.apache.commons.io.FilenameUtils;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/productImage")
+@RequestMapping(value="/rest/productImage")
 public class ProductImageRestController extends RestEntityController {
     
     @Autowired

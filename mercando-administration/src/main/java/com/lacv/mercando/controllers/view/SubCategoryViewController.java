@@ -9,8 +9,8 @@ package com.lacv.mercando.controllers.view;
 import com.lacv.mercando.model.dtos.SubCategoryDto;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;
 import com.lacv.mercando.services.SubCategoryService;
-import com.dot.gcpbasedot.controller.ExtEntityController;
-import com.dot.gcpbasedot.dto.config.EntityConfig;
+import com.lacv.jmagrexs.controller.view.ExtEntityController;
+import com.lacv.jmagrexs.dto.config.EntityConfig;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/subCategory")
+@RequestMapping(value="/vista/subCategory")
 public class SubCategoryViewController extends ExtEntityController {
     
     @Autowired

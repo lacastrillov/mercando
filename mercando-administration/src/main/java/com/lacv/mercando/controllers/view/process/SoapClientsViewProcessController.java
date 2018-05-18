@@ -6,16 +6,16 @@
 
 package com.lacv.mercando.controllers.view.process;
 
-import com.lacv.system.model.dtos.LogProcessDto;
-import com.lacv.system.model.dtos.process.BasicResultDto;
-import com.dot.gcpbasedot.controller.ExtProcessController;
-import com.dot.gcpbasedot.dto.MenuItem;
-import com.dot.gcpbasedot.dto.config.ProcessConfig;
-import com.dot.gcpbasedot.enums.PageType;
+import com.lacv.jmagrexs.controller.view.ExtProcessController;
+import com.lacv.jmagrexs.dto.MenuItem;
+import com.lacv.jmagrexs.dto.config.ProcessConfig;
+import com.lacv.jmagrexs.enums.PageType;
+import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.dtos.LogProcessDto;
 import com.lacv.mercando.model.dtos.process.BasicPDto;
 import com.lacv.mercando.model.dtos.process.PlayerUserPDto;
 import com.lacv.mercando.model.dtos.process.UserNamePDto;
-import com.lacv.system.services.security.SecurityService;
+import com.lacv.jmagrexs.modules.security.services.bussiness.SecurityService;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lacastrillov
  */
 @Controller
-@RequestMapping(value="/soapClients")
+@RequestMapping(value="/vista/soapClients")
 public class SoapClientsViewProcessController extends ExtProcessController {
     
     @Autowired

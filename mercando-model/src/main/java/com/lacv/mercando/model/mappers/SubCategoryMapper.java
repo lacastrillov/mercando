@@ -4,8 +4,8 @@
  */
 package com.lacv.mercando.model.mappers;
 
-import com.dot.gcpbasedot.mapper.EntityMapper;
-import com.dot.gcpbasedot.mapper.EntityMapperImpl;
+import com.lacv.jmagrexs.mapper.EntityMapper;
+import com.lacv.jmagrexs.mapper.EntityMapperImpl;
 import com.lacv.mercando.model.dtos.CategoryDto;
 import com.lacv.mercando.model.dtos.SubCategoryDto;
 import com.lacv.mercando.model.entities.SubCategory;

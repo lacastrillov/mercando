@@ -9,7 +9,7 @@ package com.lacv.mercando.controllers.rest;
 
 import com.lacv.mercando.model.mappers.InventoryorderDetailMapper;
 import com.lacv.mercando.services.InventoryorderDetailService;
-import com.dot.gcpbasedot.controller.RestEntityController;
+import com.lacv.jmagrexs.controller.rest.RestEntityController;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author lcastrillo
  */
 @Controller
-@RequestMapping(value="/inventoryorderDetail")
+@RequestMapping(value="/rest/inventoryorderDetail")
 public class InventoryorderDetailRestController extends RestEntityController {
     
     @Autowired

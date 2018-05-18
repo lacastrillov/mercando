@@ -32,7 +32,7 @@
     </bean>
 
     <bean id="entityManagerFactoryRC" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="MarketPlatformPU"/>
+        <property name="persistenceUnitName" value="PERSISTENCE_UNIT"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaMYSQLAdapter"/>
         <property name="jpaDialect">
@@ -50,7 +50,7 @@
 
     <bean id="transactionManagerRC" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactoryRC" />
-        <qualifier value="TRANSACTION_MANAGER_1"/>
+        <qualifier value="TRANSACTION_MANAGER"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManagerRC"/>
