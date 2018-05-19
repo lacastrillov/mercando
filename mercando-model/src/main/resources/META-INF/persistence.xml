@@ -28,6 +28,7 @@
     <class>com.lacv.jmagrexs.modules.mail.entities.MailTemplate</class>
     <class>com.lacv.jmagrexs.modules.mail.entities.Mail</class>
     <class>com.lacv.jmagrexs.modules.entityexplorer.entities.WebEntity</class>
+    <class>com.lacv.jmagrexs.modules.entityexplorer.entities.WebEntityType</class>
     <class>com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile</class>
     <class>com.lacv.jmagrexs.modules.common.entities.LogProcess</class>
     <class>com.lacv.jmagrexs.modules.common.entities.Property</class>
