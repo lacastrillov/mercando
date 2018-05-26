@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.Commerce;
 import com.lacv.mercando.model.mappers.CommerceMapper;
 import com.lacv.mercando.services.CommerceService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class CommerceServiceImpl extends EntityServiceImpl<Commerce> implements 
     @Override
     public GenericDao getGenericDao(){
         return commerceJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return commerceMapper;
     }
     
 }

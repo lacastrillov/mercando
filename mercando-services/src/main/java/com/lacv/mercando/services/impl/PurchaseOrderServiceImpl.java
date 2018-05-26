@@ -12,8 +12,9 @@ import com.lacv.mercando.model.entities.PurchaseOrder;
 import com.lacv.mercando.model.mappers.PurchaseOrderMapper;
 import com.lacv.mercando.services.PurchaseOrderService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.modules.common.services.PropertyService;
-import com.lacv.jmagrexs.modules.security.entities.User;
+import com.lacv.jmagrexs.modules.security.model.entities.User;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import com.lacv.jmagrexs.util.Util;
 import com.lacv.mercando.model.dtos.process.ShippingCartItemPDto;
@@ -56,6 +57,11 @@ public class PurchaseOrderServiceImpl extends EntityServiceImpl<PurchaseOrder> i
     @Override
     public GenericDao getGenericDao(){
         return purchaseOrderJpa;
+    }
+    
+    @Override
+    public EntityMapper getEntityMapper() {
+        return purchaseOrderMapper;
     }
     
     /**

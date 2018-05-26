@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.Supplier;
 import com.lacv.mercando.model.mappers.SupplierMapper;
 import com.lacv.mercando.services.SupplierService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class SupplierServiceImpl extends EntityServiceImpl<Supplier> implements 
     @Override
     public GenericDao getGenericDao(){
         return supplierJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return supplierMapper;
     }
     
 }

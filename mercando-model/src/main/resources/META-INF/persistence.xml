@@ -15,24 +15,24 @@
     <class>com.lacv.mercando.model.entities.ProductImage</class>
     <class>com.lacv.mercando.model.entities.SubCategory</class>
     
-    <class>com.lacv.jmagrexs.modules.security.entities.Authorization</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.WebresourceRole</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.RoleAuthorization</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.WebresourceAuthorization</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.UserRole</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.WebResource</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.User</class>
-    <class>com.lacv.jmagrexs.modules.security.entities.Role</class>
-    <class>com.lacv.jmagrexs.modules.leadtable.entities.LeadTable</class>
-    <class>com.lacv.jmagrexs.modules.leadtable.entities.TableColumn</class>
-    <class>com.lacv.jmagrexs.modules.mail.entities.MailTemplate</class>
-    <class>com.lacv.jmagrexs.modules.mail.entities.Mail</class>
-    <class>com.lacv.jmagrexs.modules.entityexplorer.entities.WebEntity</class>
-    <class>com.lacv.jmagrexs.modules.entityexplorer.entities.WebEntityType</class>
-    <class>com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile</class>
-    <class>com.lacv.jmagrexs.modules.common.entities.LogProcess</class>
-    <class>com.lacv.jmagrexs.modules.common.entities.Property</class>
-    <class>com.lacv.jmagrexs.modules.common.entities.JsonObject</class>
+    <class>com.lacv.jmagrexs.modules.common.model.entities.LogProcess</class>
+    <class>com.lacv.jmagrexs.modules.common.model.entities.Property</class>
+    <class>com.lacv.jmagrexs.modules.common.model.entities.JsonObject</class>
+    <class>com.lacv.jmagrexs.modules.entityexplorer.model.entities.WebEntity</class>
+    <class>com.lacv.jmagrexs.modules.entityexplorer.model.entities.WebEntityType</class>
+    <class>com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile</class>
+    <class>com.lacv.jmagrexs.modules.leadtable.model.entities.LeadTable</class>
+    <class>com.lacv.jmagrexs.modules.leadtable.model.entities.TableColumn</class>
+    <class>com.lacv.jmagrexs.modules.mail.model.entities.MailTemplate</class>
+    <class>com.lacv.jmagrexs.modules.mail.model.entities.Mail</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.Authorization</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.WebresourceRole</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.RoleAuthorization</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.WebresourceAuthorization</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.UserRole</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.WebResource</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.User</class>
+    <class>com.lacv.jmagrexs.modules.security.model.entities.Role</class>
     <properties>
       <property name="eclipselink.cache.shared.default" value="false"/>
       <property name="wildfly.jpa.default-unit" value="true"/>

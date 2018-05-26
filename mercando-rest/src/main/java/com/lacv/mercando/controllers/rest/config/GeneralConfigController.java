@@ -8,7 +8,7 @@ package com.lacv.mercando.controllers.rest.config;
 
 
 import com.lacv.jmagrexs.controller.rest.RestConfigurationController;
-import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile;
 import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.dtos.config.PortalConfigDto;
 import com.lacv.mercando.services.config.ContactConfigService;

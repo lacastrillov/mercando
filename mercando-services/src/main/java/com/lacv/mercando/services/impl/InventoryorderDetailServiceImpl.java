@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.InventoryorderDetail;
 import com.lacv.mercando.model.mappers.InventoryorderDetailMapper;
 import com.lacv.mercando.services.InventoryorderDetailService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class InventoryorderDetailServiceImpl extends EntityServiceImpl<Inventory
     @Override
     public GenericDao getGenericDao(){
         return inventoryorderDetailJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return inventoryorderDetailMapper;
     }
     
 }

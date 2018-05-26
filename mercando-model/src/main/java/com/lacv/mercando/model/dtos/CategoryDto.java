@@ -13,7 +13,7 @@ import com.lacv.jmagrexs.annotation.Order;
 import com.lacv.jmagrexs.annotation.ReadOnly;
 import com.lacv.jmagrexs.annotation.TextField;
 import com.lacv.jmagrexs.annotation.TypeFormField;
-import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.jmagrexs.domain.BaseDto;
 import com.lacv.jmagrexs.enums.FieldType;
 import com.lacv.jmagrexs.enums.HideView;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * @author lacastrillov
  */
 @LabelField("name")
-public class CategoryDto implements BaseEntity {
+public class CategoryDto implements BaseDto {
 
     private static final long serialVersionUID = 1L;
     

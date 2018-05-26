@@ -4,7 +4,7 @@
  */
 package com.lacv.mercando.model.dtos.process;
 
-import com.lacv.jmagrexs.modules.security.dtos.UserDto;
+import com.lacv.jmagrexs.modules.security.model.dtos.UserDto;
 import java.util.List;
 
 /**

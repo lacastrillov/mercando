@@ -10,7 +10,7 @@ package com.lacv.mercando.controllers.rest;
 import com.lacv.mercando.model.mappers.CategoryMapper;
 import com.lacv.mercando.services.CategoryService;
 import com.lacv.jmagrexs.controller.rest.RestEntityController;
-import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile;
 import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.entities.Category;
 import java.io.InputStream;

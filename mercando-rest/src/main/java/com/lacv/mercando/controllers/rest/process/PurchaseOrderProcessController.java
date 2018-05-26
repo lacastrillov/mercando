@@ -7,11 +7,11 @@ package com.lacv.mercando.controllers.rest.process;
 
 import com.lacv.jmagrexs.annotation.DoProcess;
 import com.lacv.jmagrexs.controller.rest.RestProcessController;
-import com.lacv.jmagrexs.modules.common.dtos.BasicResultDto;
-import com.lacv.jmagrexs.modules.common.entities.LogProcess;
+import com.lacv.jmagrexs.modules.common.model.dtos.BasicResultDto;
+import com.lacv.jmagrexs.modules.common.model.entities.LogProcess;
 import com.lacv.jmagrexs.modules.common.services.LogProcessService;
-import com.lacv.jmagrexs.modules.security.entities.User;
-import com.lacv.jmagrexs.modules.security.entities.UserRole;
+import com.lacv.jmagrexs.modules.security.model.entities.User;
+import com.lacv.jmagrexs.modules.security.model.entities.UserRole;
 import com.lacv.jmagrexs.modules.security.services.UserRoleService;
 import com.lacv.jmagrexs.modules.security.services.UserService;
 import com.lacv.mercando.model.constants.WebConstants;

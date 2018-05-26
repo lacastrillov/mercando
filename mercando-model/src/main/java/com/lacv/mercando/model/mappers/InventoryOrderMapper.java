@@ -6,7 +6,7 @@ package com.lacv.mercando.model.mappers;
 
 import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.mapper.EntityMapperImpl;
-import com.lacv.jmagrexs.modules.security.mappers.UserMapper;
+import com.lacv.jmagrexs.modules.security.model.mappers.UserMapper;
 import com.lacv.mercando.model.dtos.InventoryOrderDto;
 import com.lacv.mercando.model.entities.InventoryOrder;
 import java.util.ArrayList;
@@ -60,4 +60,35 @@ public class InventoryOrderMapper extends EntityMapperImpl<InventoryOrder, Inven
         return dtos;
     }
     
+    @Override
+    public InventoryOrder dtoToEntity(InventoryOrderDto dto) {
+        InventoryOrder entity= new InventoryOrder();
+        if(dto!=null){
+            entity.setId(dto.getId());
+            entity.setNumber(dto.getNumber());
+            entity.setRecordTime(dto.getRecordTime());
+            entity.setRegistrationDate(dto.getRegistrationDate());
+            entity.setStatus(dto.getStatus());
+            entity.setSupplier(supplierMapper.dtoToEntity(dto.getSupplier()));
+            entity.setTotal(dto.getTotal());
+            entity.setUser(userMapper.dtoToEntity(dto.getUser()));
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<InventoryOrder> listDtosToListEntities(List<InventoryOrderDto> dtos){
+        List<InventoryOrder> entities= new ArrayList<>();
+        if(entities!=null){
+            for(InventoryOrderDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

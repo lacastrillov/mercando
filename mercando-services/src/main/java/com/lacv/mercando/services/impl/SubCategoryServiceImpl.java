@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;
 import com.lacv.mercando.services.SubCategoryService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class SubCategoryServiceImpl extends EntityServiceImpl<SubCategory> imple
     @Override
     public GenericDao getGenericDao(){
         return subCategoryJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return subCategoryMapper;
     }
     
 }

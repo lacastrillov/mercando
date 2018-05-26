@@ -24,28 +24,28 @@ public class ProductMapper extends EntityMapperImpl<Product, ProductDto> impleme
     CategoryMapper categoryMapper;
     
     @Autowired
+    CommerceMapper commerceMapper;
+    
+    @Autowired
     SubCategoryMapper subCategoryMapper;
     
     @Autowired
     SupplierMapper supplierMapper;
-    
-    @Autowired
-    CommerceMapper commerceMapper;
 
     
     @Override
     public ProductDto entityToDto(Product entity) {
         ProductDto dto= new ProductDto();
         if(entity!=null){
-            dto.setId(entity.getId());
             dto.setBrand(entity.getBrand());
             dto.setBuyUnitPrice(entity.getBuyUnitPrice());
             dto.setCategory(categoryMapper.entityToDto(entity.getCategory()));
-            dto.setSubCategory(subCategoryMapper.entityToDto(entity.getSubCategory()));
             dto.setCode(entity.getCode());
+            dto.setCommerce(commerceMapper.entityToDto(entity.getCommerce()));
             dto.setDescription(entity.getDescription());
             dto.setDiscount(entity.getDiscount());
             dto.setFeatured(entity.getFeatured());
+            dto.setId(entity.getId());
             dto.setKeywords(entity.getKeywords());
             dto.setName(entity.getName());
             dto.setOrderLevel(entity.getOrderLevel());
@@ -53,10 +53,10 @@ public class ProductMapper extends EntityMapperImpl<Product, ProductDto> impleme
             dto.setRegisterDate(entity.getRegisterDate());
             dto.setSeggestedUnitPrice(entity.getSeggestedUnitPrice());
             dto.setStatus(entity.getStatus());
+            dto.setSubCategory(subCategoryMapper.entityToDto(entity.getSubCategory()));
             dto.setSupplier(supplierMapper.entityToDto(entity.getSupplier()));
             dto.setUnitsInOrder(entity.getUnitsInOrder());
             dto.setUnitsInStock(entity.getUnitsInStock());
-            dto.setCommerce(commerceMapper.entityToDto(entity.getCommerce()));
         }
         return dto;
     }
@@ -77,4 +77,47 @@ public class ProductMapper extends EntityMapperImpl<Product, ProductDto> impleme
         return dtos;
     }
     
+    @Override
+    public Product dtoToEntity(ProductDto dto) {
+        Product entity= new Product();
+        if(dto!=null){
+            entity.setBrand(dto.getBrand());
+            entity.setBuyUnitPrice(dto.getBuyUnitPrice());
+            entity.setCategory(categoryMapper.dtoToEntity(dto.getCategory()));
+            entity.setCode(dto.getCode());
+            entity.setCommerce(commerceMapper.dtoToEntity(dto.getCommerce()));
+            entity.setDescription(dto.getDescription());
+            entity.setDiscount(dto.getDiscount());
+            entity.setFeatured(dto.getFeatured());
+            entity.setId(dto.getId());
+            entity.setKeywords(dto.getKeywords());
+            entity.setName(dto.getName());
+            entity.setOrderLevel(dto.getOrderLevel());
+            entity.setQuantityPerUnit(dto.getQuantityPerUnit());
+            entity.setRegisterDate(dto.getRegisterDate());
+            entity.setSeggestedUnitPrice(dto.getSeggestedUnitPrice());
+            entity.setStatus(dto.getStatus());
+            entity.setSubCategory(subCategoryMapper.dtoToEntity(dto.getSubCategory()));
+            entity.setSupplier(supplierMapper.dtoToEntity(dto.getSupplier()));
+            entity.setUnitsInOrder(dto.getUnitsInOrder());
+            entity.setUnitsInStock(dto.getUnitsInStock());
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<Product> listDtosToListEntities(List<ProductDto> dtos){
+        List<Product> entities= new ArrayList<>();
+        if(entities!=null){
+            for(ProductDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

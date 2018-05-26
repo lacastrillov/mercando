@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.MainLocation;
 import com.lacv.mercando.model.mappers.MainLocationMapper;
 import com.lacv.mercando.services.MainLocationService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class MainLocationServiceImpl extends EntityServiceImpl<MainLocation> imp
     @Override
     public GenericDao getGenericDao(){
         return mainLocationJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return mainLocationMapper;
     }
     
 }

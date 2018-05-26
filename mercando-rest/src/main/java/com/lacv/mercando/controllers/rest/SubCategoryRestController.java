@@ -8,7 +8,7 @@ package com.lacv.mercando.controllers.rest;
 
 
 import com.lacv.jmagrexs.controller.rest.RestEntityController;
-import com.lacv.jmagrexs.modules.fileexplorer.entities.WebFile;
+import com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile;
 import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
 import com.lacv.mercando.model.entities.SubCategory;
 import com.lacv.mercando.model.mappers.SubCategoryMapper;

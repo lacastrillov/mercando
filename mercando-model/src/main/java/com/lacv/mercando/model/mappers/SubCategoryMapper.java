@@ -6,7 +6,6 @@ package com.lacv.mercando.model.mappers;
 
 import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.mapper.EntityMapperImpl;
-import com.lacv.mercando.model.dtos.CategoryDto;
 import com.lacv.mercando.model.dtos.SubCategoryDto;
 import com.lacv.mercando.model.entities.SubCategory;
 import java.util.ArrayList;
@@ -20,19 +19,20 @@ import org.springframework.stereotype.Component;
  */
 @Component("subCategoryMapper")
 public class SubCategoryMapper extends EntityMapperImpl<SubCategory, SubCategoryDto> implements EntityMapper<SubCategory, SubCategoryDto> {
-
+    
     @Autowired
     CategoryMapper categoryMapper;
+
     
     @Override
     public SubCategoryDto entityToDto(SubCategory entity) {
         SubCategoryDto dto= new SubCategoryDto();
         if(entity!=null){
-            dto.setId(entity.getId());
+            dto.setCategory(categoryMapper.entityToDto(entity.getCategory()));
             dto.setDescription(entity.getDescription());
+            dto.setId(entity.getId());
             dto.setImage(entity.getImage());
             dto.setName(entity.getName());
-            dto.setCategory(categoryMapper.entityToDto(entity.getCategory()));
         }
         return dto;
     }
@@ -43,7 +43,7 @@ public class SubCategoryMapper extends EntityMapperImpl<SubCategory, SubCategory
      * @return
      */
     @Override
-    public List<SubCategoryDto> listEntitiesToListDtos(List <SubCategory> entities){
+    public List<SubCategoryDto> listEntitiesToListDtos(List<SubCategory> entities){
         List<SubCategoryDto> dtos= new ArrayList<>();
         if(entities!=null){
             for(SubCategory entity: entities){
@@ -53,4 +53,32 @@ public class SubCategoryMapper extends EntityMapperImpl<SubCategory, SubCategory
         return dtos;
     }
     
+    @Override
+    public SubCategory dtoToEntity(SubCategoryDto dto) {
+        SubCategory entity= new SubCategory();
+        if(dto!=null){
+            entity.setCategory(categoryMapper.dtoToEntity(dto.getCategory()));
+            entity.setDescription(dto.getDescription());
+            entity.setId(dto.getId());
+            entity.setImage(dto.getImage());
+            entity.setName(dto.getName());
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<SubCategory> listDtosToListEntities(List<SubCategoryDto> dtos){
+        List<SubCategory> entities= new ArrayList<>();
+        if(entities!=null){
+            for(SubCategoryDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

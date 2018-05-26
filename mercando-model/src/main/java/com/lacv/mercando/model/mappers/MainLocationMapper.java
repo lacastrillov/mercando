@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("mainLocationMapper")
 public class MainLocationMapper extends EntityMapperImpl<MainLocation, MainLocationDto> implements EntityMapper<MainLocation, MainLocationDto> {
+
     
     @Override
     public MainLocationDto entityToDto(MainLocation entity) {
@@ -37,7 +38,7 @@ public class MainLocationMapper extends EntityMapperImpl<MainLocation, MainLocat
      * @return
      */
     @Override
-    public List<MainLocationDto> listEntitiesToListDtos(List <MainLocation> entities){
+    public List<MainLocationDto> listEntitiesToListDtos(List<MainLocation> entities){
         List<MainLocationDto> dtos= new ArrayList<>();
         if(entities!=null){
             for(MainLocation entity: entities){
@@ -47,4 +48,31 @@ public class MainLocationMapper extends EntityMapperImpl<MainLocation, MainLocat
         return dtos;
     }
     
+    @Override
+    public MainLocation dtoToEntity(MainLocationDto dto) {
+        MainLocation entity= new MainLocation();
+        if(dto!=null){
+            entity.setId(dto.getId());
+            entity.setMlDescription(dto.getMlDescription());
+            entity.setMlLocation(dto.getMlLocation());
+            entity.setMlName(dto.getMlName());
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<MainLocation> listDtosToListEntities(List<MainLocationDto> dtos){
+        List<MainLocation> entities= new ArrayList<>();
+        if(entities!=null){
+            for(MainLocationDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

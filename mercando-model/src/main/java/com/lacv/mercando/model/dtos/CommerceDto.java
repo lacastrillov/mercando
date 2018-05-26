@@ -12,9 +12,9 @@ import com.lacv.jmagrexs.annotation.Order;
 import com.lacv.jmagrexs.annotation.Size;
 import com.lacv.jmagrexs.annotation.TextField;
 import com.lacv.jmagrexs.annotation.TypeFormField;
-import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.jmagrexs.domain.BaseDto;
 import com.lacv.jmagrexs.enums.FieldType;
-import com.lacv.jmagrexs.modules.security.dtos.UserDto;
+import com.lacv.jmagrexs.modules.security.model.dtos.UserDto;
 import java.util.Date;
 
 /**
@@ -22,7 +22,7 @@ import java.util.Date;
  * @author grupot
  */
 @LabelField("commerceName")
-public class CommerceDto implements BaseEntity {
+public class CommerceDto implements BaseDto {
 
     private static final long serialVersionUID = 1L;
     

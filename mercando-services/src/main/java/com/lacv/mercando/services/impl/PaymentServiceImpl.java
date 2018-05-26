@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.Payment;
 import com.lacv.mercando.model.mappers.PaymentMapper;
 import com.lacv.mercando.services.PaymentService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class PaymentServiceImpl extends EntityServiceImpl<Payment> implements Pa
     @Override
     public GenericDao getGenericDao(){
         return paymentJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return paymentMapper;
     }
     
 }

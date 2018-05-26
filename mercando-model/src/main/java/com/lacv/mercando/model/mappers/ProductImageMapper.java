@@ -19,9 +19,10 @@ import org.springframework.stereotype.Component;
  */
 @Component("productImageMapper")
 public class ProductImageMapper extends EntityMapperImpl<ProductImage, ProductImageDto> implements EntityMapper<ProductImage, ProductImageDto> {
-
+    
     @Autowired
     ProductMapper productMapper;
+
     
     @Override
     public ProductImageDto entityToDto(ProductImage entity) {
@@ -51,4 +52,31 @@ public class ProductImageMapper extends EntityMapperImpl<ProductImage, ProductIm
         return dtos;
     }
     
+    @Override
+    public ProductImage dtoToEntity(ProductImageDto dto) {
+        ProductImage entity= new ProductImage();
+        if(dto!=null){
+            entity.setId(dto.getId());
+            entity.setImage(dto.getImage());
+            entity.setOrder(dto.getOrder());
+            entity.setProduct(productMapper.dtoToEntity(dto.getProduct()));
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<ProductImage> listDtosToListEntities(List<ProductImageDto> dtos){
+        List<ProductImage> entities= new ArrayList<>();
+        if(entities!=null){
+            for(ProductImageDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

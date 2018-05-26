@@ -6,7 +6,7 @@
 package com.lacv.mercando.model.entities;
 
 import com.lacv.jmagrexs.domain.BaseEntity;
-import com.lacv.jmagrexs.modules.security.entities.User;
+import com.lacv.jmagrexs.modules.security.model.entities.User;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;

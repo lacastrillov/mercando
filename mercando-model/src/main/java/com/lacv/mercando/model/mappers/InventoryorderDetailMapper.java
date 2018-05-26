@@ -56,4 +56,32 @@ public class InventoryorderDetailMapper extends EntityMapperImpl<InventoryorderD
         return dtos;
     }
     
+    @Override
+    public InventoryorderDetail dtoToEntity(InventoryorderDetailDto dto) {
+        InventoryorderDetail entity= new InventoryorderDetail();
+        if(dto!=null){
+            entity.setId(dto.getId());
+            entity.setInventoryOrder(inventoryOrderMapper.dtoToEntity(dto.getInventoryOrder()));
+            entity.setProduct(productMapper.dtoToEntity(dto.getProduct()));
+            entity.setQuantity(dto.getQuantity());
+            entity.setUnitPrice(dto.getUnitPrice());
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<InventoryorderDetail> listDtosToListEntities(List<InventoryorderDetailDto> dtos){
+        List<InventoryorderDetail> entities= new ArrayList<>();
+        if(entities!=null){
+            for(InventoryorderDetailDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

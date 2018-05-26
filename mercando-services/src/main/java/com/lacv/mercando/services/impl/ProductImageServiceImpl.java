@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.ProductImage;
 import com.lacv.mercando.model.mappers.ProductImageMapper;
 import com.lacv.mercando.services.ProductImageService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class ProductImageServiceImpl extends EntityServiceImpl<ProductImage> imp
     @Override
     public GenericDao getGenericDao(){
         return productImageJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return productImageMapper;
     }
     
 }

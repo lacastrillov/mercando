@@ -19,20 +19,26 @@ import org.springframework.stereotype.Component;
 @Component("categoryMapper")
 public class CategoryMapper extends EntityMapperImpl<Category, CategoryDto> implements EntityMapper<Category, CategoryDto> {
 
+    
     @Override
     public CategoryDto entityToDto(Category entity) {
         CategoryDto dto= new CategoryDto();
         if(entity!=null){
-            dto.setId(entity.getId());
             dto.setDescription(entity.getDescription());
+            dto.setId(entity.getId());
             dto.setImage(entity.getImage());
             dto.setName(entity.getName());
         }
         return dto;
     }
-
+    
+    /**
+     *
+     * @param entities
+     * @return
+     */
     @Override
-    public List<CategoryDto> listEntitiesToListDtos(List<Category> entities) {
+    public List<CategoryDto> listEntitiesToListDtos(List<Category> entities){
         List<CategoryDto> dtos= new ArrayList<>();
         if(entities!=null){
             for(Category entity: entities){
@@ -42,4 +48,31 @@ public class CategoryMapper extends EntityMapperImpl<Category, CategoryDto> impl
         return dtos;
     }
     
+    @Override
+    public Category dtoToEntity(CategoryDto dto) {
+        Category entity= new Category();
+        if(dto!=null){
+            entity.setDescription(dto.getDescription());
+            entity.setId(dto.getId());
+            entity.setImage(dto.getImage());
+            entity.setName(dto.getName());
+        }
+        return entity;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public List<Category> listDtosToListEntities(List<CategoryDto> dtos){
+        List<Category> entities= new ArrayList<>();
+        if(entities!=null){
+            for(CategoryDto dto: dtos){
+                entities.add(dtoToEntity(dto));
+            }
+        }
+        return entities;
+    }
+
 }

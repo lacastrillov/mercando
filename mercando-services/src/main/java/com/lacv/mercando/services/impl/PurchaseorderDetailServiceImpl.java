@@ -12,6 +12,7 @@ import com.lacv.mercando.model.entities.PurchaseorderDetail;
 import com.lacv.mercando.model.mappers.PurchaseorderDetailMapper;
 import com.lacv.mercando.services.PurchaseorderDetailService;
 import com.lacv.jmagrexs.dao.GenericDao;
+import com.lacv.jmagrexs.mapper.EntityMapper;
 import com.lacv.jmagrexs.service.EntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class PurchaseorderDetailServiceImpl extends EntityServiceImpl<Purchaseor
     @Override
     public GenericDao getGenericDao(){
         return purchaseorderDetailJpa;
+    }
+
+    @Override
+    public EntityMapper getEntityMapper() {
+        return purchaseorderDetailMapper;
     }
     
 }

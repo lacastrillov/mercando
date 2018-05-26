@@ -11,9 +11,9 @@ import com.lacv.jmagrexs.annotation.Order;
 import com.lacv.jmagrexs.annotation.ReadOnly;
 import com.lacv.jmagrexs.annotation.TextField;
 import com.lacv.jmagrexs.annotation.TypeFormField;
-import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.jmagrexs.domain.BaseDto;
 import com.lacv.jmagrexs.enums.FieldType;
-import com.lacv.jmagrexs.modules.security.dtos.UserDto;
+import com.lacv.jmagrexs.modules.security.model.dtos.UserDto;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
  * @author lacastrillov
  */
 @LabelField("number")
-public class PurchaseOrderDto implements BaseEntity {
+public class PurchaseOrderDto implements BaseDto {
 
     private static final long serialVersionUID = 1L;
     
