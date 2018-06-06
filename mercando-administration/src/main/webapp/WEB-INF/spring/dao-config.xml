@@ -33,6 +33,7 @@
 
     <bean id="entityManagerFactoryRC" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="PERSISTENCE_UNIT_0"/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter" ref="jpaMYSQLAdapter"/>
         <property name="jpaDialect">
             <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect"/>
