@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 util.importJS('/libjs/util/Message.js');
-util.importJS('/js/web/stores/UserExtStore.js');
+util.importJS('/libjs/util/CommonExtView.js');
+util.importJS('/admin/vista/user/ExtStore.htm?jsLib=1');
 
 function UserClient() {
 

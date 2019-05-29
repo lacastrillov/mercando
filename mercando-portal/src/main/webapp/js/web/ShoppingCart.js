@@ -5,9 +5,10 @@
  */
 util.importJS('/libjs/util/Message.js');
 util.importJS('/libjs/user/UserAuthentication.js');
-util.importJS('/js/web/stores/ProductExtStore.js');
-util.importJS('/js/web/stores/ProductImageExtStore.js');
-util.importJS('/js/web/stores/PropertyExtStore.js');
+util.importJS('/libjs/util/CommonExtView.js');
+util.importJS('/admin/vista/product/ExtStore.htm?jsLib=1');
+util.importJS('/admin/vista/productImage/ExtStore.htm?jsLib=1');
+util.importJS('/admin/vista/property/ExtStore.htm?jsLib=1');
 
 function ShoppingCart() {
 
