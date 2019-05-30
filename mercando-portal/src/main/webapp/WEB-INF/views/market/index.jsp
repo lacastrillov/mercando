@@ -54,6 +54,7 @@
                     
                     <div class="span9">		
                         <div class="well well-small">
+                            <c:if test="${parametersFeatured.totalResults>0}">
                             <h4>Productos destacados <small class="pull-right">${parametersFeatured.totalResults} productos destacados</small></h4>
                             <div class="row-fluid">
                                 <div id="featured" class="carousel slide">
@@ -101,6 +102,7 @@
                                     <a class="right carousel-control" href="#featured" data-slide="next">&rsaquo;</a>
                                 </div>
                             </div>
+                            </c:if>
                         </div>
                         <h4>&Uacute;ltimos productos </h4>
                         <ul class="thumbnails">
