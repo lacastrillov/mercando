@@ -25,6 +25,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <sitemesh.version>3.0.1</sitemesh.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>dd-MM-yyyy HH:mm</maven.build.timestamp.format>
     </properties>
 
     <dependencies>
@@ -85,13 +87,16 @@
                 </property>
             </activation>
             <properties>
-                <domain.url>http://localhost:8084</domain.url>
-                <static.domain.url>http://localhost:8084/</static.domain.url>
-                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <local.static.domain>http://localhost:8084</local.static.domain>
+                <local.static.folder.linux>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</local.static.folder.linux>
+                <local.static.folder.windows>C:\apps\apache-tomcat-8.5.34-hk\webapps\</local.static.folder.windows>
+                <local.rootfolder>recursos/</local.rootfolder>
+                
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>calsatrilievlo</jdbc.password>
+                
                 <mail.host>smtp.gmail.com</mail.host>
                 <mail.port>587</mail.port>
                 <mail.username>enviocorreodot1@gmail.com</mail.username>
@@ -108,13 +113,16 @@
                 </property>
             </activation>
             <properties>
-                <domain.url>http://186.83.137.240:8084</domain.url>
-                <static.domain.url>http://186.83.137.240:8084/</static.domain.url>
-                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <local.static.domain>http://www.merkya.com</local.static.domain>
+                <local.static.folder.linux>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</local.static.folder.linux>
+                <local.static.folder.windows>C:\apps\apache-tomcat-8.5.34-hk\webapps\</local.static.folder.windows>
+                <local.rootfolder>recursos/</local.rootfolder>
+                
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>calsatrilievlo</jdbc.password>
+                
                 <mail.host>smtp.gmail.com</mail.host>
                 <mail.port>587</mail.port>
                 <mail.username>enviocorreodot1@gmail.com</mail.username>
@@ -131,13 +139,16 @@
                 </property>
             </activation>
             <properties>
-                <domain.url>http://www.mercando.tk</domain.url>
-                <static.domain.url>http://www.mercando.tk/</static.domain.url>
-                <static.folder>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</static.folder>
+                <local.static.domain>http://www.merkya.com</local.static.domain>
+                <local.static.folder.linux>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</local.static.folder.linux>
+                <local.static.folder.windows>C:\apps\apache-tomcat-8.5.34-hk\webapps\</local.static.folder.windows>
+                <local.rootfolder>recursos/</local.rootfolder>
+                
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>jdbc:mysql://localhost:3306/marketplatform?useSSL=false</jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>calsatrilievlo</jdbc.password>
+                
                 <mail.host>smtp.gmail.com</mail.host>
                 <mail.port>587</mail.port>
                 <mail.username>enviocorreodot1@gmail.com</mail.username>
