@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -76,6 +78,7 @@ public class Supplier implements BaseEntity {
     @OneToMany(mappedBy = "supplier")
     private List<InventoryOrder> inventoryOrderList;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private User user;
 

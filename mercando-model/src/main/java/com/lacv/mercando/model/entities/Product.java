@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -87,15 +89,19 @@ public class Product implements BaseEntity {
     @Column(name = "status")
     private String status;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Category category;
     @JoinColumn(name = "subcategory_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private SubCategory subCategory;
     @JoinColumn(name = "supplier_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Supplier supplier;
     @JoinColumn(name = "commerce_id", referencedColumnName = "commerce_id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Commerce commerce;
     @OneToMany(mappedBy = "product")

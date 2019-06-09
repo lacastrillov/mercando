@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -67,6 +69,7 @@ public class PurchaseOrder implements BaseEntity {
     @Column(name = "status")
     private String status;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "purchaseOrder")

@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -60,9 +62,11 @@ public class InventoryOrder implements BaseEntity {
     @OneToMany(mappedBy = "inventoryOrder")
     private List<InventoryorderDetail> inventoryorderDetailList;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private User user;
     @JoinColumn(name = "supplier_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Supplier supplier;
     @OneToMany(mappedBy = "inventoryOrder")

@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -47,9 +49,11 @@ public class PurchaseorderDetail implements BaseEntity {
     @Column(name = "total")
     private Integer total;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Product product;
     @JoinColumn(name = "purchaseorder_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private PurchaseOrder purchaseOrder;
 

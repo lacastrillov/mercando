@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -63,9 +65,11 @@ public class Commerce implements BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
     @JoinColumn(name = "idMainLocation", referencedColumnName = "idMainLocation")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private MainLocation mainLocation;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private User user;
     @Transient

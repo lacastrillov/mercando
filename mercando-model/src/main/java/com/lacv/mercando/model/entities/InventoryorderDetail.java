@@ -17,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -39,9 +41,11 @@ public class InventoryorderDetail implements BaseEntity {
     @Column(name = "unit_price")
     private Integer unitPrice;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private Product product;
     @JoinColumn(name = "inventoryorder_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private InventoryOrder inventoryOrder;
 

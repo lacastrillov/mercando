@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
 /**
  *
@@ -54,12 +56,15 @@ public class Payment implements BaseEntity {
     @Column(name = "payment_result")
     private String paymentResult;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private User user;
     @JoinColumn(name = "purchaseorder_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private PurchaseOrder purchaseOrder;
     @JoinColumn(name = "inventoryorder_id", referencedColumnName = "id")
+    @JoinFetch(JoinFetchType.OUTER)
     @ManyToOne
     private InventoryOrder inventoryOrder;
 
