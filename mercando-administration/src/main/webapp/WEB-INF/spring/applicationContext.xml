@@ -59,7 +59,7 @@
     <bean id="extViewConfig" class="com.lacv.jmagrexs.components.ExtViewConfig">
         <property name="appName" value="MERCANDO" />
         <property name="extJsVersion" value="4" />
-        <property name="favicon" value="/img/habitares.png" />
+        <property name="favicon" value="/img/favicon.png" />
     </bean>
     
 </beans>

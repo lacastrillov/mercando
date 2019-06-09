@@ -32,8 +32,6 @@
         <property name="suffix" value=".jsp"></property>        
     </bean>
     
-    <mvc:resources mapping="/views/**" location="classpath:/WEB-INF/views/" />
-    
     <context:property-placeholder location="classpath*:config/*.properties" ignore-unresolvable="true"/>
     
     <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -43,5 +41,9 @@
             </list>
         </property>
     </bean>
+    
+    <mvc:resources mapping="/views/**" location="classpath:/WEB-INF/views/" />
+    <mvc:resources mapping="/libjs/**" location="classpath:/libjs/" />
+    <mvc:resources mapping="/libcss/**" location="classpath:/libcss/" />
 
 </beans>
