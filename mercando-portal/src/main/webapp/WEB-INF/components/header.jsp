@@ -8,11 +8,10 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<script src="/libjs/user/UserAuthentication.js"></script>
+<script src="<%=request.getContextPath()%>/account/UserAuthentication"></script>
 <script src="/js/web/Searcher.js"></script>
 <script>
     var userAuthentication = new UserAuthentication();
-    userAuthentication.MODULES= ['/services','/admin'];
     var searcher= new Searcher();
 </script>
 

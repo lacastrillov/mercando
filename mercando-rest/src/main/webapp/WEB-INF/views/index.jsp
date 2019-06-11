@@ -16,12 +16,11 @@
         <script src="${pageContext.request.scheme}://${pageContext.request.serverName}:8080/ext-4.2.1/examples/shared/include-ext.js"></script>
         <script src="<%=request.getContextPath()%>/libjs/jquery/jquery-3.1.0.min.js" type="text/javascript"></script>
         <script src="<%=request.getContextPath()%>/libjs/util/Util.js"></script>
-        <script src="<%=request.getContextPath()%>/libjs/user/UserAuthentication.js"></script>
+        <script src="<%=request.getContextPath()%>/account/UserAuthentication"></script>
         <link href="/css/generic.css" rel="stylesheet" type="text/css">
         <link rel="icon" type="image/icon" href="/img/favicon.png" />
         <script>
             var userAuthentication = new UserAuthentication();
-            userAuthentication.MODULES= ['/services','/admin'];
             
             function login(){
                 userAuthentication.ajaxAuthenticate("ajaxFormLogin", function(data){

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 util.importJS('/libjs/util/Message.js');
-util.importJS('/libjs/user/UserAuthentication.js');
+util.importJS('/account/UserAuthentication');
 util.importJS('/libjs/util/CommonExtView.js');
 util.importJS('/admin/vista/product/ExtStore.htm?jsLib=1');
 util.importJS('/admin/vista/productImage/ExtStore.htm?jsLib=1');
@@ -35,7 +35,6 @@ function ShoppingCart() {
             productImageExtStore= new ProductImageExtStore();
             propertyExtStore= new PropertyExtStore();
             userAuthentication= new UserAuthentication();
-            userAuthentication.MODULES= ['/services','/admin'];
             
             Instance.setIVA();
             Instance.updateProductSummary();
