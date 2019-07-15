@@ -52,7 +52,7 @@ public class GeneralConfigController extends RestConfigurationController {
             if(fieldName.equals("banner")){
                 imageName= "banner_" +fileName.replaceAll(" ", "_");
             }
-            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is, null);
             
             return webFile.getLocation();
         } catch (Exception ex) {

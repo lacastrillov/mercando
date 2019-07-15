@@ -82,7 +82,7 @@ public class MainLocationProcessController extends RestProcessController {
             if(fieldName.equals("mlImage")){
                 imageName= mainLocation.getMlName().replaceAll(" ", "_") + "_image."+FilenameUtils.getExtension(fileName);
             }
-            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, 0, imageName, fileType, fileSize, is, null);
             
             return webFile.getLocation();
         } catch (Exception ex) {

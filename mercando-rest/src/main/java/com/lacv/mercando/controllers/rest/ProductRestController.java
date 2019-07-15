@@ -11,6 +11,7 @@ import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
 import com.lacv.jmagrexs.controller.rest.RestSessionController;
 import com.lacv.jmagrexs.domain.BaseEntity;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,32 +49,37 @@ public class ProductRestController extends RestSessionController {
     }
 
     @Override
-    public boolean canLoad(BaseEntity entity) {
+    public boolean canSessionLoad(BaseEntity entity) {
         return true;
     }
 
     @Override
-    public boolean canCreate(BaseEntity entity) {
+    public boolean canSessionCreate(BaseEntity entity) {
         return false;
     }
 
     @Override
-    public boolean canUpdate(BaseEntity entity) {
+    public boolean canSessionUpdate(BaseEntity entity) {
         return false;
     }
 
     @Override
-    public boolean canDelete(BaseEntity entity) {
+    public boolean canSessionDelete(BaseEntity entity) {
         return false;
     }
 
     @Override
-    public boolean canUpdateByFilters(JSONObject jsonFilters) {
+    public boolean canSessionUpdateByFilters(JSONObject jsonFilters) {
         return false;
     }
 
     @Override
-    public boolean canDeleteByFilters(JSONObject jsonFilters) {
+    public boolean canSessionDeleteByFilters(JSONObject jsonFilters) {
+        return false;
+    }
+    
+    @Override
+    public boolean canSessionImportData(List<BaseEntity> entities) {
         return false;
     }
     

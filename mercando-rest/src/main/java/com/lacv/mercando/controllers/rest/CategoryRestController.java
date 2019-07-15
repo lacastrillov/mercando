@@ -43,13 +43,13 @@ public class CategoryRestController extends RestEntityController {
     }
     
     @Override
-    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idParent) {
+    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idParent, Boolean sessionUpload) {
         String path= "imagenes/categoria/";
-        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
+        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path, null);
         
         try {
             String imageName= idParent + "_" +fileName.replaceAll(" ", "_");
-            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is, null);
             
             Category category = categoryService.loadById(idParent);
             category.setImage(webFile.getLocation());

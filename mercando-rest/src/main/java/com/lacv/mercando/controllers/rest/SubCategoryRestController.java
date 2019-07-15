@@ -43,13 +43,13 @@ public class SubCategoryRestController extends RestEntityController {
     }
     
     @Override
-    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idEntity) {
+    public String saveFilePart(int slice, String fieldName, String fileName, String fileType, int fileSize, InputStream is, Object idEntity, Boolean sessionUpload) {
         String path= "imagenes/subcategoria/";
-        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path);
+        WebFile parentWebFile= webFileService.createDirectoriesIfMissing(path, null);
         
         try {
             String imageName= idEntity + "_" +fileName.replaceAll(" ", "_");
-            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is);
+            WebFile webFile= webFileService.createByFileData(parentWebFile, slice, imageName, fileType, fileSize, is, null);
             
             SubCategory subCategory = subCategoryService.loadById(idEntity);
             subCategory.setImage(webFile.getLocation());
