@@ -12,6 +12,7 @@ import com.lacv.mercando.services.ProductImageService;
 import com.lacv.jmagrexs.controller.rest.RestEntityController;
 import com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile;
 import com.lacv.jmagrexs.modules.fileexplorer.services.WebFileService;
+import com.lacv.mercando.model.dtos.reports.ProductImageReportDto;
 import com.lacv.mercando.model.entities.ProductImage;
 import java.io.InputStream;
 import javax.annotation.PostConstruct;
@@ -41,6 +42,7 @@ public class ProductImageRestController extends RestEntityController {
     @PostConstruct
     public void init(){
         super.addControlMapping("productImage", productImageService, productImageMapper);
+        super.enableReport("reporteImagenesProducto", ProductImageReportDto.class);
     }
     
     @Override

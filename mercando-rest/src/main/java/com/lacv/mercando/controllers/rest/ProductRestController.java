@@ -11,6 +11,7 @@ import com.lacv.mercando.model.mappers.ProductMapper;
 import com.lacv.mercando.services.ProductService;
 import com.lacv.jmagrexs.controller.rest.RestSessionController;
 import com.lacv.jmagrexs.domain.BaseEntity;
+import com.lacv.mercando.model.dtos.reports.ProductReportDto;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ public class ProductRestController extends RestSessionController {
     @PostConstruct
     public void init(){
         super.addControlMapping("product", productService, productMapper);
+        super.enableReport("reporteProductos", ProductReportDto.class);
     }
 
     @Override

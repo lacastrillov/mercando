@@ -1,6 +1,7 @@
 package com.lacv.mercando.controllers.portal;
 
 import com.lacv.jmagrexs.dao.Parameters;
+import com.lacv.jmagrexs.modules.fileexplorer.controllers.rest.WebFileRestController;
 import com.lacv.mercando.model.entities.Product;
 import com.lacv.mercando.services.ProductImageService;
 import com.lacv.mercando.services.ProductService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping(value = "/")
@@ -26,6 +28,9 @@ public class HomeController {
     
     @Autowired
     ProductImageService productImageService;
+    
+    @Autowired
+    WebFileRestController webFileRestController;
     
     
     @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})
@@ -58,6 +63,21 @@ public class HomeController {
         mav.addObject("lastProducts", lastProducts);
 
         return mav;
+    }
+    
+    @RequestMapping(value = "/recursos/**/{fileName:.+}", method = {RequestMethod.GET})
+    public void download(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
+        webFileRestController.download(fileName, request, response);
+    }
+    
+    @RequestMapping(value = "/uf/**/{fileName:.+}", method = {RequestMethod.GET})
+    public void sessionDownload(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
+        webFileRestController.download(fileName, request, response);
+    }
+    
+    @RequestMapping(value = "/uf/**/{fileName}/", method = {RequestMethod.GET})
+    public void sessionDownloadPath(@PathVariable String fileName, HttpServletRequest request, HttpServletResponse response) {
+        webFileRestController.download(fileName, request, response);
     }
     
 }
