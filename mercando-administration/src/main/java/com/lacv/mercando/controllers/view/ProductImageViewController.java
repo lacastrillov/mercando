@@ -45,8 +45,8 @@ public class ProductImageViewController extends ExtEntityController {
         
         ReportConfig report = new ReportConfig("productImage", "reporteImagenesProducto", productImageService, ProductImageReportDto.class);
         report.setPluralReportTitle("Reporte Imagenes de Productos");
-        report.setDefaultOrderBy("order_level");
-        report.setDefaultOrderDir("ASC");
+        report.setDefaultOrder("order_level", "ASC");
+        report.setVisibleSeeAllButton(true);
         super.addReportMapping(report);
     }
     

@@ -45,6 +45,7 @@ public class ProductViewController extends ExtEntityController {
         view.setPluralEntityTitle("Productos");
         view.addChildExtView("productImage", ProductImage.class, EntityConfig.TCV_1_TO_N);
         view.addComboboxChildDependent("category", "subCategory");
+        view.setNumColumnsForm(2);
         super.addControlMapping(view);
         
         ReportConfig report = new ReportConfig("product", "reporteProductos", productService, ProductReportDto.class);
@@ -53,6 +54,7 @@ public class ProductViewController extends ExtEntityController {
         report.setMaxResultsPerPage(100L);
         report.setDefaultOrderBy("id");
         report.setDefaultOrderDir("DESC");
+        report.setNumColumnsForm(2);
         
         ProcessButton setPasswordButton= new ProcessButton();
         setPasswordButton.setMainProcessRef("processProduct");

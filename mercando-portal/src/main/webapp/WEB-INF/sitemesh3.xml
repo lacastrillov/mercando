@@ -14,6 +14,7 @@ and open the template in the editor.
     <mapping path="**/fileupload/**" exclue="true"/>
     <mapping path="**/lightbox/**" exclue="true"/>
     <mapping path="**/component/**" exclue="true"/>
+    <mapping path="**/recursos/**" exclue="true"/>
     <mapping path="**/account/home**" exclue="true"/>
     
 </sitemesh>
