@@ -73,7 +73,6 @@ public class ProductViewController extends ExtEntityController {
         
         MenuItem menuItem= new MenuItem("product", "Gestionar Productos");
         menuParent.addSubMenu(menuItem);
-        menuParent.addSubMenu(menuItem);
         
         MenuItem menuItem2= new MenuItem("product", "Reporte de Productos");
         menuItem2.setReportName("reporteProductos");

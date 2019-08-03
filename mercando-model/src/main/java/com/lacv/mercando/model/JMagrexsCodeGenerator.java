@@ -6,6 +6,8 @@
 package com.lacv.mercando.model;
 
 import com.lacv.jmagrexs.generator.CodeGenerator;
+import com.lacv.mercando.model.entities.Compra;
+import com.lacv.mercando.model.entities.Venta;
 
 
 /**
@@ -18,9 +20,10 @@ public class JMagrexsCodeGenerator {
         System.out.print("Hola Generador");
         CodeGenerator codeGenerator= new CodeGenerator(JMagrexsCodeGenerator.class, "com.lacv.mercando");
         
-        //codeGenerator.generate("com.lacv.agogui.model.entities");
+        codeGenerator.generate(Compra.class);
+        codeGenerator.generate(Venta.class);
         
-        codeGenerator.getMapperGenerator().generate("com.lacv.mercando.model.entities");
+        //codeGenerator.getMapperGenerator().generate("com.lacv.mercando.model.entities");
     }
     
 }

@@ -39,18 +39,20 @@
                                         <div class="carousel-inner">
                                             <fmt:formatNumber var="numPagesImages" minFractionDigits="0" maxFractionDigits="0" value= "${fn:length(product.productImageList)/3}" />
                                             <c:set var="index" value="0"></c:set>
-                                            <c:forEach var="i" begin="0" end="${numPagesImages-1}">
-                                                <div class="item <c:if test="${i==0}">active</c:if>">
-                                                    <c:forEach var="j" begin="0" end="3">
-                                                        <c:if test="${product.productImageList[index]!=null}">
-                                                            <a href="${webFunctions.getImageLinkByDimensions(product.productImageList[index].image, "800x800")}">
-                                                                <img style="width:29%" src="${webFunctions.getImageLinkByDimensions(product.productImageList[index].image, "300x300")}" alt=""/>
-                                                            </a>
-                                                            <c:set var="index" value="${index+1}"></c:set>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </div>
-                                            </c:forEach>
+                                            <c:if test="${numPagesImages>0}">
+                                                <c:forEach var="i" begin="0" end="${numPagesImages-1}">
+                                                    <div class="item <c:if test="${i==0}">active</c:if>">
+                                                        <c:forEach var="j" begin="0" end="3">
+                                                            <c:if test="${product.productImageList[index]!=null}">
+                                                                <a href="${webFunctions.getImageLinkByDimensions(product.productImageList[index].image, "800x800")}">
+                                                                    <img style="width:29%" src="${webFunctions.getImageLinkByDimensions(product.productImageList[index].image, "300x300")}" alt=""/>
+                                                                </a>
+                                                                <c:set var="index" value="${index+1}"></c:set>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </div>
+                                                </c:forEach>
+                                            </c:if>
                                         </div>
                                         <!--<a class="left carousel-control" href="#imageCarousel" data-slide="prev">&lsaquo;</a>
                                         <a class="right carousel-control" href="#imageCarousel" data-slide="next">&rsaquo;</a>-->

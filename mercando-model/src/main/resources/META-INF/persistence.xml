@@ -14,6 +14,8 @@
     <class>com.lacv.mercando.model.entities.Supplier</class>
     <class>com.lacv.mercando.model.entities.ProductImage</class>
     <class>com.lacv.mercando.model.entities.SubCategory</class>
+    <class>com.lacv.mercando.model.entities.Venta</class>
+    <class>com.lacv.mercando.model.entities.Compra</class>
     
     <class>com.lacv.jmagrexs.modules.common.model.entities.LogProcess</class>
     <class>com.lacv.jmagrexs.modules.common.model.entities.Property</class>
