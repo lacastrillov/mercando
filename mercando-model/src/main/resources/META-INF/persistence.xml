@@ -20,6 +20,8 @@
     <class>com.lacv.jmagrexs.modules.common.model.entities.LogProcess</class>
     <class>com.lacv.jmagrexs.modules.common.model.entities.Property</class>
     <class>com.lacv.jmagrexs.modules.common.model.entities.JsonObject</class>
+    <class>com.lacv.jmagrexs.modules.common.model.entities.MassiveOperation</class>
+    <class>com.lacv.jmagrexs.modules.common.model.entities.DbOperation</class>
     <class>com.lacv.jmagrexs.modules.entityexplorer.model.entities.WebEntity</class>
     <class>com.lacv.jmagrexs.modules.entityexplorer.model.entities.WebEntityType</class>
     <class>com.lacv.jmagrexs.modules.fileexplorer.model.entities.WebFile</class>

@@ -53,7 +53,7 @@ public class PortalConfigDto {
     
     @Order(8)
     @TextField("Estado CRON")
-    @TypeFormField(value=FieldType.RADIOS, data={"OFF","ON"})
+    @TypeFormField(value=FieldType.ON_OFF)
     private String cronStatus;
     
     @TextField("Ubicaciones")
