@@ -114,8 +114,8 @@
             </activation>
             <properties>
                 <local.static.domain>http://www.merkya.com</local.static.domain>
-                <local.static.folder.linux>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</local.static.folder.linux>
-                <local.static.folder.windows>C:\apps\apache-tomcat-9.0.12-mercando\webapps\</local.static.folder.windows>
+                <local.static.folder.linux>/opt/FILES/mercando/</local.static.folder.linux>
+                <local.static.folder.windows>C:\apps\FILES\mercando\</local.static.folder.windows>
                 <local.rootfolder>recursos/</local.rootfolder>
                 
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
@@ -140,8 +140,8 @@
             </activation>
             <properties>
                 <local.static.domain>http://www.merkya.com</local.static.domain>
-                <local.static.folder.linux>/opt/apache-tomcat-9.0.0.M26-mercando/webapps/</local.static.folder.linux>
-                <local.static.folder.windows>C:\apps\apache-tomcat-9.0.12-mercando\webapps\</local.static.folder.windows>
+                <local.static.folder.linux>/opt/FILES/mercando/</local.static.folder.linux>
+                <local.static.folder.windows>C:\apps\FILES\mercando\</local.static.folder.windows>
                 <local.rootfolder>recursos/</local.rootfolder>
                 
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
