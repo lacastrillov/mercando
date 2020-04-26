@@ -113,7 +113,7 @@
                 </property>
             </activation>
             <properties>
-                <local.static.domain>http://www.merkya.com</local.static.domain>
+                <local.static.domain>http://181.56.165.176:8084</local.static.domain>
                 <local.static.folder.linux>/opt/FILES/mercando/</local.static.folder.linux>
                 <local.static.folder.windows>C:\apps\FILES\mercando\</local.static.folder.windows>
                 <local.rootfolder>recursos/</local.rootfolder>
