@@ -9,9 +9,9 @@
 
 <ul id="sideManu" class="nav nav-tabs nav-stacked">
     <c:forEach items="${categories}" var="category">
-        <li class="subMenu">
+        <li class="subMenu open">
             <a> ${category.name} [${countProductsByCategories[category.id]}]</a>
-            <ul style="display:none">
+            <ul style="display:block">
                 <c:forEach items="${category.subCategoryList}" var="subCategory">
                     <li>
                         <a href='/productos/listado?filter=(eq:(subCategory:${subCategory.id}))'>

@@ -23,7 +23,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="span6">
-                                        <a href="/productos/detalle/${product.code}">
+                                        <a href="/productos/detalle/${product.code}" style="height: 200px;">
                                             <c:if test="${numImages>0}">
                                                 <img src="${webFunctions.getImageLinkByDimensions(product.productImageList[0].image, "600x600")}" alt="${product.name}"/>
                                             </c:if>
@@ -110,7 +110,7 @@
                                 <c:set var="numImages" value="${fn:length(product.productImageList)}"/>
                                 <li class="span3">
                                     <div class="thumbnail">
-                                        <a  href="/productos/detalle/${product.code}">
+                                        <a  href="/productos/detalle/${product.code}" style="height: 200px;">
                                             <c:if test="${numImages>0}">
                                                 <img src="${product.productImageList[0].image}" alt="${product.name}" style="max-width: 250px; max-height: 200px;"/>
                                             </c:if>
